@@ -159,9 +159,9 @@
               <img src="{{ URL::asset('img/core/maca.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Kitty</p>
+              <p>{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
             </div>
           </div>
 
@@ -182,6 +182,8 @@
               <a href="#"><i class="fa fa-2x fa-ship"></i> <span>Boats</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="{{ URL::route('BoatsGetAddEntry') }}">Add Boat</a></li>
+                <li><a href="{{ URL::route('BoatsGetAddHull') }}">Add Hull</a></li>
+                <li><a href="{{ URL::route('BoatsGetAddMake') }}">Add Make</a></li>
                 <li><a href="{{ URL::route('boatsLanding') }}">List Boats</a></li>
               </ul>
             </li>

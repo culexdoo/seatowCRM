@@ -18,8 +18,8 @@ class BoatsRepository
 	// Inserting new entry into database
 	public function addEntry($boat_brand, $boat_name, $year, $registration_no, $federal_doc_no, $boat_color, $lenght, $description)
 	{
-		/*try
-		{ */ 
+		try
+		{  
  			$entry = new BoatsEntry;
 			$entry->boat_brand = $boat_brand;
 			$entry->boat_name = $boat_name;
@@ -33,19 +33,19 @@ class BoatsRepository
 			$entry->save();
 
 			return array('status' => 1);
-	/*	} 
+		} 
 		catch (Exception $exp)
 		{
 			return array('status' => 0, 'reason' => $exp->getMessage());
-		}  */
+		}  
 	}
 
 
 	// Editing new entry into database
 	public function postEditEntry($entry_id, $boat_brand, $boat_name, $year, $registration_no, $federal_doc_no, $boat_color, $lenght, $description)
 	{
-		/* try
-		{   */
+		 try
+		{   
 
 			$entry = BoatsEntry::find($entry_id); 
 			$entry->boat_brand = $boat_brand;
@@ -61,11 +61,11 @@ class BoatsRepository
 			$entry->save();
 
 			return array('status' => 1);
-		/* } 
+		} 
 		catch (Exception $exp)
 		{
 			return array('status' => 0, 'reason' => $exp->getMessage());
-		}  */
+		} 
 	}
 
 	// Delete the entry item
@@ -74,6 +74,60 @@ class BoatsRepository
 		try
 		{ 
 			$entry = BoatsEntry::find($id); 
+			$entry->delete();
+
+		
+			return array('status' => 1);
+		} 
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		} 
+	}
+
+	public function addHullEntry($hull_name)
+	{
+	   try
+		{  
+ 			$entry = new HullEntry;
+			$entry->hull_name = $hull_name;
+
+			$entry->save();
+
+			return array('status' => 1);
+
+	} 
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		}  
+	}
+public function postEditHullEntry($entry_id, $hull_name)
+	{
+		 try
+		{   
+
+			$entry = HullEntry::find($entry_id); 
+			$entry->hull_name = $hull_name;
+
+
+
+			$entry->save();
+
+			return array('status' => 1);
+		} 
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		} 
+	}
+
+	// Delete the entry item
+	public function deleteHullEntry($id)
+	{
+		try
+		{ 
+			$entry = HullEntry::find($id); 
 			$entry->delete();
 
 		

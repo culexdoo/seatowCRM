@@ -120,6 +120,76 @@ class BoatsController extends CoreController {
 	}
 
 
+	// Get add entry
+	public function getAddHull()
+	{
+
+		 
+		$user = User::getUserInfos(Auth::user()->id);
+
+
+		if ($user['status'] == 0)
+
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+
+		$hull_name = HullEntry::getAllHulls();
+	
+
+			if ($hull_name['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('hulls.msg_error_getting_entry'));
+		}
+
+
+		$this->layout->title = 'Add Hull';
+
+
+		$this->layout->css_files = array( 
+		);
+
+		$this->layout->js_header_files = array( 
+		);
+
+		$this->layout->content = View::make('modules.boats.hull', array('mode' => 'add',
+		'postRoute' => 'BoatsPostAddHull', 'title' => 'Add Hull', 'user' => $user['user'], 'hull_entries' => $hull_name['hull_entries'] ));
+ 	
+	}
+
+
+
+	// Post add classifiedoffer
+	public function postAddHull()
+	{	
+		//Ovjde kupim sve podatke sa stranice iz fildova
+		Input::merge(array_map('trim', Input::all()));
+
+ 		//projverva dali sam popunio sve fildove
+		$entryValidator = Validator::make(Input::all(), HullEntry::$new_entry_rules);
+		
+
+		if ($entryValidator->fails())
+		{
+			return Redirect::back()->with('error_message', Lang::get('classified_offer.msg_error_validating_entry'))->withErrors($entryValidator)->withInput();
+		}
+ 
+
+		$addNewEntry = $this->repo->addHullEntry(Input::get('hull_name'));
+		
+
+		if ($addNewEntry['status'] == 0)
+		{
+			return Redirect::back()->with('error_message', Lang::get('classified_offer.msg_error_adding_entry'))->withErrors($entryValidator)->withInput();
+		}
+		else
+		{
+			return Redirect::route('BoatsGetAddHull')->with('success_message', Lang::get('boats.msg_success_entry_added', array('title' => Input::get('title'))));
+		}
+	}
+
+
+
 
 	// Display edit entry page
 	public function getEditEntry($entry_id)
@@ -182,6 +252,77 @@ class BoatsController extends CoreController {
 			return Redirect::route('boatsLanding')->with('success_message', Lang::get('classifieds.msg_success_editing_entry', array('name' => Input::get('name'))));
 		}
 	}
+	// Display edit entry page
+
+
+	public function getEditHull($entry_id)
+	{
+		$user = User::getUserInfos(Auth::user()->id);
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+		$entry = HullEntry::getSingleHullEntry($entry_id);
+
+
+		if ($entry['status'] == 0)
+		{ 
+			return Redirect::back()->with('error_message', Lang::get('boats.msg_error_getting_entry'));
+		}
+		$hull_name = HullEntry::getAllHulls();
+	
+
+		if ($hull_name['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('hulls.msg_error_getting_entry'));
+		}
+
+		$this->layout->title = 'Uredi unos';
+		$this->layout->css_files = array( 
+ 		);
+
+		$this->layout->js_header_files = array( 
+		);
+	 
+
+		$this->layout->content = View::make('modules.boats.hull', array('mode' => 'edit',
+		'postRoute' => 'BoatsPostEditHull', 'title' => 'Uredi oglas', 'user' => $user['user'], 'hull_entries' => $hull_name['hull_entries'], 'entry' => $entry['entry']));
+	}
+
+
+
+
+	// Post edit entry page
+	public function postEditHull()
+	{
+
+		
+		Input::merge(array_map('trim', Input::all()));
+ 		
+		$entryValidator = Validator::make(Input::all(), HullEntry::$edit_entry_rules);
+
+	
+
+		if ($entryValidator->fails())
+		{
+			return Redirect::back()->with('error_message', Lang::get('boats.msg_error_validating_hull'))->withErrors($entryValidator)->withInput();
+		}
+ 
+ 			
+		$editNewEntry = $this->repo->postEditHullEntry(Input::get('entry_id'), Input::get('hull_name'));
+
+		if ($editNewEntry['status'] == 0)
+		{
+			return Redirect::back()->with('error_message', Lang::get('boats.msg_error_editing_entry'))->withErrors($entryValidator)->withInput();
+		}
+
+		else
+		{
+			return Redirect::route('BoatsGetAddHull')->with('success_message', Lang::get('classifieds.msg_success_editing_entry', array('name' => Input::get('name'))));
+		}
+	}
+
+
 
 
 	// Post delete entry
@@ -213,6 +354,39 @@ class BoatsController extends CoreController {
 		else
 		{
 			return Redirect::route('boatsLanding')->with('error_message', Lang::get('boats.msg_error_deleting_entry'));
+		}
+	}
+
+		// Post delete entry
+	public function getDeleteHull($id = null)
+	{
+		if ($id == null)
+		{
+			return Redirect::route('BoatsGetAddHull')->with('error_message', Lang::get('boats.msg_error_getting_entry'));
+		}
+
+		$entry = HullEntry::getSingleHullEntry($id);
+
+		if ($entry['status'] == 0)
+		{
+			return Redirect::back()->with('error_message', Lang::get('boats.msg_error_getting_entry'));
+		}
+
+		if (!is_object($entry['entry']))
+		{
+			return Redirect::route('BoatsGetAddHull')->with('error_message', Lang::get('boats.msg_error_getting_entry'));
+		}
+
+  
+		$deleteEntry = $this->repo->deleteHullEntry($id);
+
+		if ($deleteEntry['status'] == 1)
+		{
+			return Redirect::route('BoatsGetAddHull')->with('success_message', Lang::get('boats.msg_success_entry_deleted'));
+		}
+		else
+		{
+			return Redirect::route('BoatsGetAddHull')->with('error_message', Lang::get('boats.msg_error_deleting_entry'));
 		}
 	}
 

@@ -232,6 +232,7 @@ return array(
     'GuzzleHttp\\Psr7\\StreamDecoratorTrait' => $vendorDir . '/guzzlehttp/psr7/src/StreamDecoratorTrait.php',
     'GuzzleHttp\\Psr7\\StreamWrapper' => $vendorDir . '/guzzlehttp/psr7/src/StreamWrapper.php',
     'GuzzleHttp\\Psr7\\Uri' => $vendorDir . '/guzzlehttp/psr7/src/Uri.php',
+    'HullEntry' => $baseDir . '/app/models/modules/boats/HullEntry.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'Illuminate\\Auth\\AuthManager' => $vendorDir . '/laravel/framework/src/Illuminate/Auth/AuthManager.php',
     'Illuminate\\Auth\\AuthServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php',
