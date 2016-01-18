@@ -1,0 +1,181 @@
+
+          <section class="content-header">
+               <div class="row">
+                  <div class="col-md-9">
+                   <h3>
+                 	  Administracija ponuda
+                   </h3>
+                  </div>
+
+                  <div class="col-md-3 text-right">
+                    <a class="btn btn-success btn-flat" href="<?php echo URL::route('ClassifiedsOfferGetAddEntry'); ?>"><i class="fa fa-plus"></i> Ponudi proizvod</a> 
+                    <a class="btn btn-success btn-flat" href="<?php echo URL::route('ClassifiedsDemandGetAddEntry'); ?>"><i class="fa fa-plus"></i> Zatraži proizvod</a>
+                  </div>
+              
+               </div>
+            </section>
+             <section class="content"> 
+				<div class="row">  
+	            	<!-- fix for small devices only -->
+	           		<div class="clearfix visible-sm-block"></div> 
+		            <div class="col-md-3 col-sm-6 col-xs-12">
+		              <div class="info-box">
+		                <span class="info-box-icon bg-green"><i class="fa fa-money"></i></span>
+		                <div class="info-box-content">
+		                  <span class="info-box-text">Zatraženih proizvoda</span>
+		                  <span class="info-box-number"><?php echo $number_entries_demand['number_entries']; ?></span>
+		                </div><!-- /.info-box-content -->
+		              </div><!-- /.info-box -->
+		            </div><!-- /.col -->
+		            <div class="col-md-3 col-sm-6 col-xs-12">
+		              <div class="info-box">
+		                <span class="info-box-icon bg-red"><i class="fa fa-bookmark-o"></i></span>
+		                <div class="info-box-content">
+		                  <span class="info-box-text"> Ponuđenih proizvoda</span>
+		                  <span class="info-box-number"><?php echo $number_entries_offer['number_entries']; ?></span>
+		                </div><!-- /.info-box-content -->
+		              </div><!-- /.info-box -->
+		            </div><!-- /.col -->
+	         	 </div>
+	          <?php if(count($classifiedsdemands['entries']) > 0): ?> 
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Pregled zatraženih proizvoda</h3>
+                    
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                      <table class="table table-hover">
+                        <tbody><tr>
+                          <th class="text-center">ID</th>
+                          <th>Slika</th>
+                          <th>Naslov</th>
+                          <th>Sadržaj</th>
+                          <th>Kategorija</th>
+                          <th class="text-center">Akcija</th>
+
+                        </tr>
+                         <?php foreach($classifiedsdemands['entries'] as $classifiedsdemand): ?>
+                          <tr>
+                          <td class="text-center"><?php echo $classifiedsdemand->entry_id; ?></td>
+                          <td>
+                          <?php if($classifiedsdemand->image != '' || $classifiedsdemand->image != null): ?>
+                          <img src="<?php echo url('/'); ?>/uploads/modules/classifieddemand/<?php echo $classifiedsdemand->image; ?>" class="classifiedsdemand-thumb-dashboard img-responsive">
+                          <?php endif; ?>
+                          </td>
+                          <td><?php echo $classifiedsdemand->title; ?></td>
+                          <td><?php echo $classifiedsdemand->content; ?></td>
+                          <td><?php echo $classifiedsdemand->category_name; ?></td>
+                           <td class="text-center">
+                            <a href="<?php echo URL::route('ClassifiedsDemandGetEditEntry', array('entry_id' => $classifiedsdemand->entry_id)); ?>" class="btn btn-info btn-sm"><span class="fa fa-edit"></span></a>
+                            <a href="<?php echo URL::route('ClassifiedsDemandGetDeleteEntry', array('entry_id' => $classifiedsdemand->entry_id)); ?>" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                          </td>
+                          <!-- <td class="text-center"></td> -->
+                        </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                      </table>
+                    </div><!-- /.box-body -->
+                  </div><!-- /.box -->
+                </div>
+              </div>
+              <?php else: ?>  
+	           	 <div class="row">
+	                <div class="col-xs-12">
+	                  <div class="box"> 
+	                    <div class="box-body">
+	                    	<div class="col-lg-9">
+	                    		<h3>Niste zatražili niti jedan proizvod.</h3>
+    						</div>
+	    					<div class="col-lg-3 text-right">
+	 		   					<a class="btn btn-success btn-flat mt20" href="<?php echo URL::route('ClassifiedsDemandGetAddEntry'); ?>"><i class="fa fa-plus"></i> Zatraži proizvod </a>
+	    					</div>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div> 
+           	 <?php endif; ?>
+           	 <?php if(count($classifiedsoffers['entries']) > 0): ?>
+               <div class="row">
+                <div class="col-xs-12">
+                  <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Pregled ponuđenih proizvoda</h3>
+                    
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                      <table class="table table-hover">
+                        <tbody><tr>
+                          <th class="text-center">ID</th>
+                          <th>Slika</th>
+                          <th>Naslov</th>
+                          <th>Sadržaj</th>
+                          <th>Kategorija</th>
+                          <th class="text-center">Akcija</th>
+
+                        </tr>
+                         <?php foreach($classifiedsoffers['entries'] as $classifiedsoffer): ?>
+                          <tr>
+                          <td class="text-center"><?php echo $classifiedsoffer->entry_id; ?></td>
+                          <td>
+                          <?php if($classifiedsoffer->image != '' || $classifiedsoffer->image != null): ?>
+                          <img src="<?php echo url('/'); ?>/uploads/modules/classifiedoffer/<?php echo $classifiedsoffer->image; ?>" class="classifiedsoffer-thumb-dashboard img-responsive">
+                          <?php endif; ?>
+                          </td>
+                          <td><?php echo $classifiedsoffer->title; ?></td>
+                          <td><?php echo $classifiedsoffer->content; ?></td>
+                          <td><?php echo $classifiedsoffer->category_name; ?></td>
+                           <td class="text-center">
+                            <a href="<?php echo URL::route('ClassifiedsOfferGetEditEntry', array('entry_id' => $classifiedsoffer->entry_id)); ?>" class="btn btn-info btn-sm"><span class="fa fa-edit"></span></a>
+                            <a href="<?php echo URL::route('ClassifiedsOfferGetDeleteEntry', array('entry_id' => $classifiedsoffer->entry_id)); ?>" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                          </td>
+                          <!-- <td class="text-center"></td> -->
+                        </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                      </table>
+                    </div><!-- /.box-body -->
+                  </div><!-- /.box -->
+                </div>
+              </div> 
+       		<?php else: ?>  
+           	 <div class="row">
+                <div class="col-xs-12">
+                  <div class="box"> 
+                    <div class="box-body">
+                    	<div class="col-lg-9">
+	                    	<h3>Niste ponudili niti jedan proizvod.</h3>
+    					</div>
+    					<div class="col-lg-3 text-right">
+ 		   					<a class="btn btn-success btn-flat mt20" href="<?php echo URL::route('ClassifiedsDemandGetAddEntry'); ?>"><i class="fa fa-plus"></i> Ponudi proizvod </a>
+    					</div>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+              <?php endif; ?>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  

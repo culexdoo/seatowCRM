@@ -1,0 +1,11 @@
+/*
+*	CityHub - Add / edit news
+*/
+
+main {
+	padding: 2.143rem 0 2.857rem;
+}
+.city-news-image {
+	max-width: 100%;
+	height: auto;
+}

@@ -1,0 +1,207 @@
+/*
+*	CityHub - Overview
+*/
+
+/* Defaulting to full screen */
+html, body {
+	position: relative;
+
+	width: 100%;
+	height: 100%;
+}
+
+/* Maps container */
+#map-canvas {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+/* Modal background */
+.custom-modal {
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	display: none;
+
+	background-color: rgba(255,255,255,0.5);
+}
+.custom-modal hr {
+	border-color: #2b2b2b;
+}
+
+/* Modal container with white background */
+.custom-modal-container {
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+	bottom: 2rem;
+	left: 2rem;
+
+	background-color: rgba(255,255,255,0.8);
+	box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+
+/* Modal content space */
+.custom-modal-content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+.custom-modal-content p {
+	color: #444444;
+}
+.custom-modal-content h1, .custom-modal-content h2, .custom-modal-content h3, .custom-modal-content h4, .custom-modal-content h5, .custom-modal-content h6 {
+	color: #2b2b2b;
+}
+
+/* Modal languages menu */
+.custom-modal-languages-menu {
+	position: absolute;
+	top: 0;
+	right: 1.714rem;
+}
+
+/* Modal close button */
+.custom-modal-close-button {
+	font-size: 1.143rem;
+	font-weight: 700;
+	line-height: 1.714rem;
+
+	position: absolute;
+	z-index: 9999;
+	top: 0;
+	right: 0;
+
+	width: 1.714rem;
+	height: 1.714rem;
+	margin: 0;
+	padding: 0;
+
+	-webkit-transition: background-color 200ms ease-out 0s;
+	   -moz-transition: background-color 200ms ease-out 0s;
+	     -o-transition: background-color 200ms ease-out 0s;
+	        transition: background-color 200ms ease-out 0s;
+	text-align: center;
+
+	color: #ffffff;
+	border: none;
+	background-color: #d81f00;
+}
+.custom-modal-close-button:hover, .custom-modal-close-button:active {
+	background-color: #ff320a;
+}
+
+/* Elements within modal content */
+.custom-modal-image {
+	width: 100%;
+	padding: 1rem;
+
+	text-align: center;
+}
+.custom-modal-infos {
+	width: 100%;
+	padding: 1rem;
+}
+.custom-modal-half-infos-left, .custom-modal-half-infos-right {
+	width: 100%;
+}
+
+
+
+/*
+*	Media queries
+*/
+@media screen and (min-width: 30.000em) { /* 480px */
+}
+@media screen and (min-width: 40.000em) { /* 640px */
+	.custom-modal-image {
+		float: left;
+
+		width: 49%;
+		padding: 0;
+	}
+	.custom-modal-infos {
+		float: right;
+
+		width: 49%;
+		padding: 0;
+		padding-right: 1rem;
+	}
+}
+@media screen and (min-width: 48.000em) { /* 768px */
+	.custom-modal-container {
+		top: 12%;
+		bottom: 12%;
+	}
+}
+@media screen and (min-width: 56.000em) { /* 896px */
+	.custom-modal-half-infos-left {
+		float: left;
+
+		width: 47%;
+	}
+	.custom-modal-half-infos-right {
+		float: right;
+
+		width: 47%;
+	}
+}
+@media screen and (min-width: 64.000em) { /* 1024px */
+	.custom-modal-image {
+		float: left;
+
+		width: 33%;
+	}
+	.custom-modal-infos {
+		float: right;
+
+		width: 66%;
+	}
+}
+@media screen and (min-width: 80.000em) { /* 1280px */
+}
+
+
+
+@media screen and (min-height: 30.000em) { /* 480px */
+}
+@media screen and (min-height: 40.000em) { /* 640px */
+	.custom-modal-container {
+		right: 12%;
+		left: 12%;
+	}
+}
+@media screen and (min-height: 48.000em) { /* 768px */
+}
+@media screen and (min-height: 64.000em) { /* 1024px */
+}
+@media screen and (min-height: 80.000em) { /* 1280px */
+}
+
+
+
+@media screen and (min-width: 40.000em) and (min-height: 40.000em) {
+	.custom-modal-close-button {
+		font-size: 1.286rem;
+		line-height: 2.571rem;
+
+		top: -2rem;
+		right: -2rem;
+
+		width: 2.571rem;
+		height: 2.571rem;
+	}
+}

@@ -1,0 +1,3 @@
+db_name: minixpro_demo_bookingapp
+pwd: 2u6gNNVJFTvXesEkQf
+user: minixpro_bookapp

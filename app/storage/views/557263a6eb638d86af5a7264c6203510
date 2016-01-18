@@ -1,0 +1,134 @@
+          <?php
+          // If no mode is selected, default to add
+          if (!isset($mode))
+          {
+            $mode = 'add';
+          }
+
+          ?>
+        <!-- Content Header (Page header) -->
+        <section class="content-header"> 
+        <div class="row">
+        <div class="col-md-6">
+          <h1>
+          <?php echo isset($title) ? $title : null; ?>
+
+          </h1>
+          </div>
+            <?php echo Form::open(array('route' => $postRoute, 'role' => 'form', 'autocomplete' => 'off', 'files' => false)); ?>
+
+
+            <?php echo Form::hidden('user_id', $user->id, array('id' => 'user_id')); ?>
+
+            <?php if($mode == 'edit'): ?>
+            <?php echo Form::hidden('entry_id', $entry->entry_id, array('entry_id' => 'entry_id')); ?>
+
+            <?php endif; ?>
+          <div class="col-md-6">
+          <a href="<?php echo URL::route('getDashboard'); ?>" class="btn btn-danger pull-right"><span class="icon icon-block"></span><?php echo Lang::get('membership.cancel'); ?></a>
+
+          <a class="pull-right">
+          <?php echo Form::button('<span class="icon icon-done"></span> ' . Lang::get('membership.save'), array('type' => 'submit', 'class' => 'btn btn-success')); ?>
+
+          </div>
+          </a>
+
+          </div>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="box box-black">
+                <div class="box-header with-border">
+                  <h3 class="box-title"> <?php echo Lang::get('membership.basic_information'); ?></h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+               
+                  
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1"><?php echo Lang::get('membership.membership_program'); ?>:</label>
+                      <?php echo Form::text('title', isset($entry->title) ? $entry->title : null, ['class' => 'form-control']); ?>
+
+                    </div>
+                    <div class="form-group">
+                      <label><?php echo Lang::get('membership.description'); ?>:</label>
+                      <?php echo Form::textarea('description', isset($entry->description) ? $entry->description : null, array('class' => 'form-control description','id' => 'description')); ?>
+
+          <small class="text-danger"><?php echo $errors->first('content'); ?></small>
+                    </div>
+                   
+                  </div>
+               
+              </div>
+              
+            </div>
+            <div class="col-md-4">
+              <div class="box box-black">
+                <div class="box-header with-border">
+                  <h3 class="box-title"><?php echo Lang::get('membership.membership_information'); ?></h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+              
+                  
+                  <div class="box-body">
+                   <div class="form-group">
+                      <label for="exampleInputtext"><?php echo Lang::get('membership.normal_price'); ?>:</label>
+                       <?php echo Form::text('normal_price', isset($entry->normal_price) ? $entry->normal_price : null, ['class' => 'form-control']); ?>
+
+                         <small class="text-danger"><?php echo $errors->first('normal_price'); ?></small>
+                    </div>
+                    
+                     <div class="form-group">
+                     <div class="row">
+                     <div class="col-md-6">
+                      <label for="exampleInputtext"><?php echo Lang::get('membership.promo_price'); ?>:</label>
+                       <?php echo Form::text('promo_price_1', isset($entry->promo_price_1) ? $entry->promo_price_1 : null, ['class' => 'form-control']); ?>
+
+                     
+                      </div>
+                      <div class="col-md-6">
+                       <label><?php echo Lang::get('membership.promo_period'); ?>:</label>
+                      <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+                          <input type="text" class="form-control pull-right active" id="reservation">
+                          </div>
+                    </div>
+                    </div>
+                    </div>
+                     <div class="form-group">
+                     <div class="row">
+                     <div class="col-md-6">
+                      <label for="exampleInputtext"><?php echo Lang::get('membership.promo_price'); ?>:</label>
+                       <?php echo Form::text('promo_price_2', isset($entry->promo_price_2) ? $entry->promo_price_2 : null, ['class' => 'form-control']); ?>
+
+                    
+                      </div>
+                      <div class="col-md-6">
+                       <label><?php echo Lang::get('membership.promo_period'); ?>:</label>
+                      <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+                          <input type="text" class="form-control pull-right active" id="reservation">
+                          </div>
+                    </div>
+                    </div>
+                    </div>
+                   
+                    
+                  </div>
+           
+              </div>
+              
+            </div>
+            <?php echo Form::close(); ?>
+
+            
+          </div>
+          </section><!-- /.content -->

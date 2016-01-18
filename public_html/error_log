@@ -1,0 +1,95 @@
+[10-Oct-2015 15:54:54 Europe/Zagreb] PHP Fatal error:  Call to undefined method FrontendRepository::getUserLanguage() in /home/pixprom/public_html/mrkva/app/controllers/core/FrontendController.php on line 180
+[10-Oct-2015 16:34:31 Europe/Zagreb] PHP Fatal error:  Out of memory (allocated 17039360) (tried to allocate 102400 bytes) in /home/pixprom/public_html/mrkva/vendor/filp/whoops/src/Whoops/Resources/views/layout.html.php on line 34
+[10-Oct-2015 17:11:08 Europe/Zagreb] PHP Fatal error:  Class 'SubscribeRepository' not found in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 11
+[10-Oct-2015 17:11:50 Europe/Zagreb] PHP Fatal error:  Class 'SubscribeRepository' not found in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 11
+[10-Oct-2015 17:16:48 Europe/Zagreb] PHP Fatal error:  Class 'SubscribeRepository' not found in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 11
+[10-Oct-2015 17:16:57 Europe/Zagreb] PHP Fatal error:  Class 'SubscribeRepository' not found in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 11
+[10-Oct-2015 17:19:35 Europe/Zagreb] PHP Fatal error:  Class 'SubscribeRepository' not found in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 11
+[10-Oct-2015 17:29:57 Europe/Zagreb] PHP Fatal error:  Class 'SubscribeRepository' not found in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 11
+[10-Oct-2015 17:31:44 Europe/Zagreb] PHP Fatal error:  Class 'SubscribeRepository' not found in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 11
+[10-Oct-2015 17:37:28 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 17:50:06 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 17:50:24 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 18:02:24 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 18:13:45 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 18:16:15 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 18:17:17 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 18:17:49 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 20:32:54 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[10-Oct-2015 20:51:34 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 20:53:10 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 20:53:25 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 20:53:45 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 20:53:52 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 21:02:39 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[10-Oct-2015 21:10:17 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 21:10:19 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 21:10:40 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 21:19:38 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 21:52:35 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 30
+[10-Oct-2015 21:53:02 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 30
+[10-Oct-2015 21:53:09 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 30
+[10-Oct-2015 21:53:10 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 30
+[10-Oct-2015 21:55:13 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 21:55:49 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 30
+[10-Oct-2015 21:57:44 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 30
+[10-Oct-2015 21:57:46 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 30
+[10-Oct-2015 21:59:36 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 30
+[10-Oct-2015 22:02:11 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:02:46 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:02:49 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:04:21 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:06:20 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 22:06:46 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:08:15 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 22:08:35 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:15:50 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:17:04 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 22:17:16 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:19:40 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 22:19:59 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:21:36 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:23:30 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:24:10 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:24:10 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedofferEntry' not found in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 32
+[10-Oct-2015 22:29:26 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 22:34:30 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 22:45:27 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::response() in /home/pixprom/public_html/mrkva/app/repositories/modules/classifieds_offer/apiCommunalServiceRepository.php on line 35
+[10-Oct-2015 22:52:13 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 22:52:24 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 22:57:14 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 22:58:00 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 23:21:20 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 23:21:23 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[10-Oct-2015 23:43:22 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 01:04:26 Europe/Zagreb] PHP Fatal error:  Call to undefined method CoreRepository::registerUser() in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 217
+[11-Oct-2015 01:07:31 Europe/Zagreb] PHP Fatal error:  Call to undefined method CoreRepository::registerUser() in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 217
+[11-Oct-2015 01:07:42 Europe/Zagreb] PHP Fatal error:  Call to undefined method CoreRepository::registerUser() in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 217
+[11-Oct-2015 01:07:53 Europe/Zagreb] PHP Fatal error:  Call to undefined method CoreRepository::registerUser() in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 217
+[11-Oct-2015 01:11:30 Europe/Zagreb] PHP Fatal error:  Class 'ClassifiedDemandEntry' not found in /home/pixprom/public_html/mrkva/app/controllers/core/FrontendController.php on line 32
+[11-Oct-2015 01:11:32 Europe/Zagreb] PHP Fatal error:  Call to undefined method CoreRepository::registerUser() in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 217
+[11-Oct-2015 01:13:33 Europe/Zagreb] PHP Fatal error:  Call to undefined method CoreRepository::registerUser() in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 217
+[11-Oct-2015 01:13:58 Europe/Zagreb] PHP Fatal error:  Call to undefined method CoreRepository::registerUser() in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 217
+[11-Oct-2015 01:14:29 Europe/Zagreb] PHP Fatal error:  Call to undefined method CoreRepository::registerUser() in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 217
+[11-Oct-2015 01:15:20 Europe/Zagreb] PHP Fatal error:  Call to undefined method CoreRepository::registerUser() in /home/pixprom/public_html/mrkva/app/controllers/core/apiCore.php on line 217
+[11-Oct-2015 01:19:53 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[11-Oct-2015 01:20:00 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[11-Oct-2015 01:20:33 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 01:20:46 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 01:24:01 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 01:34:55 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[11-Oct-2015 03:17:40 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 03:23:22 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 03:28:16 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 03:29:55 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 03:32:00 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 03:37:42 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 03:42:41 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 04:09:13 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[11-Oct-2015 04:09:31 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 04:12:06 Europe/Zagreb] PHP Fatal error:  Call to undefined method apiCommunalServiceRepository::getAllReports() in /home/pixprom/public_html/mrkva/app/controllers/modules/module_name/classifieds_offer/apiCommunalServiceController.php on line 29
+[11-Oct-2015 04:13:47 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[11-Oct-2015 04:17:47 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[11-Oct-2015 04:21:02 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[11-Oct-2015 04:25:47 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25
+[11-Oct-2015 09:02:53 Europe/Zagreb] PHP Fatal error:  Class 'City' not found in /home/pixprom/public_html/mrkva/app/repositories/core/apiRepository.php on line 25

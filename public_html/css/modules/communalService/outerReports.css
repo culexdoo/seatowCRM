@@ -1,0 +1,15 @@
+/*
+*	CityHub - Communal Service - Outer reports
+*/
+
+
+
+.modal-title, #modalReportText {
+	color: #666666;
+}
+.pt7 {
+	padding-top: 7px;
+}
+.modal label {
+	color: #666666;
+}

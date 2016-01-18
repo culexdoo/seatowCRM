@@ -1,0 +1,151 @@
+          <?php
+          // If no mode is selected, default to add
+          if (!isset($mode))
+          {
+            $mode = 'add';
+          }
+
+          ?><!-- Content Header (Page header) -->
+        <section class="content-header">
+        <div class="row">
+        <div class="col-md-6">
+          <h1>
+         <?php echo isset($title) ? $title : null; ?>
+
+           </h1>
+           </div>
+            <?php echo Form::open(array('route' => $postRoute, 'role' => 'form', 'autocomplete' => 'off', 'files' => false)); ?>
+
+
+            <?php echo Form::hidden('user_id', $user->id, array('id' => 'user_id')); ?>
+
+            <?php if($mode == 'edit'): ?>
+            <?php echo Form::hidden('entry_id', $entry->id, array('entry_id' => 'entry_id')); ?>
+
+             <?php echo Form::hidden('employee_franchisee', $employee_franchisee['employee_franchisee']->id, array('employee_franchisee' => 'employee_franchisee')); ?>
+
+            <?php endif; ?>
+            <div class="col-md-6">
+
+
+
+            <a href="<?php echo URL::route('franchiseeLanding'); ?>" class="btn btn-danger pull-right">
+           <span class="icon icon-block"></span><?php echo Lang::get('employee.cancel'); ?></a>
+          
+           <a class="pull-right">
+          <?php echo Form::button('<span class="icon icon-done"></span> ' . Lang::get('employee.save'), array('type' => 'submit', 'class' => 'btn btn-success')); ?>
+
+          </div>
+          </a>
+        </div>
+        
+          
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="box box-black">
+                <div class="box-header with-border">
+                  <h3 class="box-title"><?php echo Lang::get('employee.basic_information'); ?></h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+              
+                  
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label><?php echo Lang::get('employee.employee_id'); ?>:</label>
+                       <?php echo Form::text('employee_id', isset($entry->employee_id) ? $entry->employee_id : null, ['class' => 'form-control']); ?>
+
+                    </div>
+                    <div class="form-group">
+                      <label><?php echo Lang::get('employee.first_name'); ?>:</label>
+                       <?php echo Form::text('first_name', isset($entry->first_name) ? $entry->first_name : null, ['class' => 'form-control']); ?>
+
+                    </div>
+                    <div class="form-group">
+                      <label><?php echo Lang::get('employee.last_name'); ?>:</label>
+                      <?php echo Form::text('last_name', isset($entry->last_name) ? $entry->last_name : null, ['class' => 'form-control']); ?>
+
+                    </div>
+                    <div class="form-group">
+                      <label><?php echo Lang::get('employee.mobile_number'); ?>:</label>
+                       <?php echo Form::text('mobile_number', isset($entry->mobile_number) ? $entry->mobile_number : null, ['class' => 'form-control']); ?>
+
+                    </div>
+                     <div class="form-group">
+                      <label><?php echo Lang::get('employee.email'); ?>:</label>
+                       <?php echo Form::text('email', isset($entry->email) ? $entry->email : null, ['class' => 'form-control']); ?>
+
+                    </div>
+                     <div class="form-group">
+                      <label><?php echo Lang::get('employee.password'); ?>:</label>
+                       <?php echo Form::text('password', isset($entry->password) ? $entry->password : null, ['class' => 'form-control']); ?>
+
+                    </div>
+                   
+                    
+                    
+                  </div>
+             
+              </div>
+              
+            </div>
+            <div class="col-md-4">
+              <div class="box box-black">
+                <div class="box-header with-border">
+                  <h3 class="box-title"><?php echo Lang::get('employee.franchisee_information'); ?></h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+               
+                  
+                  <div class="box-body">
+                             <div class="form-group"> 
+          <label for="franchisee_id"><?php echo Lang::get('employee.franchisee'); ?>:</label> 
+          <?php echo Form::select('franchisee_id', $entries, isset($entry->franchisee_id) ? $entry->franchisee_id : null, array('class' => 'form-control', 'id' => 'franchisee_id', 'required')); ?>
+
+          <?php if(isset($errors) && ($errors->first('franchisee_id') != '' || $errors->first('franchisee_id') != null)): ?>
+          <p><small><?php echo $errors->first('franchisee_id'); ?></small></p>
+          <?php endif; ?>
+           
+        </div>
+                    <div class="form-group">
+                      <label>Franchisee</label>
+                      <textarea class="form-control" rows="3" placeholder="Damlatia South (105) - [ +49 (0) 700-00-SEATOW]"></textarea>
+                    </div>
+                  </div>
+                
+              </div>
+              
+            </div>
+            <div class="col-md-4">
+              <div class="box box-black">
+                <div class="box-header with-border">
+                  <h3 class="box-title"><?php echo Lang::get('employee.additional_information'); ?></h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label><?php echo Lang::get('employee.employee_description'); ?></label>
+                      <?php echo Form::textarea('employee_description', isset($entry->employee_description) ? $entry->employee_description : null, array('class' => 'form-control description','id' => 'employee_description')); ?>
+
+                       <small class="text-danger"><?php echo $errors->first('content'); ?></small>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+                
+              </div>
+           
+          </div>
+          
+        </div>
+        <?php echo Form::close(); ?>
+
+      </div>
+      </section><!-- /.content -->

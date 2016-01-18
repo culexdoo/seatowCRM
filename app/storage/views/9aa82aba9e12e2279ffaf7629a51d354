@@ -1,0 +1,65 @@
+<div class="register-box">
+	      <div class="register-logo">
+	         <a href="<?php echo URL::route('getFrontendLanding'); ?>"><b><?php echo Lang::get('core.app_title'); ?></b></a>
+	      </div>
+
+	      <div class="register-box-body">
+  			<p class="login-box-msg">Register a new membership</p>
+	      	<?php echo Form::open(array('route' => 'postRegister', 'autocomplete' => 'off', 'role' => 'form', 'class' => 'form-container')); ?>
+
+
+				<div class="form-group has-feedback">
+					<label for="first_name"><?php echo Lang::get('register.label_first_name'); ?></label>
+					<?php echo Form::text('first_name', null, array('id' => 'first_name', 'class' => 'form-control', 'required')); ?>
+
+					<?php if(isset($errors) && ($errors->first('first_name') != '' || $errors->first('first_name') != null)): ?>
+					<p><small><?php echo $errors->first('first_name'); ?></small></p>
+					<?php endif; ?>
+				</div>
+
+				<div class="form-group has-feedback">
+					<label for="last_name"><?php echo Lang::get('register.label_last_name'); ?></label>
+					<?php echo Form::text('last_name', null, array('id' => 'last_name', 'class' => 'form-control', 'required')); ?>
+
+					<?php if(isset($errors) && ($errors->first('last_name') != '' || $errors->first('last_name') != null)): ?>
+					<p><small><?php echo $errors->first('last_name'); ?></small></p>
+					<?php endif; ?>
+				</div>
+				<div class="form-group has-feedback">
+					<label for="email"><?php echo Lang::get('register.label_email'); ?>:</label>
+					<?php echo Form::email('email', null, array('id' => 'email', 'class' => 'form-control', 'required', 'autofocus')); ?>
+
+					<?php if(isset($errors) && ($errors->first('email') != '' || $errors->first('email') != null)): ?>
+					<p><small><?php echo $errors->first('email'); ?></small></p>
+					<?php endif; ?>
+				</div>  
+	          <div class="form-group has-feedback">
+					<label for="password"><?php echo Lang::get('register.label_password'); ?></label>
+					<?php echo Form::password('password', array('id' => 'password', 'class' => 'form-control', 'required')); ?>
+
+					<?php if(isset($errors) && ($errors->first('password') != '' || $errors->first('password') != null)): ?>
+					<p><small><?php echo $errors->first('password'); ?></small></p>
+					<?php endif; ?>
+			 </div>
+
+			 <div class="form-group has-feedback">
+					<label for="repeat_password"><?php echo Lang::get('register.label_repeat_password'); ?></label>
+					<?php echo Form::password('repeat_password', array('id' => 'repeat_password', 'class' => 'form-control', 'required')); ?>
+
+					<?php if(isset($errors) && ($errors->first('repeat_password') != '' || $errors->first('repeat_password') != null)): ?>
+					<p><small><?php echo $errors->first('repeat_password'); ?></small></p>
+					<?php endif; ?>
+			 </div>
+	          <div class="row">
+	            <div class="col-xs-8">
+	              
+	            </div><!-- /.col -->
+	            <div class="col-xs-4">
+	              <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+	            </div><!-- /.col -->
+	          </div>
+			<?php echo Form::close(); ?>
+
+	        <a href="<?php echo URL::route('getSignIn'); ?>" class="text-center">I already have a membership</a>
+	      </div><!-- /.form-box -->
+    </div>

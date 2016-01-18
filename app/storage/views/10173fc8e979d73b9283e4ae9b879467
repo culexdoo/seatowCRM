@@ -1,0 +1,133 @@
+ <!-- Content Header (Page header) -->
+
+
+
+        <section class="content-header">
+          <h1>
+          <?php echo Lang::get('franchisee.list_all_franchisee'); ?>
+
+          </h1>
+          
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-12">
+              
+              
+              <div class="box box-black">
+                <div class="box-header">
+                <div clas="row">
+                 <div class="col-md-6">
+                  <h3 class="box-title"><?php echo Lang::get('franchisee.list_of_all_franchisee'); ?></h3>
+                </div>
+                <a class="btn btn-success btn-flat pull-right" href="<?php echo URL::route('FranchiseeGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('franchisee.add_franchisee'); ?></a>
+                 </div>
+                  </div>
+                <!-- /.box-header -->
+                <div clasee="box-body">
+                   <?php if(count($entries) > 0): ?> 
+                  <table id="list-franchisees" class="table">
+                    <thead>
+                      <tr>
+                        
+                        <th>
+                          <div class="row">
+                            <div class="col-md-2">
+                             <?php echo Lang::get('franchisee.franchisee_id'); ?>
+
+                            </div>
+                             <div class="col-md-2 pull-right">
+                           <?php echo Lang::get('franchisee.quick_options'); ?>
+
+                          </div>
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                      <th>
+                        <div class="row">
+                          
+                          <div class="col-md-2">
+                           <?php echo Lang::get('franchisee.franchisee_id'); ?>
+
+                          </div>
+                          <div class="col-md-2 pull-right">
+                            <?php echo Lang::get('franchisee.quick_options'); ?>
+
+                          </div>
+                        </div>
+                      </th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                     <?php foreach($entries as $entry): ?>
+                      <tr>
+                        <td>
+                          <div class="box box-no-border collapsed-box no-margin">
+                            <div class="box-header">
+                             
+                              <div class="row">
+                                <div class="col-md-2">
+                                <label> <?php echo $entry->franchisee_id; ?></label>
+                                </div>
+                               
+                                <div class="col-md-2 pull-right">
+                                 <a href="<?php echo URL::route('FranchiseeGetEditEntry', array('entry_id' => $entry->entry_id)); ?>"><span class="label label-warning"><?php echo Lang::get('franchisee.edit_franchisee'); ?></span></a>
+
+                                 &nbsp; 
+
+                                  <a href="<?php echo URL::route('FranchiseeGetDeleteEntry', array('entry_id' => $entry->entry_id)); ?>"><span class="label label-danger"><?php echo Lang::get('franchisee.delete_franchisee'); ?></span></a>
+
+                                   <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
+                                </button>
+                              </div>
+
+                                </div>
+
+                              </div>
+                            </div>
+                            <div class="box-body colored-div">
+                              <div class="row">
+                                <div class="col-md-10">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label><?php echo Lang::get('franchisee.city'); ?>:</label><p><?php echo $entry->city; ?></p>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label><?php echo Lang::get('franchisee.state'); ?>:</label><p></p>
+                                    </div>
+                                  </div>
+                                   <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label><?php echo Lang::get('franchisee.employees'); ?>:</label><p></p>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label><?php echo Lang::get('franchisee.franchisee_short'); ?>:</label>
+                                      <p><?php echo $entry->franchisee_short; ?></p>
+                                    </div>
+                                  </div>
+                                </div>
+                               
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                    <?php endif; ?>
+                </div>
+                <!-- /.box-body -->
+              </div>
+            </div>
+          </div>
+          </section><!-- /.content -->
