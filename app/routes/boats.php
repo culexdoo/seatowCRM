@@ -52,7 +52,7 @@ Route::group(array('prefix' => 'boats'), function()
 
 		Route::post('change-make', array('as' => 'BoatsPostEditMake', 'uses' => 'BoatsController@postEditMake'));
 
-		Route::get('delete-make/{id}', array('as' => 'BoatsGetDeleteMake', 'uses' => 'BoatsController@getDeleteEntry'));
+		Route::get('delete-make/{id}', array('as' => 'BoatsGetDeleteMake', 'uses' => 'BoatsController@getDeleteMake'));
 
 	});
 

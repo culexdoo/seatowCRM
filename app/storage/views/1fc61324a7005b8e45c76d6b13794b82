@@ -104,31 +104,39 @@
                
                   <div class="box-body">
                     <div class="form-group">
-                      <label>Hull:</label>
-                      <select class="form-control hidden-search select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Aluminium</option>
-                        <option>Carbon Fiber</option>
-                        <option>Fiberglass</option>
-                        <option>Kevlar</option>
-                        <option>Other</option>
-                        <option>Steel</option>
-                        <option>Wood</option>
-                      </select>
+                     <?php if($mode == 'edit'): ?>
+                        <label for="hull_id"><?php echo Lang::get('boats.hull_name'); ?>:</label> 
+                        <?php echo Form::select('hull_id', $hull_entries, isset($entry->hull_id) ? $entry->hull_id : $preselected_hull, array('class' => 'form-control', 'id' => 'hull_id', 'required')); ?>
+
+                        <?php if(isset($errors) && ($errors->first('hull_id') != '' || $errors->first('hull_id') != null)): ?>
+                        <p><small><?php echo $errors->first('hull_id'); ?></small></p>
+                        <?php endif; ?>
+                    <?php elseif($mode == 'add'): ?>
+                       <label for="hull_id"><?php echo Lang::get('boats.hull_name'); ?>:</label> 
+                        <?php echo Form::select('hull_id', $hull_entries, isset($entry->hull_id) ? $entry->hull_id : null, array('class' => 'form-control', 'id' => 'hull_id', 'required')); ?>
+
+                        <?php if(isset($errors) && ($errors->first('hull_id') != '' || $errors->first('hull_id') != null)): ?>
+                        <p><small><?php echo $errors->first('hull_id'); ?></small></p>
+                        <?php endif; ?>
+                         <?php endif; ?>
+
                     </div>
                     <div class="form-group">
-                      <label>Make:</label>
-                      <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">ALBEMARILE</option>
-                        <option>ALBIN</option>
-                        <option>ALLGLASS</option>
-                        <option>ANACAPRI</option>
-                        <option>ANGLER</option>
-                        <option>APOLLO</option>
-                        <option>AQUASPORT</option>
-                        <option>AZIMUT</option>
-                        <option>BAJA</option>
-                        <option>BANKS COVE</option>
-                      </select>
+                     <?php if($mode == 'edit'): ?>
+                     <label for="make_id"><?php echo Lang::get('boats.make_name'); ?>:</label> 
+                        <?php echo Form::select('make_id', $make_entries, isset($entry->make_id) ? $entry->make_id : $preselected_make, array('class' => 'form-control', 'id' => 'make_id', 'required')); ?>
+
+                        <?php if(isset($errors) && ($errors->first('make_id') != '' || $errors->first('make_id') != null)): ?>
+                        <p><small><?php echo $errors->first('make_id'); ?></small></p>
+                        <?php endif; ?>
+                          <?php elseif($mode == 'add'): ?>
+                          <label for="make_id"><?php echo Lang::get('boats.make_name'); ?>:</label> 
+                        <?php echo Form::select('make_id', $make_entries, isset($entry->make_id) ? $entry->make_id : null, array('class' => 'form-control', 'id' => 'make_id', 'required')); ?>
+
+                        <?php if(isset($errors) && ($errors->first('make_id') != '' || $errors->first('make_id') != null)): ?>
+                        <p><small><?php echo $errors->first('make_id'); ?></small></p>
+                        <?php endif; ?>
+                         <?php endif; ?>
                     </div>
                     <div class="form-group">
                       <label><?php echo Lang::get('boats.boat_color'); ?>:</label>
@@ -141,10 +149,20 @@
 
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Fuel Type:</label>
+                      <label>Fuel Type:</label>
                       <div class="form-group">
-                        <input type="radio" class="minimal" name="fuel-type" value="diesel">&nbsp Diesel
-                        <input type="radio" class="minimal" name="fuel-type" value="gasoline">&nbsp Gasoline
+                       <?php if($mode == 'add'): ?>
+                             <?php echo Form::radio('fuel_type', 'Diesel', true); ?>  Diesel 
+                             <?php echo Form::radio('fuel_type', 'Gasoline'); ?> Gasoline
+                          <?php elseif($mode == 'edit'): ?> 
+                          <?php if($entry->fuel_type == 'Diesel'): ?>
+                             <?php echo Form::radio('fuel_type', 'Diesel', true); ?>  Diesel 
+                             <?php echo Form::radio('fuel_type', 'Gasoline'); ?> Gasoline
+                          <?php elseif($entry->fuel_type == 'Gasoline'): ?>
+                             <?php echo Form::radio('fuel_type', 'Diesel'); ?>  Diesel 
+                             <?php echo Form::radio('fuel_type', 'Gasoline', true); ?> Gasoline
+                          <?php endif; ?>
+                       <?php endif; ?>
                       </div>
                     </div>
                       <div class="form-group">
@@ -153,17 +171,64 @@
                     </div>
                     <div class="form-group">
                       <label>Engine Type:</label>
-                      <select class="form-control hidden-search select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">N/A</option>
-                        <option>InBoard</option>
-                        <option>In/Out Board</option>
-                        <option>OutBoard</option>
-                        <option>Sail</option>
-                        <option>Jet</option>
-                      </select>
+                      <?php if($mode == 'add'): ?>
+                            <?php echo Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'1', ['class' => 'form-control']); ?>
+
+                        <?php elseif($mode == 'edit'): ?>
+                          <?php if($entry->engine_type_id == '1'): ?>
+                              <?php echo Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'1', ['class' => 'form-control']); ?>
+
+                          <?php elseif($entry->engine_type_id == '2'): ?>
+                              <?php echo Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'2',['class' => 'form-control']); ?>
+
+                          <?php elseif($entry->engine_type_id == '3'): ?>
+                              <?php echo Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'3',['class' => 'form-control']); ?>
+
+                          <?php elseif($entry->engine_type_id == '4'): ?>
+                              <?php echo Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'4',['class' => 'form-control']); ?>
+
+                          <?php elseif($entry->engine_type_id == '5'): ?>
+                              <?php echo Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'5',['class' => 'form-control']); ?>
+
+                          <?php endif; ?>
+                        <?php endif; ?>
                     </div>
-                    
-                    
                   </div>
                
               </div>

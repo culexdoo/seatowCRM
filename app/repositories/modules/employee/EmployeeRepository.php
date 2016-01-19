@@ -96,6 +96,8 @@ class EmployeeRepository
 	 }
 		catch (Exception $exp)
 		{
+
+				DB::rollback();
 			return array('status' => 0, 'reason' => $exp->getMessage());
 		}  
 	} 

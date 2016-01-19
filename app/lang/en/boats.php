@@ -34,6 +34,13 @@ return array(
 	'fuel_type'					=>	'Fuel Type',
 	'engine_type'				=>	'Engine Type',
 	'make'						=>	'Make',
-	'additional_description'	=>	'Additional Description'
+	'additional_description'	=>	'Additional Description',
+	'hull_information'			=>	'Hull Information',
+	'hull_name'					=>	'Hull Name',
+	'hull_list'					=>	'Hull List',
+	'make_information'			=>	'Make Information',
+	'make_name'					=>	'Make Name',
+	'make_list'					=>	'Make List'
+
 
 );

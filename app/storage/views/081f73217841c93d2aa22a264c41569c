@@ -5,6 +5,7 @@
          <?php echo Lang::get('boats.list_all_boats'); ?>
 
           </h1>
+      
           
         </section>
         <!-- Main content -->
@@ -92,10 +93,7 @@
                         <td>
                           <div class="box box-no-border collapsed-box no-margin">
                             <div class="box-header">
-                              <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
-                                </button>
-                              </div>
+                             
                               <div class="row">
                                 <div class="col-md-2">
                                   Tu ce biti membership ID
@@ -150,9 +148,9 @@
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label><?php echo Lang::get('boats.make'); ?>:</label>
-                                      <p>Tu ce biti make</p>
+                                      <p><?php echo $entry->make_name; ?></p>
                                       <label><?php echo Lang::get('boats.hull'); ?>:</label>
-                                      <p>Tu ce biti hull</p>
+                                      <p><?php echo $entry->hull_name; ?></p>
                                       <label><?php echo Lang::get('boats.boat_color'); ?>:</label>
                                       <p><?php echo $entry->boat_color; ?></p>
                                       
@@ -161,9 +159,31 @@
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label><?php echo Lang::get('boats.year'); ?>:</label><p><?php echo $entry->year; ?></p>
-                                      <label><?php echo Lang::get('boats.fuel_type'); ?>:</label><p>Tu ce biti fuel</p>
-                                      <label><?php echo Lang::get('boats.engine_type'); ?>:</label><p>Tu ce biti engine type</p>
-                                      
+                                      <label><?php echo Lang::get('boats.fuel_type'); ?>:</label>
+                                      <p><?php echo $entry->fuel_type; ?></p>
+                                      <label><?php echo Lang::get('boats.engine_type'); ?>:</label>
+
+                                          <?php if($entry->engine_type_id == '1'): ?>
+                                          <p> 
+                                          In Board
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '2'): ?>
+                                          <p>
+                                          In/Out Board
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '3'): ?>
+                                          <p>
+                                          Out Board
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '4'): ?>
+                                          <p>
+                                          Sail
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '5'): ?>
+                                          <p>
+                                          Jet
+                                          </p>
+                                          <?php endif; ?>
                                     </div>
                                   </div>
                                 </div>

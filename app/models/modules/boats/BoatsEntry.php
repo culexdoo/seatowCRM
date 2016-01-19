@@ -16,7 +16,7 @@ class BoatsEntry extends Eloquent
 
 	// Edit entry validation
 	public static $edit_entry_rules = array(
-		'entry_id'				=>	'required|integer',
+		'entry_id'			=>	'required|integer',
 		'boat_brand'		=>	'required',
 		'boat_name'			=>	'required'
 	);
@@ -35,6 +35,9 @@ class BoatsEntry extends Eloquent
 		try
 		{
 			$entry = DB::table('boats_entries')
+			->join('boat_hull', 'boat_hull.id', '=', 'boats_entries.hull_id')
+			->join('boat_make', 'boat_make.id', '=', 'boats_entries.make_id')
+
 				->select(
 					'boats_entries.id AS entry_id',
 					'boats_entries.boat_brand AS boat_brand',
@@ -44,7 +47,13 @@ class BoatsEntry extends Eloquent
 					'boats_entries.federal_doc_no AS federal_doc_no',
 					'boats_entries.boat_color AS boat_color',
 					'boats_entries.lenght AS lenght',
-					'boats_entries.description AS description'
+					'boats_entries.description AS description',
+					'boat_hull.hull_name AS hull_name',
+					'boat_make.make_name AS make_name',
+					'boat_hull.id AS hull_id',
+					'boat_make.id AS make_id',
+					'boats_entries.engine_type_id AS engine_type_id',
+					'boats_entries.fuel_type AS fuel_type'
 				);
 			
 			if ($entry_id != null)
@@ -77,7 +86,9 @@ class BoatsEntry extends Eloquent
 		try
 		{
 			$entries = DB::table('boats_entries')
-			
+
+			->join('boat_hull', 'boat_hull.id', '=', 'boats_entries.hull_id')
+			->join('boat_make', 'boat_make.id', '=', 'boats_entries.make_id')
 				->select(
 					'boats_entries.id AS entry_id',
 					'boats_entries.boat_brand AS boat_brand',
@@ -87,11 +98,18 @@ class BoatsEntry extends Eloquent
 					'boats_entries.federal_doc_no AS federal_doc_no',
 					'boats_entries.boat_color AS boat_color',
 					'boats_entries.lenght AS lenght',
-					'boats_entries.description AS description'
-				)
-				->orderBy('boats_entries.created_at', 'DESC')
-				->get();
+					'boats_entries.description AS description',
+					'boat_hull.hull_name AS hull_name',
+					'boat_make.make_name AS make_name',
+					'boat_hull.id AS hull_id',
+					'boat_make.id AS make_id',
+					'boats_entries.engine_type_id AS engine_type_id',
+					'boats_entries.fuel_type AS fuel_type'
 
+				)
+
+				->get();
+			
 			return array('status' => 1, 'entries' => $entries);
 		}
 		catch (Exception $exp)

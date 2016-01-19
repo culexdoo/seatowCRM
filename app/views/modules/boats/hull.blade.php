@@ -4,7 +4,7 @@
           {
             $mode = 'add';
           }
-        
+
           ?>
         <section class="content-header">
         <div class="row">
@@ -22,10 +22,10 @@
 
          <div class="col-md-6">
            <a href="{{ URL::route('boatsLanding') }}" class="btn btn-danger pull-right">
-           <span class="icon icon-block"></span>{{ Lang::get('boats.cancel') }}</a>
+           <span class="icon icon-block"></span>{{ Lang::get('core.cancel') }}</a>
           
            <a class="pull-right">
-          {{ Form::button('<span class="icon icon-done"></span> ' . Lang::get('boats.save'), array('type' => 'submit', 'class' => 'btn btn-success')) }}
+          {{ Form::button('<span class="icon icon-done"></span> ' . Lang::get('core.save'), array('type' => 'submit', 'class' => 'btn btn-success')) }}
           </div>
           </a>
           
@@ -63,7 +63,7 @@
              <div class="col-md-4">
               <div class="box box-black">
                 <div class="box-header with-border">
-                  <h3 class="box-title">{{ Lang::get('boats.hull_information') }}</h3>
+                  <h3 class="box-title">{{ Lang::get('boats.hull_list') }}</h3>
                 </div>
                   <div class="box-body">
                   @if (count($hull_entries) > 0) 
@@ -72,9 +72,7 @@
                        <tr>
                         <th>
                           <div class="row">
-                            <div class="col-md-2">
-                              {{ Lang::get('boats.membership_id') }}
-                            </div>
+                           
                           </div>
                         </th>
                       </tr>

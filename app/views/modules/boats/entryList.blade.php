@@ -4,6 +4,7 @@
           <h1>
          {{ Lang::get('boats.list_all_boats') }}
           </h1>
+      
           
         </section>
         <!-- Main content -->
@@ -79,10 +80,7 @@
                         <td>
                           <div class="box box-no-border collapsed-box no-margin">
                             <div class="box-header">
-                              <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
-                                </button>
-                              </div>
+                             
                               <div class="row">
                                 <div class="col-md-2">
                                   Tu ce biti membership ID
@@ -135,9 +133,9 @@
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>{{ Lang::get('boats.make') }}:</label>
-                                      <p>Tu ce biti make</p>
+                                      <p>{{ $entry->make_name }}</p>
                                       <label>{{ Lang::get('boats.hull') }}:</label>
-                                      <p>Tu ce biti hull</p>
+                                      <p>{{ $entry->hull_name }}</p>
                                       <label>{{ Lang::get('boats.boat_color') }}:</label>
                                       <p>{{ $entry->boat_color }}</p>
                                       
@@ -146,9 +144,31 @@
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label>{{ Lang::get('boats.year') }}:</label><p>{{ $entry->year }}</p>
-                                      <label>{{ Lang::get('boats.fuel_type') }}:</label><p>Tu ce biti fuel</p>
-                                      <label>{{ Lang::get('boats.engine_type') }}:</label><p>Tu ce biti engine type</p>
-                                      
+                                      <label>{{ Lang::get('boats.fuel_type') }}:</label>
+                                      <p>{{ $entry->fuel_type }}</p>
+                                      <label>{{ Lang::get('boats.engine_type') }}:</label>
+
+                                          @if ($entry->engine_type_id == '1')
+                                          <p> 
+                                          In Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '2')
+                                          <p>
+                                          In/Out Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '3')
+                                          <p>
+                                          Out Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '4')
+                                          <p>
+                                          Sail
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '5')
+                                          <p>
+                                          Jet
+                                          </p>
+                                          @endif
                                     </div>
                                   </div>
                                 </div>
