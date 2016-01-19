@@ -71,6 +71,20 @@ class BoatsController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+		//getting all client data
+		$allClientList = array();
+
+		$clientList = User::getAllClients(null);
+		
+		if ($clientList['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entries'));
+		}
+		foreach ($clientList['clients'] as $client)
+		{
+			$allClientList[$client->membership_id] = $client->first_name . " " . $client->last_name . " - " .  "ID: " . $client->membership_id;
+		}
+		
  		 // Getting all hulls data 
 		$hullList = array();
 
@@ -92,7 +106,6 @@ class BoatsController extends CoreController {
 
 		$makesIDs = MakeEntry::getAllMakes(null);
 
-
 		if ($makesIDs['status'] == 0)
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('franchisee.msg_error_getting_franchisees'));
@@ -103,6 +116,7 @@ class BoatsController extends CoreController {
 		}
 		
 		//-------finish hulls data
+		
 		$this->layout->title = 'Add Boats';
 
 
@@ -113,7 +127,7 @@ class BoatsController extends CoreController {
 		);
 
 		$this->layout->content = View::make('modules.boats.entry', array('mode' => 'add',
-		'postRoute' => 'BoatsPostAddEntry', 'title' => 'Add Boats', 'user' => $user['user'], 'hull_entries' => $hullList, 'make_entries' => $makeList));
+		'postRoute' => 'BoatsPostAddEntry', 'title' => 'Add Boats', 'user' => $user['user'], 'hull_entries' => $hullList, 'make_entries' => $makeList, 'clients' => $allClientList));
  	
 	}
 
@@ -135,7 +149,7 @@ class BoatsController extends CoreController {
 		}
  
 
-		$addNewEntry = $this->repo->addEntry(Input::get('boat_brand'), Input::get('boat_name'), Input::get('year'), Input::get('registration_no'), Input::get('federal_doc_no'), Input::get('boat_color'), Input::get('lenght'), Input::get('description'), Input::get('hull_id'), Input::get('make_id'), Input::get('engine_type_id'), Input::get('fuel_type'));
+		$addNewEntry = $this->repo->addEntry(Input::get('boat_brand'), Input::get('boat_name'), Input::get('year'), Input::get('registration_no'), Input::get('federal_doc_no'), Input::get('boat_color'), Input::get('lenght'), Input::get('description'), Input::get('hull_id'), Input::get('make_id'), Input::get('engine_type_id'), Input::get('fuel_type'), Input::get('client_id'));
 		
 
 		if ($addNewEntry['status'] == 0)
@@ -168,7 +182,20 @@ class BoatsController extends CoreController {
 		{ 
 			return Redirect::back()->with('error_message', Lang::get('boats.msg_error_getting_entry'));
 		}
+		//getting all client data
+		$allClientList = array();
 
+		$clientList = User::getAllClients(null);
+		
+		if ($clientList['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entries'));
+		}
+		foreach ($clientList['clients'] as $client)
+		{
+			$allClientList[$client->membership_id] = $client->first_name . " " . $client->last_name . " - " .  "ID: " . $client->membership_id;
+		}
+		
 		 // Getting all hulls data 
 		$hullList = array();
 
@@ -178,7 +205,7 @@ class BoatsController extends CoreController {
 
 		if ($hullsIDs['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('franchisee.msg_error_getting_franchisees'));
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entry'));
 		}
 		foreach ($hullsIDs['hull_entries'] as $hulls)
 		{
@@ -193,7 +220,7 @@ class BoatsController extends CoreController {
 
 		if ($makesIDs['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('franchisee.msg_error_getting_franchisees'));
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entry'));
 		}
 		foreach ($makesIDs['make_entries'] as $makes)
 		{
@@ -208,10 +235,10 @@ class BoatsController extends CoreController {
 
 		$this->layout->js_header_files = array( 
 		);
-	 
+	  	
 
 		$this->layout->content = View::make('modules.boats.entry', array('mode' => 'edit',
-		'postRoute' => 'BoatsPostEditEntry', 'title' => 'Uredi oglas', 'entry' => $entry['entry'], 'user' => $user['user'],'hull_entries' => $hullList, 'make_entries' => $makeList, 'preselected_make' => $entry['entry']->make_id, 'preselected_hull' => $entry['entry']->hull_id));
+		'postRoute' => 'BoatsPostEditEntry', 'title' => 'Edit boat', 'entry' => $entry['entry'], 'user' => $user['user'],'hull_entries' => $hullList, 'make_entries' => $makeList, 'preselected_make' => $entry['entry']->make_id, 'preselected_hull' => $entry['entry']->hull_id, 'clients' => $allClientList, 'preselected_client' => $entry['entry']->membership_id,));
 
 	}
 
@@ -235,7 +262,7 @@ class BoatsController extends CoreController {
 		}
  
  			
-		$editNewEntry = $this->repo->postEditEntry(Input::get('entry_id'), Input::get('boat_brand'), Input::get('boat_name'), Input::get('year'), Input::get('registration_no'), Input::get('federal_doc_no'), Input::get('boat_color'), Input::get('lenght'), Input::get('description'), Input::get('hull_id'), Input::get('make_id'), Input::get('engine_type_id'), Input::get('fuel_type'));
+		$editNewEntry = $this->repo->postEditEntry(Input::get('entry_id'), Input::get('boat_brand'), Input::get('boat_name'), Input::get('year'), Input::get('registration_no'), Input::get('federal_doc_no'), Input::get('boat_color'), Input::get('lenght'), Input::get('description'), Input::get('hull_id'), Input::get('make_id'), Input::get('engine_type_id'), Input::get('fuel_type'), Input::get('client_id'), Input::get('client_id'));
 
 		if ($editNewEntry['status'] == 0)
 		{

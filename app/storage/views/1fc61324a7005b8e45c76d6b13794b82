@@ -53,13 +53,16 @@
                   
                   <div class="box-body">
                     <div class="form-group">
+                   
                       <label><?php echo Lang::get('boats.boat_owner'); ?>:</label>
-                      <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Ivan Rakic, ID: 152</option>
-                        <option>Maja Sisak, ID: 184</option>
-                        <option>Ivana Laki, ID: 251</option>
-                        <option>Saki Babic, ID: 321</option>
-                      </select>
+                       <?php if($mode == 'edit'): ?>
+                       <?php echo Form::select('client_id', $clients, isset($entry->client_id) ? $entry->client_id : $preselected_client, array('class' => 'form-control', 'id' => 'client_id', 'required')); ?>
+
+                       <?php elseif($mode == 'add'): ?>
+                        <?php echo Form::select('client_id', $clients, isset($entry->client_id) ? $entry->client_id : null, array('class' => 'form-control', 'id' => 'client_id', 'required')); ?>
+
+                        <?php endif; ?>
+
                     </div>
                     <div class="form-group">
                       <label><?php echo Lang::get('boats.boat_brand'); ?>:</label>
@@ -80,12 +83,12 @@
                     
                     
                     <div class="form-group">
-                      <label for="exampleInputPassword1"><?php echo Lang::get('boats.registration_no'); ?>:</label>
+                      <label><?php echo Lang::get('boats.registration_no'); ?>:</label>
                       <?php echo Form::text('registration_no', isset($entry->registration_no) ? $entry->registration_no : null, ['class' => 'form-control']); ?>
 
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1"><?php echo Lang::get('boats.federal_doc_no'); ?>:</label>
+                      <label><?php echo Lang::get('boats.federal_doc_no'); ?>:</label>
                      <?php echo Form::text('federal_doc_no', isset($entry->federal_doc_no) ? $entry->federal_doc_no : null, ['class' => 'form-control']); ?>
 
                     </div>
@@ -104,7 +107,7 @@
                
                   <div class="box-body">
                     <div class="form-group">
-                     <?php if($mode == 'edit'): ?>
+                    <?php if($mode == 'edit'): ?>
                         <label for="hull_id"><?php echo Lang::get('boats.hull_name'); ?>:</label> 
                         <?php echo Form::select('hull_id', $hull_entries, isset($entry->hull_id) ? $entry->hull_id : $preselected_hull, array('class' => 'form-control', 'id' => 'hull_id', 'required')); ?>
 
@@ -112,13 +115,13 @@
                         <p><small><?php echo $errors->first('hull_id'); ?></small></p>
                         <?php endif; ?>
                     <?php elseif($mode == 'add'): ?>
-                       <label for="hull_id"><?php echo Lang::get('boats.hull_name'); ?>:</label> 
+                        <label for="hull_id"><?php echo Lang::get('boats.hull_name'); ?>:</label> 
                         <?php echo Form::select('hull_id', $hull_entries, isset($entry->hull_id) ? $entry->hull_id : null, array('class' => 'form-control', 'id' => 'hull_id', 'required')); ?>
 
                         <?php if(isset($errors) && ($errors->first('hull_id') != '' || $errors->first('hull_id') != null)): ?>
                         <p><small><?php echo $errors->first('hull_id'); ?></small></p>
                         <?php endif; ?>
-                         <?php endif; ?>
+                    <?php endif; ?>
 
                     </div>
                     <div class="form-group">
@@ -129,14 +132,14 @@
                         <?php if(isset($errors) && ($errors->first('make_id') != '' || $errors->first('make_id') != null)): ?>
                         <p><small><?php echo $errors->first('make_id'); ?></small></p>
                         <?php endif; ?>
-                          <?php elseif($mode == 'add'): ?>
-                          <label for="make_id"><?php echo Lang::get('boats.make_name'); ?>:</label> 
+                     <?php elseif($mode == 'add'): ?>
+                        <label for="make_id"><?php echo Lang::get('boats.make_name'); ?>:</label> 
                         <?php echo Form::select('make_id', $make_entries, isset($entry->make_id) ? $entry->make_id : null, array('class' => 'form-control', 'id' => 'make_id', 'required')); ?>
 
                         <?php if(isset($errors) && ($errors->first('make_id') != '' || $errors->first('make_id') != null)): ?>
                         <p><small><?php echo $errors->first('make_id'); ?></small></p>
                         <?php endif; ?>
-                         <?php endif; ?>
+                     <?php endif; ?>
                     </div>
                     <div class="form-group">
                       <label><?php echo Lang::get('boats.boat_color'); ?>:</label>

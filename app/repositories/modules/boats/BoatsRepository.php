@@ -16,7 +16,7 @@ class BoatsRepository
 
  
 	// Inserting new entry into database
-	public function addEntry($boat_brand, $boat_name, $year, $registration_no, $federal_doc_no, $boat_color, $lenght, $description, $hull_id, $make_id, $engine_type_id, $fuel_type)
+	public function addEntry($boat_brand, $boat_name, $year, $registration_no, $federal_doc_no, $boat_color, $lenght, $description, $hull_id, $make_id, $engine_type_id, $fuel_type, $membership_id)
 	{
 		try
 		{  	
@@ -36,6 +36,7 @@ class BoatsRepository
 			$entry->make_id = $make_id; 
 			$entry->engine_type_id = $engine_type_id;
 			$entry->fuel_type = $fuel_type;
+			$entry->membership_id = $membership_id;
 			
 
 			$entry->save();
@@ -55,7 +56,7 @@ class BoatsRepository
 
 
 	// Editing new entry into database
-	public function postEditEntry($entry_id, $boat_brand, $boat_name, $year, $registration_no, $federal_doc_no, $boat_color, $lenght, $description, $hull_id, $make_id, $engine_type_id, $fuel_type)
+	public function postEditEntry($entry_id, $boat_brand, $boat_name, $year, $registration_no, $federal_doc_no, $boat_color, $lenght, $description, $hull_id, $make_id, $engine_type_id, $fuel_type, $membership_id)
 	{
 		 try
 		{   
@@ -74,6 +75,7 @@ class BoatsRepository
 			$entry->make_id = $make_id;
 			$entry->engine_type_id = $engine_type_id;
 			$entry->fuel_type = $fuel_type;
+			$entry->membership_id = $membership_id;
 
 			$entry->save();
 

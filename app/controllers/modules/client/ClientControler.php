@@ -108,7 +108,7 @@ class ClientController extends CoreController {
 		}
  
 
-		$addNewEntry = $this->repo->addEntry(Input::get('first_name'), Input::get('last_name'), Input::get('company'), Input::get('address'), Input::get('state'), Input::get('city'), Input::get('zip'), Input::get('mobile_number'), Input::get('email'), Input::get('mobile_number_2'), Input::get('email_2'), Input::get('home_number'), Input::get('bus_no'), Input::get('summer_no'), Input::get('fax_no'), Input::get('homeport'), Input::get('additional_city'), Input::get('additional_state'), Input::get('notes'), Input::get('additional_notes'));
+		$addNewEntry = $this->repo->addEntry(Input::get('first_name'), Input::get('last_name'), Input::get('company'), Input::get('address'), Input::get('state'), Input::get('city'), Input::get('zip'), Input::get('mobile_number'), Input::get('email'), Input::get('mobile_number_2'), Input::get('email_2'), Input::get('home_number'), Input::get('bus_no'), Input::get('summer_no'), Input::get('fax_no'), Input::get('homeport'), Input::get('additional_city'), Input::get('additional_state'), Input::get('notes'), Input::get('additional_notes'), Input::get('membership_id'));
 		
 
 		if ($addNewEntry['status'] == 0)

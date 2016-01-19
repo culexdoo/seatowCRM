@@ -56,7 +56,8 @@ class ClientEntry extends Eloquent
 					'users.additional_city AS additional_city',
 					'users.additional_state AS additional_state',
 					'users.notes AS notes',
-					'users.additional_notes AS additional_notes'
+					'users.additional_notes AS additional_notes',
+					'users.membership_id AS membership_id'
 				);
 			
 			if ($entry_id != null)
@@ -111,8 +112,10 @@ class ClientEntry extends Eloquent
 					'users.additional_city AS additional_city',
 					'users.additional_state AS additional_state',
 					'users.notes AS notes',
-					'users.additional_notes AS additional_notes'
+					'users.additional_notes AS additional_notes',
+					'users.membership_id AS membership_id'
 				)
+				->where('users.user_group', '=', 'client')
 				->orderBy('users.created_at', 'DESC')
 				->get();
 

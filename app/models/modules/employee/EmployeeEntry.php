@@ -87,6 +87,7 @@ class EmployeeEntry extends Eloquent
 					'users.email AS email',
 					'users.password AS password'
 				)
+				->where('users.user_group', '=', 'client')
 				->orderBy('users.created_at', 'DESC')
 				->get();
 

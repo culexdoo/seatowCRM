@@ -63,7 +63,7 @@
              <div class="col-md-4">
               <div class="box box-black">
                 <div class="box-header with-border">
-                  <h3 class="box-title">{{ Lang::get('boats.hull_list') }}</h3>
+                  <h3 class="box-title">{{ Lang::get('boats.make_list') }}</h3>
                 </div>
                   <div class="box-body">
                   @if (count($make_entries) > 0) 

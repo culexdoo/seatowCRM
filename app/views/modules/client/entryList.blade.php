@@ -91,7 +91,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-md-1">
-                                  Tu ce biti membership ID
+                                  {{ $entry->membership_id }}
                                 </div>
                                 <div class="col-md-2">
                                   {{ $entry->first_name }}

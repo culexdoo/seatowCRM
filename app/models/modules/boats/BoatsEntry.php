@@ -33,10 +33,11 @@ class BoatsEntry extends Eloquent
 	public static function getSingleBoatsEntry($entry_id = null, $items = 10)
 	{
 		try
-		{
+		{   
 			$entry = DB::table('boats_entries')
 			->join('boat_hull', 'boat_hull.id', '=', 'boats_entries.hull_id')
 			->join('boat_make', 'boat_make.id', '=', 'boats_entries.make_id')
+			->join('users', 'users.membership_id', '=', 'boats_entries.membership_id')
 
 				->select(
 					'boats_entries.id AS entry_id',
@@ -53,7 +54,10 @@ class BoatsEntry extends Eloquent
 					'boat_hull.id AS hull_id',
 					'boat_make.id AS make_id',
 					'boats_entries.engine_type_id AS engine_type_id',
-					'boats_entries.fuel_type AS fuel_type'
+					'boats_entries.fuel_type AS fuel_type',
+					'users.membership_id AS membership_id',
+					'users.first_name AS first_name',
+					'users.last_name AS last_name'
 				);
 			
 			if ($entry_id != null)
@@ -67,6 +71,7 @@ class BoatsEntry extends Eloquent
 			// Default return
 			$entries = $entry;
 
+
 		  
 			
 			return array('status' => 1, 'entries' => $entries);
@@ -74,7 +79,7 @@ class BoatsEntry extends Eloquent
 		catch (Exception $exp)
 		{
 			return array('status' => 0, 'reason' => $exp->getMessage());
-		}
+		} 
 	}
 
 
@@ -84,11 +89,12 @@ class BoatsEntry extends Eloquent
 		
 
 		try
-		{
+		{   
 			$entries = DB::table('boats_entries')
 
 			->join('boat_hull', 'boat_hull.id', '=', 'boats_entries.hull_id')
 			->join('boat_make', 'boat_make.id', '=', 'boats_entries.make_id')
+			->join('users', 'users.membership_id', '=', 'boats_entries.membership_id')
 				->select(
 					'boats_entries.id AS entry_id',
 					'boats_entries.boat_brand AS boat_brand',
@@ -104,7 +110,33 @@ class BoatsEntry extends Eloquent
 					'boat_hull.id AS hull_id',
 					'boat_make.id AS make_id',
 					'boats_entries.engine_type_id AS engine_type_id',
-					'boats_entries.fuel_type AS fuel_type'
+					'boats_entries.fuel_type AS fuel_type',
+					'users.membership_id AS membership_id',
+					'users.first_name AS first_name',
+					'users.last_name AS last_name',
+					'users.id AS id',
+					'users.email AS email',
+					'users.email_2 AS email_2',
+					'users.username AS username',
+					'users.company AS company',
+					'users.state AS state',
+					'users.zip AS zip',
+					'users.mobile_number AS mobile_number',
+					'users.mobile_number_2 AS mobile_number_2',
+					'users.profile_image AS profile_image',
+					'users.home_number AS home_number',
+					'users.bus_no AS bus_no',
+					'users.summer_no AS summer_no',
+					'users.fax_no AS fax_no',
+					'users.homeport AS homeport',
+					'users.additional_city AS additional_city',
+					'users.additional_state AS additional_state',
+					'users.additional_notes AS additional_notes',
+					'users.notes AS notes',
+					'users.address AS address',
+					'users.city AS city',
+					'users.created_at AS created_at',
+					'users.updated_at AS updated_at'
 
 				)
 
@@ -138,6 +170,7 @@ class BoatsEntry extends Eloquent
 					'classifiedoffer_entries.image AS image',
 					'classifiedoffer_entries.category_id AS category_id',
 					'classifieds_categories.category_name AS category_name'
+
 				)
  				->orderBy('classifiedoffer_entries.created_at', 'DESC')
 				->take($number)

@@ -303,6 +303,56 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 		}
 	}
 
+		// Get All Clients
+	public static function getAllClients()
+	{
+		
+		
+			// Retrieve specific user informations
+			try
+			{ 
+				$clients = DB::table('users')
+					->select(
+						'users.id AS id',
+						'users.membership_id AS membership_id',
+						'users.email AS email',
+						'users.email_2 AS email_2',
+						'users.username AS username',
+						'users.company AS company',
+						'users.state AS state',
+						'users.zip AS zip',
+						'users.mobile_number AS mobile_number',
+						'users.mobile_number_2 AS mobile_number_2',
+						'users.profile_image AS profile_image',
+						'users.home_number AS home_number',
+						'users.bus_no AS bus_no',
+						'users.summer_no AS summer_no',
+						'users.fax_no AS fax_no',
+						'users.homeport AS homeport',
+						'users.additional_city AS additional_city',
+						'users.additional_state AS additional_state',
+						'users.additional_notes AS additional_notes',
+						'users.notes AS notes',
+						'users.first_name AS first_name',
+						'users.last_name AS last_name',
+						'users.address AS address',
+						'users.city AS city',
+						'users.created_at AS created_at',
+						'users.updated_at AS updated_at'
+						)
+					->where('users.user_group', '=', 'client')
+					->get();
+
+				return array('status' => 1, 'clients' => $clients);
+			}
+			catch (Exception $exp)
+			{
+				return array('status' => 0, 'reason' => $exp->getMessage());
+			}
+		
+		
+	}
+
 	public static function userStats()
     {
         try

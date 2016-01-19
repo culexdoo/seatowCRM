@@ -83,13 +83,13 @@
                              
                               <div class="row">
                                 <div class="col-md-2">
-                                  Tu ce biti membership ID
+                                 {{ $entry->membership_id }}
                                 </div>
                                 <div class="col-md-2">
                                   {{ $entry->boat_name }}
                                 </div>
                                 <div class="col-md-2">
-                                  Tu ce biti vlasnik
+                                {{ $entry->first_name }}
                                 </div>
                                 <div class="col-md-2">
                                  {{ $entry->registration_no }}

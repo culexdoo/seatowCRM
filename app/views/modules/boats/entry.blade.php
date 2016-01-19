@@ -48,13 +48,14 @@
                   
                   <div class="box-body">
                     <div class="form-group">
+                   
                       <label>{{ Lang::get('boats.boat_owner') }}:</label>
-                      <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Ivan Rakic, ID: 152</option>
-                        <option>Maja Sisak, ID: 184</option>
-                        <option>Ivana Laki, ID: 251</option>
-                        <option>Saki Babic, ID: 321</option>
-                      </select>
+                       @if ($mode == 'edit')
+                       {{ Form::select('client_id', $clients, isset($entry->client_id) ? $entry->client_id : $preselected_client, array('class' => 'form-control', 'id' => 'client_id', 'required')) }}
+                       @elseif ($mode == 'add')
+                        {{ Form::select('client_id', $clients, isset($entry->client_id) ? $entry->client_id : null, array('class' => 'form-control', 'id' => 'client_id', 'required')) }}
+                        @endif
+
                     </div>
                     <div class="form-group">
                       <label>{{ Lang::get('boats.boat_brand') }}:</label>
@@ -72,11 +73,11 @@
                     
                     
                     <div class="form-group">
-                      <label for="exampleInputPassword1">{{ Lang::get('boats.registration_no') }}:</label>
+                      <label>{{ Lang::get('boats.registration_no') }}:</label>
                       {{ Form::text('registration_no', isset($entry->registration_no) ? $entry->registration_no : null, ['class' => 'form-control']) }}
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">{{ Lang::get('boats.federal_doc_no') }}:</label>
+                      <label>{{ Lang::get('boats.federal_doc_no') }}:</label>
                      {{ Form::text('federal_doc_no', isset($entry->federal_doc_no) ? $entry->federal_doc_no : null, ['class' => 'form-control']) }}
                     </div>
                   </div>
@@ -94,19 +95,19 @@
                
                   <div class="box-body">
                     <div class="form-group">
-                     @if ($mode == 'edit')
+                    @if ($mode == 'edit')
                         <label for="hull_id">{{ Lang::get('boats.hull_name') }}:</label> 
                         {{ Form::select('hull_id', $hull_entries, isset($entry->hull_id) ? $entry->hull_id : $preselected_hull, array('class' => 'form-control', 'id' => 'hull_id', 'required')) }}
                         @if (isset($errors) && ($errors->first('hull_id') != '' || $errors->first('hull_id') != null))
                         <p><small>{{ $errors->first('hull_id') }}</small></p>
                         @endif
                     @elseif ($mode == 'add')
-                       <label for="hull_id">{{ Lang::get('boats.hull_name') }}:</label> 
+                        <label for="hull_id">{{ Lang::get('boats.hull_name') }}:</label> 
                         {{ Form::select('hull_id', $hull_entries, isset($entry->hull_id) ? $entry->hull_id : null, array('class' => 'form-control', 'id' => 'hull_id', 'required')) }}
                         @if (isset($errors) && ($errors->first('hull_id') != '' || $errors->first('hull_id') != null))
                         <p><small>{{ $errors->first('hull_id') }}</small></p>
                         @endif
-                         @endif
+                    @endif
 
                     </div>
                     <div class="form-group">
@@ -116,13 +117,13 @@
                         @if (isset($errors) && ($errors->first('make_id') != '' || $errors->first('make_id') != null))
                         <p><small>{{ $errors->first('make_id') }}</small></p>
                         @endif
-                          @elseif ($mode == 'add')
-                          <label for="make_id">{{ Lang::get('boats.make_name') }}:</label> 
+                     @elseif ($mode == 'add')
+                        <label for="make_id">{{ Lang::get('boats.make_name') }}:</label> 
                         {{ Form::select('make_id', $make_entries, isset($entry->make_id) ? $entry->make_id : null, array('class' => 'form-control', 'id' => 'make_id', 'required')) }}
                         @if (isset($errors) && ($errors->first('make_id') != '' || $errors->first('make_id') != null))
                         <p><small>{{ $errors->first('make_id') }}</small></p>
                         @endif
-                         @endif
+                     @endif
                     </div>
                     <div class="form-group">
                       <label>{{ Lang::get('boats.boat_color') }}:</label>

@@ -106,7 +106,8 @@
                               </div>
                               <div class="row">
                                 <div class="col-md-1">
-                                  Tu ce biti membership ID
+                                  <?php echo $entry->membership_id; ?>
+
                                 </div>
                                 <div class="col-md-2">
                                   <?php echo $entry->first_name; ?>

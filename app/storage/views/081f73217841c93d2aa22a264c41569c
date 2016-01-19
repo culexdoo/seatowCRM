@@ -96,14 +96,16 @@
                              
                               <div class="row">
                                 <div class="col-md-2">
-                                  Tu ce biti membership ID
+                                 <?php echo $entry->membership_id; ?>
+
                                 </div>
                                 <div class="col-md-2">
                                   <?php echo $entry->boat_name; ?>
 
                                 </div>
                                 <div class="col-md-2">
-                                  Tu ce biti vlasnik
+                                <?php echo $entry->first_name; ?>
+
                                 </div>
                                 <div class="col-md-2">
                                  <?php echo $entry->registration_no; ?>
