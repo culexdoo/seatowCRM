@@ -30,7 +30,11 @@
                              <?php echo Lang::get('client.membership_id'); ?>
 
                             </div>
-                            <div class="col-md-2">
+                             <div class="col-md-1">
+                             <?php echo Lang::get('client.title'); ?>
+
+                            </div>
+                            <div class="col-md-1">
                               <?php echo Lang::get('client.first_name'); ?>
 
                             </div>
@@ -66,7 +70,11 @@
                              <?php echo Lang::get('client.membership_id'); ?>
 
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
+                             <?php echo Lang::get('client.title'); ?>
+
+                            </div>
+                            <div class="col-md-1">
                               <?php echo Lang::get('client.first_name'); ?>
 
                             </div>
@@ -109,7 +117,46 @@
                                   <?php echo $entry->membership_id; ?>
 
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
+                                    <?php if($entry->title == '1'): ?>
+                                    <p> 
+                                    Mr.
+                                    </p>
+                                    <?php elseif($entry->title == '2'): ?>
+                                    <p>
+                                    Ms.
+                                    </p>
+                                    <?php elseif($entry->title == '3'): ?>
+                                    <p>
+                                    Mrs.
+                                    </p>
+                                    <?php elseif($entry->title == '4'): ?>
+                                    <p>
+                                    Miss.
+                                    </p>
+                                    <?php elseif($entry->title == '5'): ?>
+                                    <p>
+                                    Dr.
+                                    </p>
+                                    <?php elseif($entry->title == '6'): ?>
+                                    <p>
+                                    Capt.
+                                    </p>
+                                    <?php elseif($entry->title == '7'): ?>
+                                    <p>
+                                    Co.
+                                    </p>
+                                    <?php elseif($entry->title == '8'): ?>
+                                    <p>
+                                    Inc.
+                                    </p>
+                                    <?php elseif($entry->title == '9'): ?>
+                                    <p>
+                                    Corp.
+                                    </p>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="col-md-1">
                                   <?php echo $entry->first_name; ?>
 
                                 </div>
@@ -118,10 +165,27 @@
 
                                 </div>
                                 <div class="col-md-2">
-                                 Tu ce biti STATUS
+                                 <?php if($entry->status == '1'): ?>
+                                    <p> 
+                                    Active
+                                    </p>
+                                    <?php elseif($entry->status == '2'): ?>
+                                    <p>
+                                    Inactive
+                                    </p>
+                                    <?php elseif($entry->status == '3'): ?>
+                                    <p>
+                                    Expired
+                                    </p>
+                                    <?php elseif($entry->status == '4'): ?>
+                                    <p>
+                                    Deleted
+                                    </p>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="col-md-2">
-                                 Tu ce biti franchisee ID
+                              <?php echo $entry->franchisee_id; ?>
+
                                 </div>
                                 <div class="col-md-2">
                                  Tu ce biti member EXP DATE
@@ -134,8 +198,7 @@
                                   <a href="<?php echo URL::route('ClientGetDeleteEntry', array('entry_id' => $entry->entry_id)); ?>"><span class="label label-danger"><?php echo Lang::get('client.delete_client'); ?></span></a>
 
                                    <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
-                                </button>
+                              
                               </div>
 
                                 </div>
@@ -152,7 +215,7 @@
                                       <label><?php echo Lang::get('client.address'); ?>:</label>
                                       <p><?php echo $entry->address; ?></p>
                                       <label><?php echo Lang::get('client.country'); ?>:</label>
-                                      <p>Ovdje ce biti country</p>
+                                      <p><?php echo $entry->country_name; ?></p>
                                       <label><?php echo Lang::get('client.state'); ?>:</label>
                                       <p><?php echo $entry->state; ?></p>
                                     </div>
@@ -160,11 +223,57 @@
                                   <div class="col-md-4">
                                     <div class="form-group">
                                       <label><?php echo Lang::get('client.member_since'); ?>:</label>
-                                      <p>Ovdje ce biti memeber since</p>
+                                      <p><?php echo $entry->member_since; ?></p>
                                       <label><?php echo Lang::get('client.membership_period'); ?>:</label>
                                       <p>Ovjde ce biti membership period</p>
                                       <label><?php echo Lang::get('client.member_type'); ?>:</label>
-                                      <p>ovdje ce biti member type</p>
+                                      <p>
+                                         <?php if($entry->member_type == '1'): ?>
+                                    <p> 
+                                    Bpdemsee
+                                    </p>
+                                    <?php elseif($entry->member_type == '2'): ?>
+                                    <p>
+                                    Bodensee Skifahren
+                                    </p>
+                                    <?php elseif($entry->member_type == '3'): ?>
+                                    <p>
+                                    Charter Passenger
+                                    </p>
+                                    <?php elseif($entry->member_type == '4'): ?>
+                                    <p>
+                                    Commercial
+                                    </p>
+                                    <?php elseif($entry->member_type == '5'): ?>
+                                    <p>
+                                    Gold Card
+                                    </p>
+                                    <?php elseif($entry->member_type == '6'): ?>
+                                    <p>
+                                    Seasonal < 1
+                                    </p>
+                                    <?php elseif($entry->member_type == '7'): ?>
+                                    <p>
+                                    Seasonal > 1
+                                    </p>
+                                    <?php elseif($entry->member_type == '8'): ?>
+                                    <p>
+                                    Skipper
+                                    </p>
+                                    <?php elseif($entry->member_type == '9'): ?>
+                                    <p>
+                                    Trailer Boat
+                                    </p>
+                                    <?php elseif($entry->member_type == '10'): ?>
+                                    <p>
+                                    Trailer Passanger
+                                    </p>
+                                    <?php elseif($entry->member_type == '11'): ?>
+                                    <p>
+                                    VIP
+                                    </p>
+                                    <?php endif; ?>
+                                      </p>
                                       <label><?php echo Lang::get('client.trails_coverage'); ?>:</label>
                                       <p>ovdje ce biti trails coverage</p>
                                     </div>

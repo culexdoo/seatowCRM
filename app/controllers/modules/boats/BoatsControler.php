@@ -238,7 +238,7 @@ class BoatsController extends CoreController {
 	  	
 
 		$this->layout->content = View::make('modules.boats.entry', array('mode' => 'edit',
-		'postRoute' => 'BoatsPostEditEntry', 'title' => 'Edit boat', 'entry' => $entry['entry'], 'user' => $user['user'],'hull_entries' => $hullList, 'make_entries' => $makeList, 'preselected_make' => $entry['entry']->make_id, 'preselected_hull' => $entry['entry']->hull_id, 'clients' => $allClientList, 'preselected_client' => $entry['entry']->membership_id,));
+		'postRoute' => 'BoatsPostEditEntry', 'title' => 'Edit boat', 'entry' => $entry['entry'], 'user' => $user['user'],'hull_entries' => $hullList, 'make_entries' => $makeList, 'preselected_make' => $entry['entry']->make_id, 'preselected_hull' => $entry['entry']->hull_id, 'clients' => $allClientList, 'preselected_client' => $entry['entry']->membership_id));
 
 	}
 

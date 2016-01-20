@@ -98,6 +98,7 @@ return array(
     'Coordinates' => $baseDir . '/app/constants/Coordinates.php',
     'CoreController' => $baseDir . '/app/controllers/core/CoreController.php',
     'CoreRepository' => $baseDir . '/app/repositories/core/CoreRepository.php',
+    'Countries' => $baseDir . '/app/models/core/Countries.php',
     'Crypt_AES' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
     'Crypt_Base' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Base.php',
     'Crypt_Blowfish' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Blowfish.php',

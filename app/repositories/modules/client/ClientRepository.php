@@ -16,7 +16,7 @@ class ClientRepository
 
  
 	// Inserting new entry into database
-	public function addEntry($first_name, $last_name, $company, $address, $state, $city, $zip, $mobile_number, $email, $mobile_number_2, $email_2, $home_number, $bus_no, $summer_no, $fax_no, $homeport, $additional_city, $additional_state, $notes, $additional_notes, $membership_id)
+	public function addEntry($country_id, $first_name, $last_name, $company, $address, $state, $city, $zip, $mobile_number, $email, $mobile_number_2, $email_2, $home_number, $bus_no, $summer_no, $fax_no, $homeport, $additional_city, $additional_state, $notes, $additional_notes, $membership_id, $title, $status, $franchisee_id, $member_since, $member_type, $mailing_title, $mailing_first_name, $mailing_last_name, $mailing_company, $mailing_address, $mailing_country, $mailing_state, $mailing_city, $mailing_zip, $mailing_mobile_number, $mailing_email)
 	{
 		try
 		{  
@@ -25,6 +25,8 @@ class ClientRepository
 			$entry->last_name = $last_name;
 			$entry->company = $company;
 			$entry->address = $address;
+			$entry->country_id = $country_id;
+			goDie($country_id);
 			$entry->state = $state;
 			$entry->city = $city;
 			$entry->zip = $zip;
@@ -43,6 +45,26 @@ class ClientRepository
 			$entry->additional_notes = $additional_notes;
 			$entry->membership_id = $membership_id;
 			$entry->user_group = 'client';
+			$entry->title = $title;
+			$entry->status = $status;
+			$entry->franchisee_id = $franchisee_id;
+			$entry->member_since = $member_since;
+			$entry->member_type = $member_type;
+			
+			//-- mailing list -- 11 entries
+			$entry->mailing_title = $mailing_title;
+			$entry->mailing_first_name = $mailing_first_name;
+			$entry->mailing_last_name = $mailing_last_name;
+			$entry->mailing_company = $mailing_company;
+			$entry->mailing_address = $mailing_address;
+			$entry->mailing_country = $mailing_country;
+			$entry->mailing_state = $mailing_state;
+			$entry->mailing_city = $mailing_city;
+			$entry->mailing_zip = $mailing_zip;
+			$entry->mailing_mobile_number = $mailing_mobile_number;
+			$entry->mailing_email = $mailing_email;
+			//-- countries
+
 
 			$entry->save();
 
@@ -56,7 +78,7 @@ class ClientRepository
 
 
 	// Editing new entry into database
-	public function postEditEntry($entry_id, $first_name, $last_name, $company, $address, $state, $city, $zip, $mobile_number, $email, $mobile_number_2, $email_2, $home_number, $bus_no, $summer_no, $fax_no, $homeport, $additional_city, $additional_state, $notes, $additional_notes, $membership_id)
+	public function postEditEntry($entry_id, $first_name, $last_name, $company, $address, $state, $city, $zip, $mobile_number, $email, $mobile_number_2, $email_2, $home_number, $bus_no, $summer_no, $fax_no, $homeport, $additional_city, $additional_state, $notes, $additional_notes, $membership_id, $title, $status, $franchisee_id, $member_since, $member_type, $mailing_title, $mailing_first_name, $mailing_last_name, $mailing_company, $mailing_address, $mailing_country, $mailing_state, $mailing_city, $mailing_zip, $mailing_mobile_number, $mailing_email, $country_id, $event)
 	
 	{
 		 try
@@ -67,6 +89,7 @@ class ClientRepository
 			$entry->last_name = $last_name;
 			$entry->company = $company;
 			$entry->address = $address;
+			$entry->country_id = $country_id;
 			$entry->state = $state;
 			$entry->city = $city;
 			$entry->zip = $zip;
@@ -84,6 +107,24 @@ class ClientRepository
 			$entry->notes = $notes;
 			$entry->additional_notes = $additional_notes;
 			$entry->membership_id = $membership_id;
+			$entry->title = $title;
+			$entry->status = $status;
+			$entry->franchisee_id = $franchisee_id;
+			$entry->member_since = $member_since;
+			$entry->mbmery_type = $member_type;
+			$entry->event = $event;
+			//-- mailing list -- 11 entries
+			$entry->mailing_title = $mailing_title;
+			$entry->mailing_first_name = $mailing_first_name;
+			$entry->mailing_last_name = $mailing_last_name;
+			$entry->mailing_company = $mailing_company;
+			$entry->mailing_address = $mailing_address;
+			$entry->mailing_country = $mailing_country;
+			$entry->mailing_state = $mailing_state;
+			$entry->mailing_city = $mailing_city;
+			$entry->mailing_zip = $mailing_zip;
+			$entry->mailing_mobile_number = $mailing_mobile_number;
+			$entry->mailing_email = $mailing_email;
 
 
 			$entry->save();

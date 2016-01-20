@@ -54,25 +54,133 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label>{{ Lang::get('client.franchisee') }}:</label>
-                      <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Kroatien</option>
-                        <option>Bodensee</option>
-                        <option>Deutschland</option>
-                      </select>
+                      {{ Form::select('franchisee_id', $entries, isset($entry->franchisee_id) ? $entry->franchisee_id : null, array('class' => 'form-control', 'id' => 'franchisee_id', 'required')) }}
                     </div>
                     <div class="form-group">
                       <label>{{ Lang::get('client.title') }}:</label>
-                      <select class="form-control hidden-search select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Mr.</option>
-                        <option>Ms.</option>
-                        <option>Mrs.</option>
-                        <option>Miss.</option>
-                        <option>Dr.</option>
-                        <option>Capt.</option>
-                        <option>Co.</option>
-                        <option>Inc.</option>
-                        <option>Corp.</option>
-                      </select>
+                      @if ($mode == 'add')
+                            {{ Form::select('title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'1', ['class' => 'form-control']) }}
+                        @elseif ($mode == 'edit')
+                          @if ($entry->title == '1')
+                              {{ Form::select('title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'1', ['class' => 'form-control']) }}
+                          @elseif ($entry->title == '2')
+                              {{ Form::select('title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'2',['class' => 'form-control']) }}
+                          @elseif ($entry->title == '3')
+                              {{ Form::select('title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'3',['class' => 'form-control']) }}
+                          @elseif ($entry->title == '4')
+                              {{ Form::select('title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'4',['class' => 'form-control']) }}
+                          @elseif ($entry->title == '5')
+                              {{ Form::select('title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'5',['class' => 'form-control']) }}
+                               @elseif ($entry->title == '6')
+                              {{ Form::select('title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'6',['class' => 'form-control']) }}
+                               @elseif ($entry->title == '7')
+                              {{ Form::select('title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'7',['class' => 'form-control']) }}
+                               @elseif ($entry->title == '8')
+                              {{ Form::select('title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'8',['class' => 'form-control']) }}
+                               @elseif ($entry->title == '9')
+                              {{ Form::select('title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'9',['class' => 'form-control']) }}
+                          @endif
+                        @endif
                     </div>
                     
                     <div class="form-group">
@@ -93,15 +201,11 @@
                     </div>
                     <div class="form-group">
                       <label>{{ Lang::get('client.country') }}:</label>
-                      <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                      </select>
+                      @if ($mode == 'add')
+                       {{ Form::select('country_id', $countries, isset($entry->country_id) ? $entry->country_id : null, array('class' => 'form-control', 'id' => 'country_id', 'required')) }}
+                       @elseif ($mode == 'edit')
+                       {{ Form::select('country_id', $countries, isset($entry->country_id) ? $entry->country_id : $preselected_country_id, array('class' => 'form-control', 'id' => 'country_id', 'required')) }}
+                       @endif
                     </div>
                     <div class="form-group">
                       <label>{{ Lang::get('client.state') }}:</label>
@@ -187,7 +291,7 @@
                         </div>
                         <div class="col-md-6">
                           <label>{{ Lang::get('client.member_since') }}:</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="1994">
+                          {{ Form::text('member_since', isset($entry->member_since) ? $entry->member_since : null, ['class' => 'form-control']) }}
                         </div>
                       </div>
                     </div>
@@ -202,33 +306,219 @@
                     </div>
                     <div class="form-group">
                       <label>{{ Lang::get('client.status') }}:</label>
-                      <select class="form-control hidden-search select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Ative</option>
-                        <option>Inactive</option>
-                        <option>Expired</option>
-                        <option>Deleted</option>
-                      </select>
+                      @if ($mode == 'add')
+                            {{ Form::select('status', array(
+                              '1'=>'Active',
+                              '2'=>'Inactive',
+                              '3'=>'Expired',
+                              '4'=>'Deleted',
+                              ),'1', ['class' => 'form-control']) }}
+                        @elseif ($mode == 'edit')
+                          @if ($entry->status == '1')
+                              {{ Form::select('status', array(
+                              '1'=>'Active',
+                              '2'=>'Inactive',
+                              '3'=>'Expired',
+                              '4'=>'Deleted',
+                              ),'1', ['class' => 'form-control']) }}
+                          @elseif ($entry->status == '2')
+                              {{ Form::select('status', array(
+                              '1'=>'Active',
+                              '2'=>'Inactive',
+                              '3'=>'Expired',
+                              '4'=>'Deleted',
+                              ),'2',['class' => 'form-control']) }}
+                          @elseif ($entry->status == '3')
+                              {{ Form::select('status', array(
+                              '1'=>'Active',
+                              '2'=>'Inactive',
+                              '3'=>'Expired',
+                              '4'=>'Deleted',
+                              ),'3',['class' => 'form-control']) }}
+                          @elseif ($entry->status == '4')
+                              {{ Form::select('status', array(
+                              '1'=>'Active',
+                              '2'=>'Inactive',
+                              '3'=>'Expired',
+                              '4'=>'Deleted',
+                              ),'4',['class' => 'form-control']) }}
+                          @endif
+                        @endif
                     </div>
                   
                     
                     <div class="form-group">
                       <label>{{ Lang::get('client.member_type') }}:</label>
-                      <select class="form-control hidden-search select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Bodensee</option>
-                        <option>Bodensee Skifahren</option>
-                        <option>Charter Passenger</option>
-                        <option>Commercial</option>
-                        <option>Gold</option>
-                        <option>Gold Card</option>
-                        <option>Seasonal < 1</option>
-                        <option>Seasonal > 1</option>
-                        <option>Skipper</option>
-                        <option>Trailer Boat</option>
-                        <option>Trailer Passanger</option>
-                        <option>VIP</option>
-                      </select>
+                        @if ($mode == 'add')
+                            {{ Form::select('member_type', array(
+                              '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'1', ['class' => 'form-control']) }}
+                        @elseif ($mode == 'edit')
+                          @if ($entry->member_type == '1')
+                              {{ Form::select('member_type', array(
+                              '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'1', ['class' => 'form-control']) }}
+                          @elseif ($entry->member_type == '2')
+                              {{ Form::select('member_type', array(
+                            '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'2',['class' => 'form-control']) }}
+                          @elseif ($entry->member_type == '3')
+                              {{ Form::select('member_type', array(
+                             '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'3',['class' => 'form-control']) }}
+                          @elseif ($entry->member_type == '4')
+                              {{ Form::select('member_type', array(
+                              '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'4',['class' => 'form-control']) }}
+                          @elseif ($entry->member_type == '5')
+                              {{ Form::select('member_type', array(
+                            '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'5',['class' => 'form-control']) }}
+                               @elseif ($entry->member_type == '6')
+                              {{ Form::select('member_type', array(
+                             '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'6',['class' => 'form-control']) }}
+                               @elseif ($entry->member_type == '7')
+                              {{ Form::select('member_type', array(
+                             '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'7',['class' => 'form-control']) }}
+                               @elseif ($entry->member_type == '8')
+                              {{ Form::select('member_type', array(
+                             '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'8',['class' => 'form-control']) }}
+                               @elseif ($entry->member_type == '9')
+                              {{ Form::select('member_type', array(
+                             '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'9',['class' => 'form-control']) }}
+                               {{ Form::select('member_type', array(
+                             '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'10',['class' => 'form-control']) }}
+                               {{ Form::select('member_type', array(
+                             '1'=>'Bodensee',
+                              '2'=>'Bodensee Skifahren',
+                              '3'=>'Charter Passenger',
+                              '4'=>'Commercial',
+                              '5'=>'Gold Card',
+                              '6'=>'Seasonal < 1',
+                              '7'=>'Seasonal > 1',
+                              '8'=>'Skipper',
+                              '9'=>'Trailer Boat',
+                              '10'=>'Trailer Passanger',
+                              '11'=>'VIP'
+                              ),'11',['class' => 'form-control']) }}
+                          @endif
+                        @endif
                     </div>
-                    
                     <div class="form-group">
                       <label>{{ Lang::get('client.short_team_member_for') }}:</label>
                       <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Number of Days">
@@ -258,18 +548,130 @@
                       </div>
                       <div class="box-body">
                         <div class="form-group">
-                          <label>{{ Lang::get('client.title') }}:</label>
-                          <select class="form-control hidden-search select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">Mr.</option>
-                            <option>Ms.</option>
-                            <option>Mrs.</option>
-                            <option>Miss.</option>
-                            <option>Dr.</option>
-                            <option>Capt.</option>
-                            <option>Co.</option>
-                            <option>Inc.</option>
-                            <option>Corp.</option>
-                          </select>
+                         <label>{{ Lang::get('client.mailing_title') }}:</label>
+                      @if ($mode == 'add')
+                            {{ Form::select('mailing_title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'1', ['class' => 'form-control']) }}
+                        @elseif ($mode == 'edit')
+                          @if ($entry->mailing_title == '1')
+                              {{ Form::select('mailing_title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'1', ['class' => 'form-control']) }}
+                          @elseif ($entry->mailing_title == '2')
+                              {{ Form::select('mailing_title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'2',['class' => 'form-control']) }}
+                          @elseif ($entry->mailing_title == '3')
+                              {{ Form::select('mailing_title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'3',['class' => 'form-control']) }}
+                          @elseif ($entry->mailing_title == '4')
+                              {{ Form::select('mailing_title', array(
+                              '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'4',['class' => 'form-control']) }}
+                          @elseif ($entry->mailing_title == '5')
+                              {{ Form::select('mailing_title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'5',['class' => 'form-control']) }}
+                               @elseif ($entry->mailing_title == '6')
+                              {{ Form::select('mailing_title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'6',['class' => 'form-control']) }}
+                               @elseif ($entry->mailing_title == '7')
+                              {{ Form::select('mailing_title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'7',['class' => 'form-control']) }}
+                               @elseif ($entry->mailing_title == '8')
+                              {{ Form::select('mailing_title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'8',['class' => 'form-control']) }}
+                               @elseif ($entry->mailing_title == '9')
+                              {{ Form::select('mailing_title', array(
+                             '1'=>'Mr.',
+                              '2'=>'Ms.',
+                              '3'=>'Mrs.',
+                              '4'=>'Miss.',
+                              '5'=>'Dr.',
+                              '6'=>'Capt.',
+                              '7'=>'Co.',
+                              '8'=>'Inc.',
+                              '9'=>'Corp.'
+                              ),'9',['class' => 'form-control']) }}
+                          @endif
+                        @endif
                         </div>
                         
                         <div class="form-group">
@@ -356,12 +758,44 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label>{{ Lang::get('client.action') }}:</label>
-                      <select class="form-control hidden-search select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Towed</option>
-                        <option>Gas</option>
-                        <option>Engine</option>
-                        <option>Parts</option>
-                      </select>
+                       @if ($mode == 'add')
+                            {{ Form::select('event', array(
+                              '1'=>'Towed',
+                              '2'=>'Gas',
+                              '3'=>'Engine',
+                              '4'=>'Other',
+                              ),'1', ['class' => 'form-control']) }}
+                        @elseif ($mode == 'edit')
+                          @if ($entry->event == '1')
+                              {{ Form::select('event', array(
+                             '1'=>'Towed',
+                              '2'=>'Gas',
+                              '3'=>'Engine',
+                              '4'=>'Other',
+                              ),'1', ['class' => 'form-control']) }}
+                          @elseif ($entry->event == '2')
+                              {{ Form::select('event', array(
+                            '1'=>'Towed',
+                              '2'=>'Gas',
+                              '3'=>'Engine',
+                              '4'=>'Other',
+                              ),'2',['class' => 'form-control']) }}
+                          @elseif ($entry->event == '3')
+                              {{ Form::select('event', array(
+                             '1'=>'Towed',
+                              '2'=>'Gas',
+                              '3'=>'Engine',
+                              '4'=>'Other',
+                              ),'3',['class' => 'form-control']) }}
+                          @elseif ($entry->event == '4')
+                              {{ Form::select('event', array(
+                             '1'=>'Towed',
+                              '2'=>'Gas',
+                              '3'=>'Engine',
+                              '4'=>'Other',
+                              ),'4',['class' => 'form-control']) }}
+                          @endif
+                        @endif
                     </div>
                     <div class="form-group">
                       <label>{{ Lang::get('client.additional_notes') }}:</label>
@@ -502,3 +936,7 @@
                                 </div>
                               </div>
                             </section>
+
+                            <script type="text/javascript">
+                              $('select').select2();
+                            </script>

@@ -16,7 +16,7 @@ class ClientEntry extends Eloquent
 
 	// Edit entry validation
 	public static $edit_entry_rules = array(
-		'entry_id'				=>	'required|integer',
+		'entry_id'			=>	'required|integer',
 		'first_name'		=>	'required',
 		'last_name'			=>	'required'
 	);
@@ -35,6 +35,7 @@ class ClientEntry extends Eloquent
 		try
 		{
 			$entry = DB::table('users')
+				->join('countries', 'countries.id', '=', 'users.country_id')
 				->select(
 					'users.id AS entry_id',
 					'users.first_name AS first_name',
@@ -57,7 +58,29 @@ class ClientEntry extends Eloquent
 					'users.additional_state AS additional_state',
 					'users.notes AS notes',
 					'users.additional_notes AS additional_notes',
-					'users.membership_id AS membership_id'
+					'users.membership_id AS membership_id',
+					'users.title AS title',
+					'users.status AS status',
+					'users.franchisee_id AS franchisee_id',
+					'users.member_since AS member_since',
+					'users.event as event',
+					//mailing entries 11
+					'users.mailing_title AS mailing_title',
+					'users.mailing_first_name AS mailing_first_name',
+					'users.mailing_last_name AS mailing_last_name',
+					'users.mailing_company AS mailing_company',
+					'users.mailing_address AS mailing_address',
+					'users.mailing_country AS mailing_country',
+					'users.mailing_state AS mailing_state',
+					'users.mailing_city AS mailing_city',
+					'users.mailing_zip AS mailing_zip',
+					'users.mailing_mobile_number AS mailing_mobile_number',
+					'users.mailing_email AS mailing_email',
+					'countries.id AS country_id',
+					'countries.country_name AS country_name',
+					'users.member_type AS member_type'
+
+
 				);
 			
 			if ($entry_id != null)
@@ -90,7 +113,7 @@ class ClientEntry extends Eloquent
 		try
 		{ 
 			$entries = DB::table('users')
-			
+				->join('countries', 'countries.id', '=', 'users.country_id')
 				->select(
 					'users.id AS entry_id',
 					'users.first_name AS first_name',
@@ -113,7 +136,27 @@ class ClientEntry extends Eloquent
 					'users.additional_state AS additional_state',
 					'users.notes AS notes',
 					'users.additional_notes AS additional_notes',
-					'users.membership_id AS membership_id'
+					'users.membership_id AS membership_id',
+					'users.title AS title',
+					'users.status AS status',
+					'users.franchisee_id AS franchisee_id',
+					'users.member_since AS member_since',
+					'users.event AS event',
+					//mailing entries 11
+					'users.mailing_title AS mailing_title',
+					'users.mailing_first_name AS mailing_first_name',
+					'users.mailing_last_name AS mailing_last_name',
+					'users.mailing_company AS mailing_company',
+					'users.mailing_address AS mailing_address',
+					'users.mailing_country AS mailing_country',
+					'users.mailing_state AS mailing_state',
+					'users.mailing_city AS mailing_city',
+					'users.mailing_zip AS mailing_zip',
+					'users.mailing_mobile_number AS mailing_mobile_number',
+					'users.mailing_email AS mailing_email',
+					'countries.id AS country_id',
+					'countries.country_name AS country_name',
+					'users.member_type AS member_type'
 				)
 				->where('users.user_group', '=', 'client')
 				->orderBy('users.created_at', 'DESC')
