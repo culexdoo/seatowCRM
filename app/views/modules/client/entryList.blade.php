@@ -17,7 +17,9 @@
                  <div class="col-md-6"> <h3 class="box-title"> {{ Lang::get('client.list_of_all_clients') }}</h3>
                 </div>
                 <div class="col-md-6">
-               <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.add_client') }}</a>
+                <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.add_client') }}</a>
+                
+               
                </div>
                </div>
 
@@ -44,7 +46,7 @@
                             <div class="col-md-2">
                                {{ Lang::get('client.status') }}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                {{ Lang::get('client.franchisee_id') }}
                             </div>
                              <div class="col-md-2">
@@ -76,7 +78,7 @@
                             <div class="col-md-2">
                                {{ Lang::get('client.status') }}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                {{ Lang::get('client.franchisee_id') }}
                             </div>
                              <div class="col-md-2">
@@ -167,32 +169,41 @@
                                     </p>
                                     @endif
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                               {{ $entry->franchisee_id }}
                                 </div>
                                 <div class="col-md-2">
-                                 Tu ce biti member EXP DATE
+                                 {{ $entry->membership_to }}
                                 </div>
+
+                                
+
                                  <div class="col-md-2 pull-right">
+                                 
+                                  <a href="{{ URL::route('ClientGetAddEvent', array('entry_id' => $entry->entry_id)) }}">
+                                  <span class="label label-primary">
+                                  {{ Lang::get('client.add_event') }}</span></a>
+
+                                 &nbsp; 
+
                                  <a href="{{ URL::route('ClientGetEditEntry', array('entry_id' => $entry->entry_id)) }}"><span class="label label-warning">{{ Lang::get('client.edit_client') }}</span></a>
 
                                  &nbsp; 
 
                                   <a href="{{ URL::route('ClientGetDeleteEntry', array('entry_id' => $entry->entry_id)) }}"><span class="label label-danger">{{ Lang::get('client.delete_client') }}</span></a>
 
-                                   <div class="box-tools pull-right">
                               
-                              </div>
-
                                 </div>
                               </div>
                               
                             </div>
                             <div class="box-body colored-div">
                               <div class="row">
+                              <div class="col-md-12">
                                 <div class="col-md-10">
-                                  <div class="col-md-4">
+                                  <div class="col-md-3">
                                     <div class="form-group">
+                                    <p><label>{{ Lang::get('client.client_information') }}</label></p>
                                       <label>{{ Lang::get('client.company') }}:</label>
                                       <p>{{ $entry->company }}</p>
                                       <label>{{ Lang::get('client.address') }}:</label>
@@ -203,14 +214,29 @@
                                       <p>{{ $entry->state }}</p>
                                     </div>
                                   </div>
-                                  <div class="col-md-4">
+
+                                  <div class="col-md-3">
                                     <div class="form-group">
+                                     <p><label>{{ Lang::get('client.client_information') }}</label></p>
+                                      <label>{{ Lang::get('client.city') }}:</label>
+                                      <p>{{ $entry->city }}</p>
+                                      <label>{{ Lang::get('client.zip_code') }}:</label>
+                                      <p>{{ $entry->zip }}</p>
+                                      <label>{{ Lang::get('client.mobile_number') }}:</label>
+                                      <p>{{ $entry->mobile_number }}</p>
+                                      <label>{{ Lang::get('client.email') }}:</label>
+                                      <p>{{ $entry->email }}</p>
+                                    </div>
+                                  </div>
+                                   <div class="col-md-3">
+                                    <div class="form-group">
+                                     <p><label>{{ Lang::get('client.membership_information') }}</label></p>
                                       <label>{{ Lang::get('client.member_since') }}:</label>
                                       <p>{{ $entry->member_since }}</p>
                                       <label>{{ Lang::get('client.membership_period') }}:</label>
-                                      <p>Ovjde ce biti membership period</p>
+                                      <p>{{ $entry->membership_from }} - {{ $entry->membership_to }}</p>
                                       <label>{{ Lang::get('client.member_type') }}:</label>
-                                      <p>
+                                  
                                          @if ($entry->member_type == '1')
                                     <p> 
                                     Bpdemsee
@@ -256,27 +282,30 @@
                                     VIP
                                     </p>
                                     @endif
-                                      </p>
-                                      <label>{{ Lang::get('client.trails_coverage') }}:</label>
-                                      <p>ovdje ce biti trails coverage</p>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">
-                                      <label>{{ Lang::get('client.email') }}:</label>
-                                      <p>{{ $entry->email }}</p>
-                                      <label>{{ Lang::get('client.mobile_number') }}:</label>
-                                      <p>{{ $entry->mobile_number }}</p>
-                                      <label>{{ Lang::get('client.zip') }}:</label>
-                                      <p>{{ $entry->zip }}</p>
+
+                                    
                                       <label>{{ Lang::get('client.homeport') }}:</label>
                                       <p>{{ $entry->homeport }}</p>
                                     </div>
                                   </div>
-                                </div>
-                                <div class="div-md-2">
-                                  <div class="form-group pull-right border-img">
-                                    <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                     <p><label>{{ Lang::get('client.detail_information') }}</label></p>
+                                      <label>{{ Lang::get('client.home_no') }}:</label>
+                                      <p>{{ $entry->home_number }}</p>
+                                      <label>{{ Lang::get('client.bus_no') }}:</label>
+                                      <p>{{ $entry->bus_no }}</p>
+                                      <label>{{ Lang::get('client.summer_no') }}:</label>
+                                      <p>{{ $entry->summer_no }}</p>
+                                      <label>{{ Lang::get('client.fax_no') }}:</label>
+                                      <p>{{ $entry->fax_no }}</p>
+                                   </div>
+                                  </div>
+                                     </div>
+                                     <div class="col-md-2">
+                                        <div class="img-responsive">
+                                          <img src="img/core/maca.jpg" alt="User Image"/>
+                                        </div>
                                   </div>
                                 </div>
                               </div>
@@ -295,3 +324,8 @@
             </div>
           </div>
           </section><!-- /.content -->
+                      <script>
+                      $(function () {
+                      $("#list-clients").DataTable();
+                      });
+                      </script>

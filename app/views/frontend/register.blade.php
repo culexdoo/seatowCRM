@@ -1,6 +1,6 @@
 <div class="register-box">
 	      <div class="register-logo">
-	         <a href="{{ URL::route('getFrontendLanding') }}"><b>{{ Lang::get('core.app_title') }}</b></a>
+	        <a href="http://seatow-europe.com/" target="_blank"><img src='img/core/seatow-logo.png' /></a>
 	      </div>
 
 	      <div class="register-box-body">
@@ -46,13 +46,13 @@
 			 </div>
 	          <div class="row">
 	            <div class="col-xs-8">
-	              
+	                 <a href="{{ URL::route('getSignIn') }}" class="text-center">I already have a membership</a>
 	            </div><!-- /.col -->
 	            <div class="col-xs-4">
 	              <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
 	            </div><!-- /.col -->
 	          </div>
 			{{ Form::close() }}
-	        <a href="{{ URL::route('getSignIn') }}" class="text-center">I already have a membership</a>
+	     
 	      </div><!-- /.form-box -->
     </div>

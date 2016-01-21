@@ -18,7 +18,9 @@
                  <div class="col-md-6"> <h3 class="box-title"> <?php echo Lang::get('client.list_of_all_clients'); ?></h3>
                 </div>
                 <div class="col-md-6">
-               <a class="btn btn-success btn-flat pull-right" href="<?php echo URL::route('ClientGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('client.add_client'); ?></a>
+                <a class="btn btn-success btn-flat pull-right" href="<?php echo URL::route('ClientGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('client.add_client'); ?></a>
+                
+               
                </div>
                </div>
 
@@ -50,7 +52,7 @@
                                <?php echo Lang::get('client.status'); ?>
 
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                <?php echo Lang::get('client.franchisee_id'); ?>
 
                             </div>
@@ -90,7 +92,7 @@
                                <?php echo Lang::get('client.status'); ?>
 
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                <?php echo Lang::get('client.franchisee_id'); ?>
 
                             </div>
@@ -187,33 +189,43 @@
                                     </p>
                                     <?php endif; ?>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                               <?php echo $entry->franchisee_id; ?>
 
                                 </div>
                                 <div class="col-md-2">
-                                 Tu ce biti member EXP DATE
+                                 <?php echo $entry->membership_to; ?>
+
                                 </div>
+
+                                
+
                                  <div class="col-md-2 pull-right">
+                                 
+                                  <a href="<?php echo URL::route('ClientGetAddEvent', array('entry_id' => $entry->entry_id)); ?>">
+                                  <span class="label label-primary">
+                                  <?php echo Lang::get('client.add_event'); ?></span></a>
+
+                                 &nbsp; 
+
                                  <a href="<?php echo URL::route('ClientGetEditEntry', array('entry_id' => $entry->entry_id)); ?>"><span class="label label-warning"><?php echo Lang::get('client.edit_client'); ?></span></a>
 
                                  &nbsp; 
 
                                   <a href="<?php echo URL::route('ClientGetDeleteEntry', array('entry_id' => $entry->entry_id)); ?>"><span class="label label-danger"><?php echo Lang::get('client.delete_client'); ?></span></a>
 
-                                   <div class="box-tools pull-right">
                               
-                              </div>
-
                                 </div>
                               </div>
                               
                             </div>
                             <div class="box-body colored-div">
                               <div class="row">
+                              <div class="col-md-12">
                                 <div class="col-md-10">
-                                  <div class="col-md-4">
+                                  <div class="col-md-3">
                                     <div class="form-group">
+                                    <p><label><?php echo Lang::get('client.client_information'); ?></label></p>
                                       <label><?php echo Lang::get('client.company'); ?>:</label>
                                       <p><?php echo $entry->company; ?></p>
                                       <label><?php echo Lang::get('client.address'); ?>:</label>
@@ -224,14 +236,29 @@
                                       <p><?php echo $entry->state; ?></p>
                                     </div>
                                   </div>
-                                  <div class="col-md-4">
+
+                                  <div class="col-md-3">
                                     <div class="form-group">
+                                     <p><label><?php echo Lang::get('client.client_information'); ?></label></p>
+                                      <label><?php echo Lang::get('client.city'); ?>:</label>
+                                      <p><?php echo $entry->city; ?></p>
+                                      <label><?php echo Lang::get('client.zip_code'); ?>:</label>
+                                      <p><?php echo $entry->zip; ?></p>
+                                      <label><?php echo Lang::get('client.mobile_number'); ?>:</label>
+                                      <p><?php echo $entry->mobile_number; ?></p>
+                                      <label><?php echo Lang::get('client.email'); ?>:</label>
+                                      <p><?php echo $entry->email; ?></p>
+                                    </div>
+                                  </div>
+                                   <div class="col-md-3">
+                                    <div class="form-group">
+                                     <p><label><?php echo Lang::get('client.membership_information'); ?></label></p>
                                       <label><?php echo Lang::get('client.member_since'); ?>:</label>
                                       <p><?php echo $entry->member_since; ?></p>
                                       <label><?php echo Lang::get('client.membership_period'); ?>:</label>
-                                      <p>Ovjde ce biti membership period</p>
+                                      <p><?php echo $entry->membership_from; ?> - <?php echo $entry->membership_to; ?></p>
                                       <label><?php echo Lang::get('client.member_type'); ?>:</label>
-                                      <p>
+                                  
                                          <?php if($entry->member_type == '1'): ?>
                                     <p> 
                                     Bpdemsee
@@ -277,27 +304,30 @@
                                     VIP
                                     </p>
                                     <?php endif; ?>
-                                      </p>
-                                      <label><?php echo Lang::get('client.trails_coverage'); ?>:</label>
-                                      <p>ovdje ce biti trails coverage</p>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">
-                                      <label><?php echo Lang::get('client.email'); ?>:</label>
-                                      <p><?php echo $entry->email; ?></p>
-                                      <label><?php echo Lang::get('client.mobile_number'); ?>:</label>
-                                      <p><?php echo $entry->mobile_number; ?></p>
-                                      <label><?php echo Lang::get('client.zip'); ?>:</label>
-                                      <p><?php echo $entry->zip; ?></p>
+
+                                    
                                       <label><?php echo Lang::get('client.homeport'); ?>:</label>
                                       <p><?php echo $entry->homeport; ?></p>
                                     </div>
                                   </div>
-                                </div>
-                                <div class="div-md-2">
-                                  <div class="form-group pull-right border-img">
-                                    <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                     <p><label><?php echo Lang::get('client.detail_information'); ?></label></p>
+                                      <label><?php echo Lang::get('client.home_no'); ?>:</label>
+                                      <p><?php echo $entry->home_number; ?></p>
+                                      <label><?php echo Lang::get('client.bus_no'); ?>:</label>
+                                      <p><?php echo $entry->bus_no; ?></p>
+                                      <label><?php echo Lang::get('client.summer_no'); ?>:</label>
+                                      <p><?php echo $entry->summer_no; ?></p>
+                                      <label><?php echo Lang::get('client.fax_no'); ?>:</label>
+                                      <p><?php echo $entry->fax_no; ?></p>
+                                   </div>
+                                  </div>
+                                     </div>
+                                     <div class="col-md-2">
+                                        <div class="img-responsive">
+                                          <img src="img/core/maca.jpg" alt="User Image"/>
+                                        </div>
                                   </div>
                                 </div>
                               </div>
@@ -316,3 +346,8 @@
             </div>
           </div>
           </section><!-- /.content -->
+                      <script>
+                      $(function () {
+                      $("#list-clients").DataTable();
+                      });
+                      </script>

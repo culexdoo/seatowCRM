@@ -45,7 +45,11 @@ class MembershipEntry extends Eloquent
 					'membership_entries.promo_price_1 AS promo_price_1',
 					'membership_entries.promo_price_2 AS promo_price_2',
 					'membership_entries.created_at AS created_at',
-					'membership_entries.updated_at AS updated_at'
+					'membership_entries.updated_at AS updated_at',
+					'membership_entries.promo_period_1_from AS promo_period_1_from',
+					'membership_entries.promo_period_1_to AS promo_period_1_to',
+					'membership_entries.promo_period_2_from AS promo_period_2_from',
+					'membership_entries.promo_period_2_to AS promo_period_2_to'
 				);
 			
 			if ($entry_id != null)
@@ -87,7 +91,11 @@ class MembershipEntry extends Eloquent
 					'membership_entries.promo_price_1 AS promo_price_1',
 					'membership_entries.promo_price_2 AS promo_price_2',
 					'membership_entries.created_at AS created_at',
-					'membership_entries.updated_at AS updated_at'
+					'membership_entries.updated_at AS updated_at',
+					'membership_entries.promo_period_1_from AS promo_period_1_from',
+					'membership_entries.promo_period_1_to AS promo_period_1_to',
+					'membership_entries.promo_period_2_from AS promo_period_2_from',
+					'membership_entries.promo_period_2_to AS promo_period_2_to'
 				)
 				->orderBy('membership_entries.created_at', 'DESC')
 				->get();

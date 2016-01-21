@@ -94,20 +94,25 @@
                               <div class="row">
                                 <div class="col-md-4">
                                   <div class="form-group">
-                                    <h4><span class="bolded"><label> <?php echo Lang::get('membership.normal_price '); ?>:</label> </span><?php echo $entry->normal_price; ?>€</h4>
+                                    <span class="bolded"><label> <?php echo Lang::get('membership.normal_price'); ?>:</label> </span>
+
+                                    <p><?php echo $entry->normal_price; ?>€</p>
                                     
-                                    <h4><span class="bolded"><label><?php echo Lang::get('membership.promo_price '); ?>:</label> </span><?php echo $entry->promo_price_1; ?>€</h4>
-                                    <h4><span class="bolded"><label><?php echo Lang::get('membership.promo_period_1 '); ?> </label></span>01/01/2014 - 01/01/2015</h4>
-                                    <h4><span class="bolded"><label><?php echo Lang::get('membership.promo_price '); ?> </label></span><?php echo $entry->promo_price_2; ?>€</h4>
-                                    <h4><span class="bolded"><label><?php echo Lang::get('membership.promo_period_2 '); ?> </label></span>05/06/2014 - 05/11/2015</h4>
+                                    <span class="bolded"><label><?php echo Lang::get('membership.promo_price'); ?>:</label> </span>
+                                    <p><?php echo $entry->promo_price_1; ?>€</p>
+                                    <span class="bolded"><label><?php echo Lang::get('membership.promo_period_1'); ?> </label></span>
+                                    <p><?php echo $entry->promo_period_1_from; ?>-<?php echo $entry->promo_period_1_to; ?></p>
+                                    <h4><span class="bolded"><label><?php echo Lang::get('membership.promo_price'); ?> </label></span>
+                                    <p><?php echo $entry->promo_price_2; ?>€</p>
+                                    <h4><span class="bolded"><label><?php echo Lang::get('membership.promo_period_2'); ?> </label></span>
+                                    <p><?php echo $entry->promo_period_2_from; ?>-<?php echo $entry->promo_period_2_to; ?></p>
                                     
                                     
                                   </div>
                                 </div>
                                 <div class="col-md-8">
                                   <label><?php echo Lang::get('membership.description'); ?> </label>
-                                  <?php echo $entry->description; ?>
-
+                                  <p><?php echo $entry->description; ?></p>
                                 </div>
                               </div>
                             </div>

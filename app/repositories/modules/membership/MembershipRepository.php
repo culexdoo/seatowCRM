@@ -16,7 +16,7 @@ class MembershipRepository
 
  
 	// Inserting new entry into database
-	public function addEntry($title, $description, $normal_price, $promo_price_1, $promo_price_2)
+	public function addEntry($title, $description, $normal_price, $promo_price_1, $promo_price_2, $promo_period_1_from, $promo_period_1_to, $promo_period_2_from, $promo_period_2_to)
 	{
 		try
 		{
@@ -26,6 +26,10 @@ class MembershipRepository
 			$entry->normal_price = $normal_price;
 			$entry->promo_price_1 = $promo_price_1;
 			$entry->promo_price_2 = $promo_price_2;
+			$entry->promo_period_1_from = $promo_period_1_from;
+			$entry->promo_period_1_to = $promo_period_1_to;
+			$entry->promo_period_2_from = $promo_period_2_from;
+			$entry->promo_period_2_to = $promo_period_2_to;
 
 
 			$entry->save();
@@ -40,7 +44,7 @@ class MembershipRepository
 
 
 	// Editing new entry into database
-	public function postEditEntry($entry_id, $title, $description, $normal_price, $promo_price_1, $promo_price_2)
+	public function postEditEntry($entry_id, $title, $description, $normal_price, $promo_price_1, $promo_price_2, $promo_period_1_from, $promo_period_1_to, $promo_period_2_from, $promo_period_2_to)
 	{
 		 try
 		{   
@@ -51,6 +55,10 @@ class MembershipRepository
 			$entry->normal_price = $normal_price;
 			$entry->promo_price_1 = $promo_price_1;
 			$entry->promo_price_2 = $promo_price_2;
+			$entry->promo_period_1_from = $promo_period_1_from;
+			$entry->promo_period_1_to = $promo_period_1_to;
+			$entry->promo_period_2_from = $promo_period_2_from;
+			$entry->promo_period_2_to = $promo_period_2_to;
 
 
 			$entry->save();

@@ -96,6 +96,16 @@ Route::post('save-profile', array('before' => 'csrf', 'as' => 'postProfile', 'us
 
 
 
+// Profile page
+Route::get('options', array('before' => 'auth', 'as' => 'getOptions', 'uses' => 'CoreController@getoptions'));
+
+// Save options changes
+Route::post('save-options', array('before' => 'csrf', 'as' => 'postOptions', 'uses' => 'CoreController@postoptions'));
+
+
+
+
+
 /*
  *	Pages available to superadmin and admin
  */
@@ -135,3 +145,5 @@ include 'routes/franchisee.php';
 include 'routes/employee.php';
 include 'routes/boats.php';
 include 'routes/client.php';
+include 'routes/invoice.php';
+include 'routes/messages.php';

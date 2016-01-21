@@ -172,8 +172,9 @@ class FrontendController extends BaseController
 	public function getSignIn()
 	{
 
+
  		$this->layout->css_files = array(
- 			'css/core/blue.css',
+ 			'css/core/custom/custom.css',
 		);
 		$this->layout->js_footer_files = array(
 			'js/core/icheck.min.js'
@@ -207,13 +208,10 @@ class FrontendController extends BaseController
 
 				return Redirect::route('getDashboard')->with('success_message', Lang::get('messages.sign_in_success'));
 
-		 
-
-
 		}
 		else
 		{
-			return Redirect::back()->with('error_message', Lang::get('messages.sign_in_error'))->withInput();
+			return Redirect::route('getSignIn')->with('error_message', Lang::get('messages.sign_in_error'));
 		}
 	}
 
@@ -269,7 +267,7 @@ class FrontendController extends BaseController
 	{ 
 
  		$this->layout->css_files = array(
- 			'css/core/blue.css',
+ 			'css/core/custom/custom.css',
 		);
 		$this->layout->js_footer_files = array(
 			'js/core/icheck.min.js'

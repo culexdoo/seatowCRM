@@ -245,7 +245,7 @@ class CoreController extends BaseController
 			Auth::logout();
 			Session::flush();
 
-			return Redirect::route('getFrontendLanding')->with('info_message', Lang::get('messages.sign_out_success'));
+			return Redirect::route('getSignIn')->with('info_message', Lang::get('messages.sign_out_success'));
 
 		}
 
@@ -374,6 +374,38 @@ class CoreController extends BaseController
 				return Redirect::route('getProfile')->with('success_message', Lang::get('messages.success_password_updated'));
 			}
 		}
+	}
+
+// Show profile page
+	public function getOptions() 
+	{
+		$user = User::getUserInfos(Auth::user()->id);
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::back()->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+ 
+		$this->layout->title = 'Edit options';
+
+		$this->layout->content = View::make('core.options', array('title' => 'Edit options', 'user' => $user['user']));
+	}
+
+
+
+	// Save profile changes
+	public function postOptions()
+	{
+		Input::merge(array_map('trim', Input::all()));
+
+		$userValidator = Validator::make(Input::all(), User::edit_options_rules(Auth::user()->id));
+
+		if ($userValidator->fails()) 
+		{
+			return Redirect::back()->with('error_message', Lang::get('messages.error_validating_profile'))->withErrors($userValidator)->withInput();
+		}
+
+		
 	}
 
 

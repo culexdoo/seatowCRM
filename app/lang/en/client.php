@@ -59,7 +59,9 @@ return array(
 	'mailing_title'					=>	'Mailing title',
 	'list_all_clients'				=>	'List all clients',
 	'list_of_all_clients'			=>	'List of all clients',
-	'add_client'					=>	'Add clients'
+	'add_client'					=>	'Add clients',
+	'starts_from'					=>	'Membership starts',
+	'ends_on'						=>	'Membership ends'
 
 
 

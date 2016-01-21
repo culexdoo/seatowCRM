@@ -176,6 +176,7 @@
               <ul class="treeview-menu">
                 <li><a href="{{ URL::route('ClientGetAddEntry') }}">Add Client</a></li>
                 <li><a href="{{ URL::route('clientLanding') }}">List Clients</a></li>
+                <li><a href="{{ URL::route('ClientGetAddEvent') }}">Add Event</a></li>
               </ul>
             </li>
              <li class="treeview">
@@ -199,8 +200,8 @@
              <li class="treeview">
               <a href="#"><i class="fa fa-2x fa-credit-card"></i> <span>Billing</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="add-invoice.html">Add Invoice</a></li>
-                <li><a href="list-invoices.html">List Invoices</a></li>
+                <li><a href="{{ URL::route('InvoiceGetAddEntry') }}">Add Invoice</a></li>
+                <li><a href="{{ URL::route('invoiceLanding') }}">List Invoices</a></li>
               </ul>
             </li>
            </li>
@@ -218,10 +219,10 @@
                 <li><a href="{{ URL::route('franchiseeLanding') }}">List Franchisee</a></li>
               </ul>
             </li>
-            <li><a href="messages.html"><i class="fa fa-2x fa-comment"></i> <span>Messages</span></a></li>
-            <li><a href="my-profile.html"><i class="fa fa-2x fa-asterisk"></i> <span>My profile</span></a></li>
-             <li><a href="{{ URL::route('getProfile') }}"><i class="fa fa-2x fa-cog"></i> <span>Options</span></a></li>
-              <li><a href="#"><i class="fa fa-2x fa-sign-out"></i> <span>Logout</span></a></li>
+            <li><a href="{{ URL::route('messagesLanding') }}"><i class="fa fa-2x fa-comment"></i> <span>Messages</span></a></li>
+            <li><a href="{{ URL::route('getProfile') }}"><i class="fa fa-2x fa-asterisk"></i> <span>My profile</span></a></li>
+             <li><a href="{{ URL::route('getOptions') }}"><i class="fa fa-2x fa-cog"></i> <span>Options</span></a></li>
+              <li><a href="{{ URL::route('getSignOut') }}"><i class="fa fa-2x fa-sign-out"></i> <span>Logout</span></a></li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

@@ -106,7 +106,7 @@ class MembershipController extends CoreController {
 		}
  
 
-		$addNewEntry = $this->repo->addEntry(Input::get('title'), Input::get('description'), Input::get('normal_price'), Input::get('promo_price_1'), Input::get('promo_price_2'));
+		$addNewEntry = $this->repo->addEntry(Input::get('title'), Input::get('description'), Input::get('normal_price'), Input::get('promo_price_1'), Input::get('promo_price_2'), Input::get('promo_period_1_from'), Input::get('promo_period_1_to'), Input::get('promo_period_2_from'), Input::get('promo_period_2_to'));
 		
 
 		if ($addNewEntry['status'] == 0)
@@ -170,7 +170,7 @@ class MembershipController extends CoreController {
 		}
  
  			
-		$editNewEntry = $this->repo->postEditEntry(Input::get('entry_id'), Input::get('title'), Input::get('description'), Input::get('normal_price'), Input::get('promo_price_1'), Input::get('promo_price_2'));
+		$editNewEntry = $this->repo->postEditEntry(Input::get('entry_id'), Input::get('title'), Input::get('description'), Input::get('normal_price'), Input::get('promo_price_1'), Input::get('promo_price_2'), Input::get('promo_period_1_from'), Input::get('promo_period_1_to'), Input::get('promo_period_2_from'), Input::get('promo_period_2_to'));
 
 		if ($editNewEntry['status'] == 0)
 		{

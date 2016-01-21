@@ -1,0 +1,131 @@
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: rgba(253,220,47,1); 
+    -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4); 
+}
+.mt-25{
+	margin-top: 25px;
+}
+.skin-yellow .main-header .navbar {
+    background-color: #000000;
+}
+.skin-yellow .main-header .logo {
+    background-color: #000000;
+}
+.skin-yellow .main-header .logo:hover {
+    background-color: #000000;
+}
+.skin-yellow .main-header .navbar .sidebar-toggle:hover {
+    background-color: #FDDC2F;
+}
+ul.sidebar-menu li a span {
+    padding-left: 30px;
+    top: 15px;
+    position: absolute;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+.skin-yellow .wrapper, .skin-yellow .main-sidebar, .skin-yellow .left-side {
+    background-color: #000000;
+}
+.skin-yellow .sidebar-menu>li:hover>a, .skin-yellow .sidebar-menu>li.active>a {
+    color: #FDDC2F;
+    border-left-color: #FDDC2F;
+}
+
+.sidebar-menu .treeview-menu>li>a {
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 700;
+	color: #fff;
+	padding-top: 10px;
+	padding-left: 60px;
+}
+
+.skin-yellow .treeview-menu>li.active>a, .skin-yellow .treeview-menu>li>a:hover {
+    color: #FDDC2F;
+}
+.box.box-black {
+    border-top-color: #000000;
+}
+.small-box p {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.small-box>.small-box-footer {
+    padding: 8px 0;
+    font-size: 20px;
+    color: #ffffff;
+}
+.recent-actions {
+ height: 407px;
+    overflow: auto;
+}
+.select2-container--default .select2-selection--single {
+    border-radius: 0px;
+}
+.box-no-border {
+	border: 0px !important;
+}
+.red {
+	color: black;
+}
+.select2-container--default .select2-selection--single, .select2-selection .select2-selection--single {
+    padding: 6px 3px;
+}
+.select2-container .select2-selection--single {
+    height: 34px;
+}
+.dataTables_wrapper .row {
+	margin: 0px !important;
+}
+#list-clients table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after{
+    left: 2px;
+}
+.box-header>.box-tools {
+    z-index: 999;
+}
+.colored-div {
+	background-color: #ECF0F5;
+}
+span.bolded {
+	font-weight: bold;
+}
+.border-img {
+	border: 3px solid #6E6E6E;
+}
+}
+#list-boats table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after{
+    left: 2px;
+}
+
+.invoice {
+    position: relative;
+    background: #fff;
+    border: 1px solid #f4f4f4;
+    padding: 10px;
+    margin: 0px 15px;
+}
+.login-page, .register-page, .lockscreen{
+    background: #000000 !important;
+}

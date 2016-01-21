@@ -77,36 +77,38 @@
                      <div class="form-group">
                      <div class="row">
                      <div class="col-md-6">
-                      <label for="exampleInputtext">{{ Lang::get('membership.promo_price') }}:</label>
+                      <label>{{ Lang::get('membership.promo_price_1') }}:</label>
                        {{ Form::text('promo_price_1', isset($entry->promo_price_1) ? $entry->promo_price_1 : null, ['class' => 'form-control']) }}
                      
                       </div>
                       <div class="col-md-6">
-                       <label>{{ Lang::get('membership.promo_period') }}:</label>
-                      <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control pull-right active" id="reservation">
-                          </div>
+                       <label>{{ Lang::get('membership.promo_price_2') }}:</label>
+                       {{ Form::text('promo_price_2', isset($entry->promo_price_2) ? $entry->promo_price_2 : null, ['class' => 'form-control']) }}
+                     
                     </div>
                     </div>
                     </div>
                      <div class="form-group">
                      <div class="row">
                      <div class="col-md-6">
-                      <label for="exampleInputtext">{{ Lang::get('membership.promo_price') }}:</label>
-                       {{ Form::text('promo_price_2', isset($entry->promo_price_2) ? $entry->promo_price_2 : null, ['class' => 'form-control']) }}
+                      <label>{{ Lang::get('membership.promo_period_1_from') }}:</label>
+                       {{ Form::text('promo_period_1_from', isset($entry->promo_period_1_from) ? $entry->promo_period_1_from : null, ['class' => 'form-control']) }}
                     
                       </div>
                       <div class="col-md-6">
-                       <label>{{ Lang::get('membership.promo_period') }}:</label>
-                      <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control pull-right active" id="reservation">
-                          </div>
+                        <label>{{ Lang::get('membership.promo_period_2_from') }}:</label>
+                       {{ Form::text('promo_period_2_from', isset($entry->promo_period_2_from) ? $entry->promo_period_2_from : null, ['class' => 'form-control']) }}
+                    </div>
+                    </div>
+                     <div class="row">
+                     <div class="col-md-6">
+                      <label>{{ Lang::get('membership.promo_period_1_to') }}:</label>
+                       {{ Form::text('promo_period_1_to', isset($entry->promo_period_1_to) ? $entry->promo_period_1_to : null, ['class' => 'form-control']) }}
+                    
+                      </div>
+                      <div class="col-md-6">
+                        <label>{{ Lang::get('membership.promo_period_2_to') }}:</label>
+                       {{ Form::text('promo_period_2_to', isset($entry->promo_period_2_to) ? $entry->promo_period_2_to : null, ['class' => 'form-control']) }}
                     </div>
                     </div>
                     </div>

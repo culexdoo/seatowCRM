@@ -79,7 +79,9 @@ class ClientEntry extends Eloquent
 					'countries.id AS country_id',
 					'countries.country_name AS country_name',
 					'users.member_type AS member_type',
-					'users.short_team_member AS short_team_member'
+					'users.short_team_member AS short_team_member',
+					'users.membership_from AS membership_from',
+					'users.membership_to AS membership_to'
 				);
 			
 			if ($entry_id != null)
@@ -156,7 +158,9 @@ class ClientEntry extends Eloquent
 					'countries.id AS country_id',
 					'countries.country_name AS country_name',
 					'users.member_type AS member_type',
-					'users.short_team_member AS short_team_member'
+					'users.short_team_member AS short_team_member',
+					'users.membership_from AS membership_from',
+					'users.membership_to AS membership_to'
 				)
 				->where('users.user_group', '=', 'client')
 				->orderBy('users.created_at', 'DESC')

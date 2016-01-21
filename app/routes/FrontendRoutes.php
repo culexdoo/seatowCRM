@@ -5,7 +5,7 @@
  */
  
 // Home / landing
-Route::get('/', array('as' => 'getFrontendLanding', 'uses' => 'FrontendController@getLanding'));
+Route::get('/', array('before' => 'auth','as' => 'getFrontendLanding', 'uses' => 'CoreController@getBackendDashboard'));
   
 Route::get('view-offer-entry/{id}', array('as' => 'getSingleOfferEntry', 'uses' => 'FrontendController@getSingleOfferEntry'));
 

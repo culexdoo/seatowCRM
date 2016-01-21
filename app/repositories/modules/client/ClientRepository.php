@@ -16,7 +16,7 @@ class ClientRepository
 
  
 	// Inserting new entry into database
-	public function addEntry($country_id, $first_name, $last_name, $company, $address, $state, $city, $zip, $mobile_number, $email, $mobile_number_2, $email_2, $home_number, $bus_no, $summer_no, $fax_no, $homeport, $additional_city, $additional_state, $notes, $additional_notes, $membership_id, $title, $status, $franchisee_id, $member_since, $member_type, $mailing_title, $mailing_first_name, $mailing_last_name, $mailing_company, $mailing_address, $mailing_country, $mailing_state, $mailing_city, $mailing_zip, $mailing_mobile_number, $mailing_email, $short_team_member)
+	public function addEntry($membership_from, $membership_to, $country_id, $first_name, $last_name, $company, $address, $state, $city, $zip, $mobile_number, $email, $mobile_number_2, $email_2, $home_number, $bus_no, $summer_no, $fax_no, $homeport, $additional_city, $additional_state, $notes, $additional_notes, $membership_id, $title, $status, $franchisee_id, $member_since, $member_type, $mailing_title, $mailing_first_name, $mailing_last_name, $mailing_company, $mailing_address, $mailing_country, $mailing_state, $mailing_city, $mailing_zip, $mailing_mobile_number, $mailing_email, $short_team_member)
 	{
 		try
 		{   
@@ -62,6 +62,8 @@ class ClientRepository
 			$entry->mailing_zip = $mailing_zip;
 			$entry->mailing_mobile_number = $mailing_mobile_number;
 			$entry->mailing_email = $mailing_email;
+			$entry->membership_from = $membership_from;
+			$entry->membership_to = $membership_to;
 			//-- countries
 
 
@@ -77,7 +79,7 @@ class ClientRepository
 
 
 	// Editing new entry into database
-	public function postEditEntry($entry_id, $first_name, $last_name, $company, $address, $state, $city, $zip, $mobile_number, $email, $mobile_number_2, $email_2, $home_number, $bus_no, $summer_no, $fax_no, $homeport, $additional_city, $additional_state, $notes, $additional_notes, $membership_id, $title, $status, $franchisee_id, $member_since, $member_type, $mailing_title, $mailing_first_name, $mailing_last_name, $mailing_company, $mailing_address, $mailing_country, $mailing_state, $mailing_city, $mailing_zip, $mailing_mobile_number, $mailing_email, $country_id, $event, $short_team_member)
+	public function postEditEntry($entry_id, $first_name, $last_name, $company, $address, $state, $city, $zip, $mobile_number, $email, $mobile_number_2, $email_2, $home_number, $bus_no, $summer_no, $fax_no, $homeport, $additional_city, $additional_state, $notes, $additional_notes, $membership_id, $title, $status, $franchisee_id, $member_since, $member_type, $mailing_title, $mailing_first_name, $mailing_last_name, $mailing_company, $mailing_address, $mailing_country, $mailing_state, $mailing_city, $mailing_zip, $mailing_mobile_number, $mailing_email, $country_id, $event, $short_team_member, $membership_from, $membership_to)
 	
 	{ 
 		 try
@@ -125,6 +127,8 @@ class ClientRepository
 			$entry->mailing_zip = $mailing_zip;
 			$entry->mailing_mobile_number = $mailing_mobile_number;
 			$entry->mailing_email = $mailing_email;
+			$entry->membership_from = $membership_from;
+			$entry->membership_to = $membership_to;
 
 
 			$entry->save();
