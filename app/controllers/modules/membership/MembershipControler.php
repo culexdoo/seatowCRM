@@ -115,7 +115,7 @@ class MembershipController extends CoreController {
 		}
 		else
 		{
-			return Redirect::route('getDashboard')->with('success_message', Lang::get('membership.msg_success_entry_added', array('title' => Input::get('title'))));
+			return Redirect::route('membershipLanding')->with('success_message', Lang::get('membership.msg_success_entry_added', array('title' => Input::get('title'))));
 		}
 	}
 
@@ -179,7 +179,7 @@ class MembershipController extends CoreController {
 
 		else
 		{
-			return Redirect::route('getDashboard')->with('success_message', Lang::get('classifieds.msg_success_editing_entry', array('name' => Input::get('name'))));
+			return Redirect::route('membershipLanding')->with('success_message', Lang::get('classifieds.msg_success_editing_entry', array('name' => Input::get('name'))));
 		}
 	}
 

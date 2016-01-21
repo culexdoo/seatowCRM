@@ -26,10 +26,10 @@
 
          <div class="col-md-6">
            <a href="<?php echo URL::route('boatsLanding'); ?>" class="btn btn-danger pull-right">
-           <span class="icon icon-block"></span><?php echo Lang::get('boats.cancel'); ?></a>
+           <span class="icon icon-block"></span><?php echo Lang::get('core.cancel'); ?></a>
           
            <a class="pull-right">
-          <?php echo Form::button('<span class="icon icon-done"></span> ' . Lang::get('boats.save'), array('type' => 'submit', 'class' => 'btn btn-success')); ?>
+          <?php echo Form::button('<span class="icon icon-done"></span> ' . Lang::get('core.save'), array('type' => 'submit', 'class' => 'btn btn-success')); ?>
 
           </div>
           </a>

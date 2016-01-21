@@ -22,10 +22,10 @@
 
          <div class="col-md-6">
            <a href="{{ URL::route('boatsLanding') }}" class="btn btn-danger pull-right">
-           <span class="icon icon-block"></span>{{ Lang::get('boats.cancel') }}</a>
+           <span class="icon icon-block"></span>{{ Lang::get('core.cancel') }}</a>
           
            <a class="pull-right">
-          {{ Form::button('<span class="icon icon-done"></span> ' . Lang::get('boats.save'), array('type' => 'submit', 'class' => 'btn btn-success')) }}
+          {{ Form::button('<span class="icon icon-done"></span> ' . Lang::get('core.save'), array('type' => 'submit', 'class' => 'btn btn-success')) }}
           </div>
           </a>
           

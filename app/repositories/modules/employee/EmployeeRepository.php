@@ -16,13 +16,13 @@ class EmployeeRepository
 
  
 		// New employee  
-	public function addEntry($employee_id, $first_name, $last_name, $mobile_number, $employee_description, $email, $password, $franchisee_id)
+	public function addEntry($employee_id, $first_name, $last_name, $mobile_number, $employee_description, $email, $password, $franchisee_id, $user_group)
 	{
  
 		try
 		{ 
 			DB::beginTransaction(); 
-
+			
 	        $entry = new EmployeeEntry;
 			$entry->employee_id = $employee_id;
 			$entry->first_name = $first_name;
@@ -30,6 +30,7 @@ class EmployeeRepository
 			$entry->mobile_number = $mobile_number;
 			$entry->employee_description = $employee_description;
 			$entry->email = $email;
+			$entry->user_group = 'employee';
  
 			if ($password != '' || $password != null)
 			{

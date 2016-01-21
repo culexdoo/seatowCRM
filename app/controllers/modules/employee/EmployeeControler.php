@@ -120,7 +120,7 @@ class EmployeeController extends CoreController {
 
  
 
-		$addNewEntry = $this->repo->addEntry(Input::get('employee_id'), Input::get('first_name'), Input::get('last_name'), Input::get('mobile_number'), Input::get('employee_description'), Input::get('email'), Input::get('password'), Input::get('franchisee_id'));
+		$addNewEntry = $this->repo->addEntry(Input::get('employee_id'), Input::get('first_name'), Input::get('last_name'), Input::get('mobile_number'), Input::get('employee_description'), Input::get('email'), Input::get('password'), Input::get('franchisee_id'), Input::get('user_group'));
 		
 
 		if ($addNewEntry['status'] == 0)

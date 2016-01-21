@@ -29,5 +29,6 @@ return array(
 	'list_of_all_employees'		=>	'List of all employees',
 	'quick_options'				=>	'Quick Options',
 	'delete_employee'			=>	'Delete',
-	'edit_employee'				=>	'Edit'
+	'edit_employee'				=>	'Edit',
+	'add_employee'				=>	'Add employee'
 );

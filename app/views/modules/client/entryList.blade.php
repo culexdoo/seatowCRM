@@ -14,9 +14,13 @@
               
               <div class="box box-black">
                 <div class="box-header">
-                  <h3 class="box-title"> {{ Lang::get('client.list_of_all_clients') }}</h3>
+                 <div class="col-md-6"> <h3 class="box-title"> {{ Lang::get('client.list_of_all_clients') }}</h3>
                 </div>
-                <!-- /.box-header -->
+                <div class="col-md-6">
+               <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.add_client') }}</a>
+               </div>
+               </div>
+
                 <div clasee="box-body">
                 @if (count($entries) > 0) 
                   <table id="list-clients" class="table">

@@ -13,10 +13,16 @@
             <div class="col-md-12">
               
               
-              <div class="box box-black">
+
+
+                  <div class="box box-black">
                 <div class="box-header">
-                  <h3 class="box-title"> {{ Lang::get('boats.list_of_all_boats') }}</h3>
+                 <div class="col-md-6"> <h3 class="box-title"> {{ Lang::get('boats.list_of_all_boats') }}</h3>
                 </div>
+                <div class="col-md-6">
+               <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('boats.add_boat') }}</a>
+               </div>
+               </div>
                 <!-- /.box-header -->
                 <div clasee="box-body">
                  @if (count($entries) > 0) 
@@ -90,6 +96,7 @@
                                 </div>
                                 <div class="col-md-2">
                                 {{ $entry->first_name }}
+                                {{ $entry->last_name }}
                                 </div>
                                 <div class="col-md-2">
                                  {{ $entry->registration_no }}

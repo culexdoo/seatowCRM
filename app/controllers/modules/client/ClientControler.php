@@ -126,7 +126,7 @@ class ClientController extends CoreController {
 		//Ovjde kupim sve podatke sa stranice iz fildova
 		Input::merge(array_map('trim', Input::all()));
 		
-	//goDie(Input::get('country_id'));
+
 
  		//projverva dali sam popunio sve fildove
 	$entryValidator = Validator::make(Input::all(), ClientEntry::$new_entry_rules);
@@ -166,6 +166,7 @@ class ClientController extends CoreController {
 			Input::get('franchisee_id'), 
 			Input::get('member_since'), 
 			Input::get('member_type'), 
+			//mailing 11 inputs
 			Input::get('mailing_title'), 
 			Input::get('mailing_first_name'), 
 			Input::get('mailing_last_name'), 
@@ -177,7 +178,9 @@ class ClientController extends CoreController {
 			Input::get('mailing_zip'), 
 			Input::get('mailing_mobile_number'), 
 			Input::get('mailing_email'), 
+			Input::get('short_tema_member'),
 			Input::get('event')
+			
 			);
 		
 
@@ -204,6 +207,7 @@ class ClientController extends CoreController {
 
 		  
 		$entry = ClientEntry::getSingleClientEntry($entry_id);
+	//	goDie( $entry['entry']->mailing_country);
 		if ($entry['status'] == 0)
 		{ 
 			return Redirect::back()->with('error_message', Lang::get('client.msg_error_getting_entry'));
@@ -250,7 +254,7 @@ class ClientController extends CoreController {
 
 
 		$this->layout->content = View::make('modules.client.entry', array('mode' => 'edit',
-		'postRoute' => 'ClientPostEditEntry', 'title' => 'Uredi oglas', 'entry' => $entry['entry'], 'user' => $user['user'], 'entries' => $franchiseeList, 'countries' => $countryList, 'preselected_country_id' => $entry['entry']->country_id));
+		'postRoute' => 'ClientPostEditEntry', 'title' => 'Uredi oglas', 'entry' => $entry['entry'], 'user' => $user['user'], 'entries' => $franchiseeList, 'countries' => $countryList, 'preselected_country_id' => $entry['entry']->country_id, 'preselected_mailing_country' => $entry['entry']->mailing_country));
 
 	}
 
@@ -267,6 +271,7 @@ class ClientController extends CoreController {
 	
  		
 		$entryValidator = Validator::make(Input::all(), ClientEntry::$edit_entry_rules);
+		
 
 	
 
@@ -316,7 +321,8 @@ class ClientController extends CoreController {
 			Input::get('mailing_mobile_number'), 
 			Input::get('mailing_email'), 
 			Input::get('country_id'), 
-			Input::get('event')
+			Input::get('event'),
+			Input::get('short_team_member')
 			);
 
 		if ($editNewEntry['status'] == 0)

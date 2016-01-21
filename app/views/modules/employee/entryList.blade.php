@@ -10,11 +10,14 @@
           <div class="row">
             <div class="col-md-12">
               
-              
-              <div class="box box-black">
+                 <div class="box box-black">
                 <div class="box-header">
-                  <h3 class="box-title">{{ Lang::get('employee.list_of_all_employees') }}</h3>
+                 <div class="col-md-6"> <h3 class="box-title">{{ Lang::get('employee.list_of_all_employees') }}</h3>
                 </div>
+                <div class="col-md-6">
+               <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('employee.add_employee') }}</a>
+               </div>
+               </div>
                 <!-- /.box-header -->
                 <div clasee="box-body">
                  @if (count($entries) > 0) 

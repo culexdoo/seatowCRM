@@ -40,7 +40,8 @@ return array(
 	'hull_list'					=>	'Hull List',
 	'make_information'			=>	'Make Information',
 	'make_name'					=>	'Make Name',
-	'make_list'					=>	'Make List'
+	'make_list'					=>	'Make List',
+	'add_boat'					=>	'Add boat'
 
 
 );

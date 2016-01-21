@@ -521,7 +521,7 @@
                     </div>
                     <div class="form-group">
                       <label>{{ Lang::get('client.short_team_member_for') }}:</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Number of Days">
+                     {{ Form::text('short_team_member', isset($entry->short_team_member) ? $entry->short_team_member : null, ['class' => 'form-control']) }}
                     </div>
                   </div>
                
@@ -676,51 +676,47 @@
                         
                         <div class="form-group">
                           <label>{{ Lang::get('client.first_name') }}:</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name">
+                         {{ Form::text('mailing_first_name', isset($entry->mailing_first_name) ? $entry->mailing_first_name : null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                           <label>{{ Lang::get('client.last_name') }}:</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Last Name">
+                          {{ Form::text('mailing_last_name', isset($entry->mailing_last_name) ? $entry->mailing_last_name : null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                           <label>{{ Lang::get('client.company') }}:</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Company">
+                         {{ Form::text('mailing_company', isset($entry->mailing_company) ? $entry->mailing_company : null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                           <label>{{ Lang::get('client.address') }}:</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Address">
+                          {{ Form::text('mailing_address', isset($entry->mailing_address) ? $entry->mailing_address : null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                           <label>{{ Lang::get('client.country') }}:</label>
-                          <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                          </select>
+                           @if ($mode == 'add')
+                       {{ Form::select('mailing_country', $countries, isset($entry->mailing_country) ? $entry->mailing_country : null, array('class' => 'form-control', 'id' => 'mailing_country', 'required')) }}
+                       @elseif ($mode == 'edit')
+                       {{ Form::select('mailing_country', $countries, isset($entry->mailing_country) ? $entry->mailing_country : $preselected_mailing_country, array('class' => 'form-control', 'id' => 'mailing_country', 'required')) }}
+                       @endif
                         </div>
                         <div class="form-group">
                           <label>{{ Lang::get('client.state') }}:</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter State">
+                          {{ Form::text('mailing_state', isset($entry->mailing_state) ? $entry->mailing_state : null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                           <label>{{ Lang::get('client.city') }}:</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter City">
+                          {{ Form::text('mailing_city', isset($entry->mailing_city) ? $entry->mailing_city : null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                           <label>{{ Lang::get('client.zip_code') }}:</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Zip Code">
+                          {{ Form::text('mailing_zip', isset($entry->mailing_zip) ? $entry->mailing_zip : null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                           <label>{{ Lang::get('client.mobile_number') }}:</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Mobile Phone Number">
+                          {{ Form::text('mailing_mobile_number', isset($entry->mailing_mobile_number) ? $entry->mailing_mobile_number : null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
                           <label>{{ Lang::get('client.email') }}:</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                          {{ Form::text('mailing_email', isset($entry->mailing_email) ? $entry->mailing_email : null, ['class' => 'form-control']) }}
                         </div>
                       </div>
                     </div>

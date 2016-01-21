@@ -56,7 +56,10 @@ return array(
 	'event_viewer'					=>	'Event viewer',
 	'email'							=>	'Email',
 	'zip_code'						=>	'Zip code',
-	'mailing_title'					=>	'Mailing title'
+	'mailing_title'					=>	'Mailing title',
+	'list_all_clients'				=>	'List all clients',
+	'list_of_all_clients'			=>	'List of all clients',
+	'add_client'					=>	'Add clients'
 
 
 

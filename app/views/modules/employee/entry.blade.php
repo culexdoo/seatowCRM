@@ -3,6 +3,7 @@
           if (!isset($mode))
           {
             $mode = 'add';
+
           }
 
           ?><!-- Content Header (Page header) -->
@@ -48,6 +49,7 @@
               
                   
                   <div class="box-body">
+                  
                     <div class="form-group">
                       <label>{{ Lang::get('employee.employee_id') }}:</label>
                        {{ Form::text('employee_id', isset($entry->employee_id) ? $entry->employee_id : null, ['class' => 'form-control']) }}

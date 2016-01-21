@@ -14,10 +14,16 @@
             <div class="col-md-12">
               
               
-              <div class="box box-black">
+
+
+                  <div class="box box-black">
                 <div class="box-header">
-                  <h3 class="box-title"> <?php echo Lang::get('boats.list_of_all_boats'); ?></h3>
+                 <div class="col-md-6"> <h3 class="box-title"> <?php echo Lang::get('boats.list_of_all_boats'); ?></h3>
                 </div>
+                <div class="col-md-6">
+               <a class="btn btn-success btn-flat pull-right" href="<?php echo URL::route('ClientGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('boats.add_boat'); ?></a>
+               </div>
+               </div>
                 <!-- /.box-header -->
                 <div clasee="box-body">
                  <?php if(count($entries) > 0): ?> 
@@ -105,6 +111,8 @@
                                 </div>
                                 <div class="col-md-2">
                                 <?php echo $entry->first_name; ?>
+
+                                <?php echo $entry->last_name; ?>
 
                                 </div>
                                 <div class="col-md-2">
