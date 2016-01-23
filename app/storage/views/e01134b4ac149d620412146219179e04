@@ -1,0 +1,56 @@
+                                       
+
+              <div class="login-box">
+                <div class="login-logo">
+
+
+                  <a href="http://seatow-europe.com/" target="_blank"><img src='img/core/seatow-logo.png' /></a>
+                </div><!-- /.login-logo -->
+                <div class="login-box-body">
+                  <p class="login-box-msg">  Login to your account </p>
+                <?php echo Form::open(array('route' => 'postSignIn', 'autocomplete' => 'on', 'role' => 'form', 'class' => 'form-container')); ?>
+
+                    <div class="form-group has-feedback"> 
+                    <label for="sign_in_email">Your email:</label>
+                      <?php echo Form::email('sign_in_email', null, array('id' => 'sign_in_email', 'class' => 'form-control', 'required', 'autofocus')); ?>
+
+                       <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+
+                       <small class="text-danger"><?php echo $errors->first('sign_in_email'); ?></small>
+                     </div>
+                                        
+                    <div class="form-group has-feedback">
+                         <label for="sign_in_password">Your password</label>
+                        <?php echo Form::password('sign_in_password', array('id' => 'sign_in_password', 'class' => 'form-control', 'required')); ?>
+
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+                        <small class="text-danger"><?php echo $errors->first('sign_in_password'); ?></small>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        
+                      </div><!-- /.col -->
+                      <div class="col-xs-4">
+                      <?php echo Form::button('<span class="icon icon-done"></span> ' . Lang::get('core.submit'), array('class' => 'btn btn-primary btn-block btn-flat', 'type' => 'submit')); ?>
+
+                       
+                      </div><!-- /.col -->
+                    </div>
+                    <?php echo Form::close(); ?>
+
+                    
+                  <!--<a href="#">I forgot my password</a><br>-->
+                 
+
+                </div><!-- /.login-box-body -->
+              </div><!-- /.login-box -->
+             <script>
+              $(function () {
+                $('input').iCheck({
+                  checkboxClass: 'icheckbox_square-blue',
+                  radioClass: 'iradio_square-blue',
+                  increaseArea: '20%' // optional
+                });
+              });
+            </script>

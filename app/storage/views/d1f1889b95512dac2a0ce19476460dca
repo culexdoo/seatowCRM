@@ -1,0 +1,353 @@
+
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+          <?php echo Lang::get('client.list_all_clients'); ?>
+
+          </h1>
+          
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-12">
+              
+              
+              <div class="box box-black">
+                <div class="box-header">
+                 <div class="col-md-6"> <h3 class="box-title"> <?php echo Lang::get('client.list_of_all_clients'); ?></h3>
+                </div>
+                <div class="col-md-6">
+                <a class="btn btn-success btn-flat pull-right" href="<?php echo URL::route('ClientGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('client.add_client'); ?></a>
+                
+               
+               </div>
+               </div>
+
+                <div clasee="box-body">
+                <?php if(count($entries) > 0): ?> 
+                  <table id="list-clients" class="table">
+                    <thead>
+                      <tr>
+                        
+                        <th>
+                          <div class="row">
+                            <div class="col-md-1">
+                             <?php echo Lang::get('client.membership_id'); ?>
+
+                            </div>
+                             <div class="col-md-1">
+                             <?php echo Lang::get('client.title'); ?>
+
+                            </div>
+                            <div class="col-md-1">
+                              <?php echo Lang::get('client.first_name'); ?>
+
+                            </div>
+                            <div class="col-md-2">
+                               <?php echo Lang::get('client.last_name'); ?>
+
+                            </div>
+                            <div class="col-md-2">
+                               <?php echo Lang::get('client.status'); ?>
+
+                            </div>
+                            <div class="col-md-1">
+                               <?php echo Lang::get('client.franchisee_id'); ?>
+
+                            </div>
+                             <div class="col-md-2">
+                               <?php echo Lang::get('client.membership_expiriation_date'); ?>
+
+                            </div>
+                            <div class="col-md-1">
+                              <?php echo Lang::get('client.quick_options'); ?>
+
+                            </div>
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                             <th>
+                          <div class="row">
+                            <div class="col-md-1">
+                             <?php echo Lang::get('client.membership_id'); ?>
+
+                            </div>
+                            <div class="col-md-1">
+                             <?php echo Lang::get('client.title'); ?>
+
+                            </div>
+                            <div class="col-md-1">
+                              <?php echo Lang::get('client.first_name'); ?>
+
+                            </div>
+                            <div class="col-md-2">
+                               <?php echo Lang::get('client.last_name'); ?>
+
+                            </div>
+                            <div class="col-md-2">
+                               <?php echo Lang::get('client.status'); ?>
+
+                            </div>
+                            <div class="col-md-1">
+                               <?php echo Lang::get('client.franchisee_id'); ?>
+
+                            </div>
+                             <div class="col-md-2">
+                               <?php echo Lang::get('client.membership_expiriation_date'); ?>
+
+                            </div>
+                            <div class="col-md-1">
+                              <?php echo Lang::get('client.quick_options'); ?>
+
+                            </div>
+                          </div>
+                        </th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                         <?php foreach($entries as $entry): ?>
+                      <tr>
+                        <td>
+                          <div class="box box-no-border collapsed-box no-margin">
+                            <div class="box-header">
+                              <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
+                                </button>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-1">
+                                  <?php echo $entry->membership_id; ?>
+
+                                </div>
+                                <div class="col-md-1">
+                                    <?php if($entry->title == '1'): ?>
+                                    <p> 
+                                    Mr.
+                                    </p>
+                                    <?php elseif($entry->title == '2'): ?>
+                                    <p>
+                                    Ms.
+                                    </p>
+                                    <?php elseif($entry->title == '3'): ?>
+                                    <p>
+                                    Mrs.
+                                    </p>
+                                    <?php elseif($entry->title == '4'): ?>
+                                    <p>
+                                    Miss.
+                                    </p>
+                                    <?php elseif($entry->title == '5'): ?>
+                                    <p>
+                                    Dr.
+                                    </p>
+                                    <?php elseif($entry->title == '6'): ?>
+                                    <p>
+                                    Capt.
+                                    </p>
+                                    <?php elseif($entry->title == '7'): ?>
+                                    <p>
+                                    Co.
+                                    </p>
+                                    <?php elseif($entry->title == '8'): ?>
+                                    <p>
+                                    Inc.
+                                    </p>
+                                    <?php elseif($entry->title == '9'): ?>
+                                    <p>
+                                    Corp.
+                                    </p>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="col-md-1">
+                                  <?php echo $entry->first_name; ?>
+
+                                </div>
+                                <div class="col-md-2">
+                                  <?php echo $entry->last_name; ?>
+
+                                </div>
+                                <div class="col-md-2">
+                                 <?php if($entry->status == '1'): ?>
+                                    <p> 
+                                    Active
+                                    </p>
+                                    <?php elseif($entry->status == '2'): ?>
+                                    <p>
+                                    Inactive
+                                    </p>
+                                    <?php elseif($entry->status == '3'): ?>
+                                    <p>
+                                    Expired
+                                    </p>
+                                    <?php elseif($entry->status == '4'): ?>
+                                    <p>
+                                    Deleted
+                                    </p>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="col-md-1">
+                              <?php echo $entry->franchisee_id; ?>
+
+                                </div>
+                                <div class="col-md-2">
+                                 <?php echo $entry->membership_to; ?>
+
+                                </div>
+
+                                
+
+                                 <div class="col-md-2 pull-right">
+                                 
+                                  <a href="<?php echo URL::route('ClientGetAddEvent', array('entry_id' => $entry->entry_id)); ?>">
+                                  <span class="label label-primary">
+                                  <?php echo Lang::get('client.add_event'); ?></span></a>
+
+                                 &nbsp; 
+
+                                 <a href="<?php echo URL::route('ClientGetEditEntry', array('entry_id' => $entry->entry_id)); ?>"><span class="label label-warning"><?php echo Lang::get('client.edit_client'); ?></span></a>
+
+                                 &nbsp; 
+
+                                  <a href="<?php echo URL::route('ClientGetDeleteEntry', array('entry_id' => $entry->entry_id)); ?>"><span class="label label-danger"><?php echo Lang::get('client.delete_client'); ?></span></a>
+
+                              
+                                </div>
+                              </div>
+                              
+                            </div>
+                            <div class="box-body colored-div">
+                              <div class="row">
+                              <div class="col-md-12">
+                                <div class="col-md-10">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                    <p><label><?php echo Lang::get('client.client_information'); ?></label></p>
+                                      <label><?php echo Lang::get('client.company'); ?>:</label>
+                                      <p><?php echo $entry->company; ?></p>
+                                      <label><?php echo Lang::get('client.address'); ?>:</label>
+                                      <p><?php echo $entry->address; ?></p>
+                                      <label><?php echo Lang::get('client.country'); ?>:</label>
+                                      <p><?php echo $entry->country_name; ?></p>
+                                      <label><?php echo Lang::get('client.state'); ?>:</label>
+                                      <p><?php echo $entry->state; ?></p>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                     <p><label><?php echo Lang::get('client.client_information'); ?></label></p>
+                                      <label><?php echo Lang::get('client.city'); ?>:</label>
+                                      <p><?php echo $entry->city; ?></p>
+                                      <label><?php echo Lang::get('client.zip_code'); ?>:</label>
+                                      <p><?php echo $entry->zip; ?></p>
+                                      <label><?php echo Lang::get('client.mobile_number'); ?>:</label>
+                                      <p><?php echo $entry->mobile_number; ?></p>
+                                      <label><?php echo Lang::get('client.email'); ?>:</label>
+                                      <p><?php echo $entry->email; ?></p>
+                                    </div>
+                                  </div>
+                                   <div class="col-md-3">
+                                    <div class="form-group">
+                                     <p><label><?php echo Lang::get('client.membership_information'); ?></label></p>
+                                      <label><?php echo Lang::get('client.member_since'); ?>:</label>
+                                      <p><?php echo $entry->member_since; ?></p>
+                                      <label><?php echo Lang::get('client.membership_period'); ?>:</label>
+                                      <p><?php echo $entry->membership_from; ?> - <?php echo $entry->membership_to; ?></p>
+                                      <label><?php echo Lang::get('client.member_type'); ?>:</label>
+                                  
+                                         <?php if($entry->member_type == '1'): ?>
+                                    <p> 
+                                    Bpdemsee
+                                    </p>
+                                    <?php elseif($entry->member_type == '2'): ?>
+                                    <p>
+                                    Bodensee Skifahren
+                                    </p>
+                                    <?php elseif($entry->member_type == '3'): ?>
+                                    <p>
+                                    Charter Passenger
+                                    </p>
+                                    <?php elseif($entry->member_type == '4'): ?>
+                                    <p>
+                                    Commercial
+                                    </p>
+                                    <?php elseif($entry->member_type == '5'): ?>
+                                    <p>
+                                    Gold Card
+                                    </p>
+                                    <?php elseif($entry->member_type == '6'): ?>
+                                    <p>
+                                    Seasonal < 1
+                                    </p>
+                                    <?php elseif($entry->member_type == '7'): ?>
+                                    <p>
+                                    Seasonal > 1
+                                    </p>
+                                    <?php elseif($entry->member_type == '8'): ?>
+                                    <p>
+                                    Skipper
+                                    </p>
+                                    <?php elseif($entry->member_type == '9'): ?>
+                                    <p>
+                                    Trailer Boat
+                                    </p>
+                                    <?php elseif($entry->member_type == '10'): ?>
+                                    <p>
+                                    Trailer Passanger
+                                    </p>
+                                    <?php elseif($entry->member_type == '11'): ?>
+                                    <p>
+                                    VIP
+                                    </p>
+                                    <?php endif; ?>
+
+                                    
+                                      <label><?php echo Lang::get('client.homeport'); ?>:</label>
+                                      <p><?php echo $entry->homeport; ?></p>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                     <p><label><?php echo Lang::get('client.detail_information'); ?></label></p>
+                                      <label><?php echo Lang::get('client.home_no'); ?>:</label>
+                                      <p><?php echo $entry->home_number; ?></p>
+                                      <label><?php echo Lang::get('client.bus_no'); ?>:</label>
+                                      <p><?php echo $entry->bus_no; ?></p>
+                                      <label><?php echo Lang::get('client.summer_no'); ?>:</label>
+                                      <p><?php echo $entry->summer_no; ?></p>
+                                      <label><?php echo Lang::get('client.fax_no'); ?>:</label>
+                                      <p><?php echo $entry->fax_no; ?></p>
+                                   </div>
+                                  </div>
+                                     </div>
+                                     <div class="col-md-2">
+                                        <div class="img-responsive">
+                                          <img src="img/core/maca.jpg" alt="User Image"/>
+                                        </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+     
+                    <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                    <?php endif; ?>
+                </div>
+                <!-- /.box-body -->
+              </div>
+            </div>
+          </div>
+          </section><!-- /.content -->
+                      <script>
+                      $(function () {
+                      $("#list-clients").DataTable();
+                      });
+                      </script>
