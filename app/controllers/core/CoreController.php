@@ -76,34 +76,26 @@ class CoreController extends BaseController
 			return Redirect::route('getSignIn')->with('error_message', Lang::get('messages.not_logged_in'));
 		}
   
-    	$number_entries_demand = ClassifiedDemandEntry::getCountClassifiedDemandEntriesByUser(Auth::user()->id);
-    	$number_entries_offer = ClassifiedOfferEntry::getCountClassifiedOfferEntriesByUser(Auth::user()->id);
+    	
 
-		// Get module landing data
-		$classifiedsdemands = ClassifiedDemandEntry::getLastClassifiedsDemandsByUser(Auth::user()->id);
+		$dashboardTracking = ClientTracking::getAllTracksDashboard();
 
+		$lastClients = ClientEntry::getLastClients(10);
 
-		if ($classifiedsdemands['status'] == 0)
-		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('classifieds.msg_error_getting_entry'));
-		} 
+		$countedUsers = ClientEntry::getCountClients();
 
-		// Get module landing data
-		$classifiedsoffers = ClassifiedOfferEntry::getLastClassifiedsOffersByUser(Auth::user()->id);
-  		
-		if ($classifiedsoffers['status'] == 0)
+		$countedBoats = BoatsEntry::getCountBoats();
 
-		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('classifieds.msg_error_getting_entry'));
-		}
+		$countedFranchisee = FranchiseeEntry::getCountFranchisee();
 
-		$this->layout->css_files = array(
- 		
+		$this->layout->css_files = array( 
+		
 		);
-		$this->layout->js_header_files = array(
+
+		$this->layout->js_header_files = array( 
 
 		);
-		$this->layout->content = View::make('core.home', array('title' => 'Administracija oglasa', 'user' => $user['user'], 'number_entries_demand' => $number_entries_demand, 'number_entries_offer' => $number_entries_offer, 'classifiedsoffers' => $classifiedsoffers, 'classifiedsdemands' => $classifiedsdemands ));
+		$this->layout->content = View::make('core.home', array('title' => 'Administracija oglasa', 'user' => $user['user'], 'trackingdata' => $dashboardTracking, 'lastclients' => $lastClients, 'counted_user_number' => $countedUsers, 'counted_boats_number' => $countedBoats, 'counted_franchisee_number' => $countedFranchisee));
 	}
  
   

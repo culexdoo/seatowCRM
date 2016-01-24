@@ -95,6 +95,7 @@ return array(
     'ClientController' => $baseDir . '/app/controllers/modules/client/ClientControler.php',
     'ClientEntry' => $baseDir . '/app/models/modules/client/ClientEntry.php',
     'ClientRepository' => $baseDir . '/app/repositories/modules/client/ClientRepository.php',
+    'ClientTracking' => $baseDir . '/app/models/modules/client/ClientTracking.php',
     'Coordinates' => $baseDir . '/app/constants/Coordinates.php',
     'CoreController' => $baseDir . '/app/controllers/core/CoreController.php',
     'CoreRepository' => $baseDir . '/app/repositories/core/CoreRepository.php',

@@ -14,11 +14,12 @@
          {{ $title or null }}
           </h1>
           </div>
-               {{ Form::open(array('route' => $postRoute, 'role' => 'form', 'autocomplete' => 'off', 'files' => false)) }}
+               {{ Form::open(array('route' => $postRoute, 'role' => 'form', 'autocomplete' => 'off', 'files' => true)) }}
 
             {{ Form::hidden('user_id', $user->id, array('id' => 'user_id')) }}
             @if ($mode == 'edit')
             {{ Form::hidden('entry_id', $entry->entry_id, array('entry_id' => 'entry_id')) }}
+            {{ Form::hidden('boat_id', $entry->boat_id, array('boat_id' => 'boat_id'))  }}
             @endif
          
 
@@ -29,8 +30,14 @@
           
            <a class="pull-right">
           {{ Form::button('<span class="icon icon-done"></span> ' . Lang::get('client.save'), array('type' => 'submit', 'class' => 'btn btn-success')) }}
-          </div>
           </a>
+
+           @if ($mode == 'edit')
+           <a href="{{ URL::route('ClientGetAddEvent', array('entry_id' => $entry->entry_id)) }}" class="btn btn-primary pull-right">
+           <span class="icon icon-block"></span>{{ Lang::get('client.add_event') }}</a>
+           @endif
+
+           </div>
           
           
          
@@ -42,9 +49,9 @@
           <div class="row">
           <!-- THIS IS CLIENT INFROMATION BOX -->
             <div class="col-md-4">
-              <div class="box box-black">
+              <div class="box box-black collapsed-box">
                 <div class="box-header">
-                  <h3 class="box-title">{{ Lang::get('client.client_information') }}</h3>
+                  <h3 class="box-title">{{ Lang::get('client.client_information') }}:</h3>
                   <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
                     </button>
@@ -52,12 +59,9 @@
                 </div>
                
                   <div class="box-body">
+                    <label>{{ Lang::get('client.title') }}:</label>
                     <div class="form-group">
-                      <label>{{ Lang::get('client.franchisee') }}:</label>
-                      {{ Form::select('franchisee_id', $entries, isset($entry->franchisee_id) ? $entry->franchisee_id : null, array('class' => 'form-control', 'id' => 'franchisee_id', 'required')) }}
-                    </div>
-                    <div class="form-group">
-                      <label>{{ Lang::get('client.title') }}:</label>
+                     
                       @if ($mode == 'add')
                             {{ Form::select('title', array(
                               '1'=>'Mr.',
@@ -69,7 +73,7 @@
                               '7'=>'Co.',
                               '8'=>'Inc.',
                               '9'=>'Corp.'
-                              ),'1', ['class' => 'form-control']) }}
+                              ),'1', ['class' => 'form-control widith-100']) }}
                         @elseif ($mode == 'edit')
                           @if ($entry->title == '1')
                               {{ Form::select('title', array(
@@ -202,9 +206,9 @@
                     <div class="form-group">
                       <label>{{ Lang::get('client.country') }}:</label>
                       @if ($mode == 'add')
-                       {{ Form::select('country_id', $countries, isset($entry->country_id) ? $entry->country_id : null, array('class' => 'form-control', 'id' => 'country_id', 'required')) }}
+                       {{ Form::select('country_name', $countries, isset($entry->country_name) ? $entry->country_name : null, array('class' => 'form-control', 'country_name' => 'country_name', 'required')) }}
                        @elseif ($mode == 'edit')
-                       {{ Form::select('country_id', $countries, isset($entry->country_id) ? $entry->country_id : $preselected_country_id, array('class' => 'form-control', 'id' => 'country_id', 'required')) }}
+                       {{ Form::select('country_name', $countries, isset($entry->country_name) ? $entry->country_name : $preselected_country_name, array('class' => 'form-control', 'country_name' => 'country_name', 'required')) }}
                        @endif
                     </div>
                     <div class="form-group">
@@ -230,10 +234,10 @@
                   </div>
                 
               </div>
-              <!-- THIS IS DETAIL INFROMATION BOX -->
-              <div class="box box-black">
+              <!-- THIS IS ADDITIONAL INFROMATION BOX -->
+              <div class="box box-black collapsed-box">
                 <div class="box-header">
-                  <h3 class="box-title">{{ Lang::get('client.detail_information') }}:</h3>
+                  <h3 class="box-title">{{ Lang::get('client.additional_information') }}:</h3>
                   <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
                     </button>
@@ -273,7 +277,7 @@
             </div>
             <!-- THIS IS MEMBERSHIP INFROMATION BOX -->
             <div class="col-md-4">
-              <div class="box box-black">
+              <div class="box box-black collapsed-box">
                 <div class="box-header">
                   <h3 class="box-title">{{ Lang::get('client.membership_information') }}:</h3>
                   <div class="box-tools pull-right">
@@ -308,7 +312,7 @@
                         </div>
                         <div class="col-md-6">
                           <label>{{ Lang::get('client.ends_on') }}:</label>
-                         {{ Form::text('membership_from', isset($entry->membership_from) ? $entry->membership_from : null, ['class' => 'form-control', 'data-inputmask' => '99999']) }}
+                         {{ Form::text('membership_to', isset($entry->membership_to) ? $entry->membership_to: null, ['class' => 'form-control', 'data-inputmask' => '99999']) }}
                         </div>
                       </div>
                     <div class="form-group">
@@ -353,7 +357,10 @@
                         @endif
                     </div>
                   
-                    
+                     <div class="form-group">
+                      <label>{{ Lang::get('client.franchisee') }}:</label>
+                      {{ Form::select('franchisee_id', $entries, isset($entry->franchisee_id) ? $entry->franchisee_id : null, array('class' => 'form-control', 'id' => 'franchisee_id', 'required')) }}
+                    </div>
                     <div class="form-group">
                       <label>{{ Lang::get('client.member_type') }}:</label>
                         @if ($mode == 'add')
@@ -533,10 +540,10 @@
                   </div>
                
               </div>
-              <!-- THIS IS ADDITIONAL INFROMATION BOX -->
-              <div class="box box-black">
+              <!-- THIS IS DETAIL INFROMATION BOX -->
+              <div class="box box-black collapsed-box">
                 <div class="box-header">
-                  <h3 class="box-title">{{ Lang::get('client.additional_information') }}:</h3>
+                  <h3 class="box-title">{{ Lang::get('client.detail_information') }}:</h3>
                   <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
                     </button>
@@ -554,8 +561,9 @@
                         </div>
                       </div>
                       <div class="box-body">
+                      <label>{{ Lang::get('client.mailing_title') }}:</label>
                         <div class="form-group">
-                         <label>{{ Lang::get('client.mailing_title') }}:</label>
+                         
                       @if ($mode == 'add')
                             {{ Form::select('mailing_title', array(
                               '1'=>'Mr.',
@@ -747,9 +755,40 @@
             
               </div>
             </div>
-            <!-- THIS IS ADD EVENENT BOX -->
+            <!-- THIS IS ADD PICTURE BOX -->
             <div class="col-md-4">
-             
+            <div class="box box-black collapsed-box">
+              <div class="box-header">
+                  <h3 class="box-title">{{ Lang::get('client.add_image') }}:</h3>
+                   <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
+                    </button>
+                  </div>
+              </div>
+                    <div class="box-body add-edit-image">
+                      <div class="form-group">
+                           <label for="image">{{ Lang::get('client.pick_image') }}:</label>
+                          {{ Form::file('image', array('class' => 'form-control'))  }}
+                          @if (isset($errors) && ($errors->first('image') != '' || $errors->first('image') != null))
+                          <small class="text-danger">{{ $errors->first('image') }}</small>
+                          @endif
+                      </div>
+
+                          @if ($mode == 'edit')
+                          @if ($entry->image != null || $entry->image != '')
+                      <div class="form-group">
+                        <label for="image" style="padding-top: 10px;">{{ Lang::get('client.current_image') }}:</label>
+                          {{ HTML::image(URL::to('/') . '/uploads/modules/client/thumbs/' . $entry->image, $entry->title) }}
+                      </div>
+                          @endif
+                          @endif
+                    </div>
+            </div>
+            <!-- THIS IS END OF ADD PICTURE BOX -->
+
+            <!-- THIS IS ADD EVENENT BOX -->
+            @if ($mode == 'edit')
+             @if (count($trackingdata) > 0) 
               <div class="box box-black collapsed-box">
                 <div class="box-header">
                   <h3 class="box-title">{{ Lang::get('client.event_viewer') }}:</h3>
@@ -761,130 +800,281 @@
                 <div class="box-body recent-actions">
                   <ul class="products-list product-list-in-box">
                     <!-- /.item -->
+                    @foreach($trackingdata['trackingdata'] as $event)
                     <li class="item">
                       <div class="product-img">
-                        <img src="dist/img/default-50x50.gif" alt="Product Image">
+                        <img src="/uploads/modules/employee/thumbs/{{$event->image}}" alt="Product Image">
                       </div>
                       <div class="product-info">
-                        <a href="javascript::;" class="product-title">Serviser 1
-                          <span class="label label-success pull-right">Finished</span></a>
+                        <a class="product-title">{{$event->first_name }} {{$event->last_name}}
+                              </a>
+                              @if ($event->action == 'created')
+                                          <span class="label label-success pull-right"> 
+                                         {{ Lang::get('client.event_created') }}
+                                          </span>
+                                          @elseif ($event->action == 'edited')
+                                           <span class="label label-warning pull-right"> 
+                                         {{ Lang::get('client.event_edited') }}
+                                          </span>
+                                           @elseif ($event->action == 'membership_service')
+                                            <span class="label label-primary pull-right"> 
+                                         {{ Lang::get('client.event_membership_service') }}
+                                          </span>
+                                          @elseif ($event->action == 'non_membership_service')
+                                            <span class="label label-info pull-right"> 
+                                         {{ Lang::get('client.event_non_membership_service') }}
+                                          </span>
+                                          @endif
+
+
+
+
+
+                     
                           <span class="product-description">
-                            Towed boat into harobour. <b>For client: </b><a href"#"="">Hans Dietrich</a> <b>Date:</b> 01-07-2015 | 17:50
+                          <b>Date: </b>{{$event->created_at}}
                           </span>
                         </div>
                       </li>
-                      <!-- /.item -->
-                      <li class="item">
-                        <div class="product-img">
-                          <img src="dist/img/default-50x50.gif" alt="Product Image">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript::;" class="product-title">Serviser 2
-                            <span class="label label-warning pull-right">In Action</span></a>
-                            <span class="product-description">
-                              Engine broke, need new parts. <b>For client: </b><a href"#"="">Hans Dietrich</a> <b>Date:</b> 01-07-2015 | 17:50
-                            </span>
-                          </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                          <div class="product-img">
-                            <img src="dist/img/default-50x50.gif" alt="Product Image">
-                          </div>
-                          <div class="product-info">
-                            <a href="javascript::;" class="product-title">Serviser 3
-                              <span class="label label-danger pull-right">Failed</span></a>
-                              <span class="product-description">
-                                Boat sinked<b>For client: </b><a href"#"="">Hans Dietrich</a> <b>Date:</b> 01-07-2015 | 17:50
-                              </span>
-                            </div>
-                          </li>
-                          <!-- /.item -->
-                          <li class="item">
-                            <div class="product-img">
-                              <img src="dist/img/default-50x50.gif" alt="Product Image">
-                            </div>
-                            <div class="product-info">
-                              <a href="javascript::;" class="product-title">Serviser 4
-                                <span class="label label-success pull-right">Finished</span></a>
-                                <span class="product-description">
-                                  Towed boat into harobour. <b>For client: </b><a href"#"="">Hans Dietrich</a> <b>Date:</b> 01-07-2015 | 17:50
-                                </span>
-                              </div>
-                            </li>
-                            <!-- /.item -->
-                            <li class="item">
-                              <div class="product-img">
-                                <img src="dist/img/default-50x50.gif" alt="Product Image">
-                              </div>
-                              <div class="product-info">
-                                <a href="javascript::;" class="product-title">Serviser 5
-                                  <span class="label label-warning pull-right">In Action</span></a>
-                                  <span class="product-description">
-                                    Engine broke, need new parts. <b>For client: </b><a href"#"="">Hans Dietrich</a> <b>Date:</b> 01-07-2015 | 17:50
-                                  </span>
-                                </div>
-                              </li>
-                              <!-- /.item -->
-                              <li class="item">
-                                <div class="product-img">
-                                  <img src="dist/img/default-50x50.gif" alt="Product Image">
-                                </div>
-                                <div class="product-info">
-                                  <a href="javascript::;" class="product-title">Serviser 6
-                                    <span class="label label-danger pull-right">Failed</span></a>
-                                    <span class="product-description">
-                                      Boat sinked <b>For client: </b><a href"#"="">Hans Dietrich</a> <b>Date:</b> 01-07-2015 | 17:50
-                                    </span>
-                                  </div>
-                                </li>
-                                <!-- /.item -->
-                                <li class="item">
-                                  <div class="product-img">
-                                    <img src="dist/img/default-50x50.gif" alt="Product Image">
-                                  </div>
-                                  <div class="product-info">
-                                    <a href="javascript::;" class="product-title">Serviser 7
-                                      <span class="label label-success pull-right">Finished</span></a>
-                                      <span class="product-description">
-                                        Towed boat into harobour.<b>For client: </b><a href"#"="">Hans Dietrich</a> <b>Date:</b> 01-07-2015 | 17:50
-                                      </span>
-                                    </div>
-                                  </li>
-                                  <!-- /.item -->
-                                  <li class="item">
-                                    <div class="product-img">
-                                      <img src="dist/img/default-50x50.gif" alt="Product Image">
-                                    </div>
-                                    <div class="product-info">
-                                      <a href="javascript::;" class="product-title">Serviser 8
-                                        <span class="label label-warning pull-right">In Action</span></a>
-                                        <span class="product-description">
-                                          Engine broke, need new parts. <b>For client: </b><a href"#"="">Hans Dietrich</a> <b>Date:</b> 01-07-2015 | 17:50
-                                        </span>
-                                      </div>
-                                    </li>
-                                    <!-- /.item -->
-                                    <li class="item">
-                                      <div class="product-img">
-                                        <img src="dist/img/default-50x50.gif" alt="Product Image">
-                                      </div>
-                                      <div class="product-info">
-                                        <a href="javascript::;" class="product-title">Serviser 9
-                                          <span class="label label-danger pull-right">Failed</span></a>
-                                          <span class="product-description">
-                                            Boat sinked <b>For client: </b><a href"#"="">Hans Dietrich</a> <b>Date:</b> 01-07-2015 | 17:50
-                                          </span>
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </section>
+                    @endforeach
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              @endif
+              @endif
+      </section>
+      <section class="content">
+        <div class="row">
+        <div class="col-md-6">
+          <h1>
+        {{ Lang::get('client.add_boat') }}
+          </h1>
+          </div>
+          <div class="col-md-6">
+             </div>
+          </div>
+         
+            <div class="row">
+            <div class="col-md-4">
+              <div class="box box-black collapsed-box">
+               
+                 <div class="box-header">
+                  <h3 class="box-title">{{ Lang::get('boats.basic_information') }}:</h3>
+                   <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
+                    </button>
+                  </div>
+              </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+              
+                  
+                  <div class="box-body">
+
+                    <div class="form-group">
+                      <label>{{ Lang::get('boats.boat_brand') }}:</label>
+                     {{ Form::text('boat_brand', isset($entry->boat_brand) ? $entry->boat_brand : null, ['class' => 'form-control']) }}
+                    </div>
+                    <div class="form-group">
+                      <label>{{ Lang::get('boats.boat_name') }}:</label>
+                    {{ Form::text('boat_name', isset($entry->boat_name) ? $entry->boat_name : null, ['class' => 'form-control']) }}
+                    </div>
+                    <div class="form-group">
+                      <label>{{ Lang::get('boats.year') }}:</label>
+                    {{ Form::text('year', isset($entry->year) ? $entry->year : null, ['class' => 'form-control']) }}
+                    </div>
+                    
+                    
+                    
+                    <div class="form-group">
+                      <label>{{ Lang::get('boats.registration_no') }}:</label>
+                      {{ Form::text('registration_no', isset($entry->registration_no) ? $entry->registration_no : null, ['class' => 'form-control']) }}
+                    </div>
+                    <div class="form-group">
+                      <label>{{ Lang::get('boats.federal_doc_no') }}:</label>
+                     {{ Form::text('federal_doc_no', isset($entry->federal_doc_no) ? $entry->federal_doc_no : null, ['class' => 'form-control']) }}
+                    </div>
+                  </div>
+              
+              </div>
+              
+            </div>
+            <div class="col-md-4">
+              <div class="box box-black collapsed-box">
+                   <div class="box-header">
+                  <h3 class="box-title">{{ Lang::get('boats.boat_information') }}:</h3>
+                   <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
+                    </button>
+                  </div>
+              </div>
+            
+                <!-- /.box-header -->
+                <!-- form start -->
+               
+                  <div class="box-body">
+                    <div class="form-group">
+                    @if ($mode == 'edit')
+                        <label for="hull_id">{{ Lang::get('boats.hull_name') }}:</label> 
+                        {{ Form::select('hull_id', $hull_entries, isset($entry->hull_id) ? $entry->hull_id : $preselected_hull, array('class' => 'form-control', 'id' => 'hull_id', 'required')) }}
+                        @if (isset($errors) && ($errors->first('hull_id') != '' || $errors->first('hull_id') != null))
+                        <p><small>{{ $errors->first('hull_id') }}</small></p>
+                        @endif
+                    @elseif ($mode == 'add')
+                        <label for="hull_id">{{ Lang::get('boats.hull_name') }}:</label> 
+                        {{ Form::select('hull_id', $hull_entries, isset($entry->hull_id) ? $entry->hull_id : null, array('class' => 'form-control', 'id' => 'hull_id', 'required')) }}
+                        @if (isset($errors) && ($errors->first('hull_id') != '' || $errors->first('hull_id') != null))
+                        <p><small>{{ $errors->first('hull_id') }}</small></p>
+                        @endif
+                    @endif
+
+                    </div>
+                    <div class="form-group">
+                     @if ($mode == 'edit')
+                     <label for="make_id">{{ Lang::get('boats.make_name') }}:</label> 
+                        {{ Form::select('make_id', $make_entries, isset($entry->make_id) ? $entry->make_id : $preselected_make, array('class' => 'form-control', 'id' => 'make_id', 'required')) }}
+                        @if (isset($errors) && ($errors->first('make_id') != '' || $errors->first('make_id') != null))
+                        <p><small>{{ $errors->first('make_id') }}</small></p>
+                        @endif
+                     @elseif ($mode == 'add')
+                        <label for="make_id">{{ Lang::get('boats.make_name') }}:</label> 
+                        {{ Form::select('make_id', $make_entries, isset($entry->make_id) ? $entry->make_id : null, array('class' => 'form-control', 'id' => 'make_id', 'required')) }}
+                        @if (isset($errors) && ($errors->first('make_id') != '' || $errors->first('make_id') != null))
+                        <p><small>{{ $errors->first('make_id') }}</small></p>
+                        @endif
+                     @endif
+                    </div>
+                    <div class="form-group">
+                      <label>{{ Lang::get('boats.boat_color') }}:</label>
+                     {{ Form::text('boat_color', isset($entry->boat_color) ? $entry->boat_color : null, ['class' => 'form-control']) }}
+                    </div>
+                    <div class="form-group">
+                      <label>{{ Lang::get('boats.lenght') }}:</label>
+                     {{ Form::text('lenght', isset($entry->lenght) ? $entry->lenght : null, ['class' => 'form-control']) }}
+                    </div>
+                    <div class="form-group">
+                      <label>Fuel Type:</label>
+                      <div class="form-group">
+                       @if ($mode == 'add')
+                             {{ Form::radio('fuel_type', 'Diesel', true) }}  Diesel 
+                             {{ Form::radio('fuel_type', 'Gasoline') }} Gasoline
+                          @elseif ($mode == 'edit') 
+                          @if ($entry->fuel_type == 'Diesel')
+                             {{ Form::radio('fuel_type', 'Diesel', true) }}  Diesel 
+                             {{ Form::radio('fuel_type', 'Gasoline') }} Gasoline
+                          @elseif ($entry->fuel_type == 'Gasoline')
+                             {{ Form::radio('fuel_type', 'Diesel') }}  Diesel 
+                             {{ Form::radio('fuel_type', 'Gasoline', true) }} Gasoline
+                          @endif
+                       @endif
+                      </div>
+                    </div>
+                      <div class="form-group">
+                      <label>Engine Brand:</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Engine Brand">
+                    </div>
+                    <div class="form-group">
+                      <label>Engine Type:</label>
+                      @if ($mode == 'add')
+                            {{ Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'1', ['class' => 'form-control']) }}
+                        @elseif ($mode == 'edit')
+                          @if ($entry->engine_type_id == '1')
+                              {{ Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'1', ['class' => 'form-control']) }}
+                          @elseif ($entry->engine_type_id == '2')
+                              {{ Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'2',['class' => 'form-control']) }}
+                          @elseif ($entry->engine_type_id == '3')
+                              {{ Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'3',['class' => 'form-control']) }}
+                          @elseif ($entry->engine_type_id == '4')
+                              {{ Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'4',['class' => 'form-control']) }}
+                          @elseif ($entry->engine_type_id == '5')
+                              {{ Form::select('engine_type_id', array(
+                              '1'=>'InBoard',
+                              '2'=>'In/Out Board',
+                              '3'=>'OutBoard',
+                              '4'=>'Sail',
+                              '5'=>'Jet'
+                              ),'5',['class' => 'form-control']) }}
+                          @endif
+                        @endif
+                    </div>
+                  </div>
+               
+              </div>
+              
+            </div>
+            
+            <div class="col-md-4">
+              <div class="box box-black collapsed-box">
+                    <div class="box-header">
+                  <h3 class="box-title">{{ Lang::get('boats.additional_information') }}:</h3>
+                   <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus red"></i>
+                    </button>
+                  </div>
+              </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                
+                  
+                  <div class="box-body">
+                    
+                    
+                    <div class="form-group">
+                      <label>{{ Lang::get('boats.description') }}:</label>
+                       {{ Form::textarea('description', isset($entry->description) ? $entry->description : null, array('class' => 'form-control description','id' => 'description')) }}
+                    </div>
+                    
+                    
+                  </div>
+          
+              </div>
+                {{ Form::close() }}
+            </div>
+          </div>
+          
+         
+
+
+
+
+
+       
+         
+        </section>
 
                             <script type="text/javascript">
-                              $('select').select2();
+                             $('select').select2();
                             </script>
                             <script type="text/javascript">
                             $('.inputmask').inputmask({

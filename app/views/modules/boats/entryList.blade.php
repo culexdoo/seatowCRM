@@ -205,3 +205,8 @@
             </div>
           </div>
           </section><!-- /.content -->
+           <script>
+                      $(function () {
+                      $("#list-boats").DataTable();
+                      });
+                      </script>

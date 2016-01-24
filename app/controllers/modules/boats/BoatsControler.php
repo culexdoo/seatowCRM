@@ -46,11 +46,14 @@ class BoatsController extends CoreController {
 		$this->layout->title = 'List Boats';
 
 
-		$this->layout->css_files = array( 
+				$this->layout->css_files = array( 
+			'plugins/datatables/dataTables.bootstrap.css'
 		);
 
 		$this->layout->js_header_files = array( 
-		);
+			'plugins/datatables/jquery.dataTables.min.js',
+			'plugins/datatables/dataTables.bootstrap.min.js'
+			);
 
 		$this->layout->content = View::make('modules.boats.entryList', array('title' => 'List Boats', 'user' => $user['user'], 'entries' => $entries['entries'] ));
 		 
@@ -120,10 +123,12 @@ class BoatsController extends CoreController {
 		$this->layout->title = 'Add Boats';
 
 
-		$this->layout->css_files = array( 
+			$this->layout->css_files = array(
+			'css/core/select2.min.css'
 		);
 
 		$this->layout->js_header_files = array( 
+			'js/core/select2.full.min.js'
 		);
 
 		$this->layout->content = View::make('modules.boats.entry', array('mode' => 'add',
@@ -149,7 +154,20 @@ class BoatsController extends CoreController {
 		}
  
 
-		$addNewEntry = $this->repo->addEntry(Input::get('boat_brand'), Input::get('boat_name'), Input::get('year'), Input::get('registration_no'), Input::get('federal_doc_no'), Input::get('boat_color'), Input::get('lenght'), Input::get('description'), Input::get('hull_id'), Input::get('make_id'), Input::get('engine_type_id'), Input::get('fuel_type'), Input::get('client_id'));
+		$addNewEntry = $this->repo->addEntry(
+			Input::get('boat_brand'), 
+			Input::get('boat_name'), 
+			Input::get('year'), 
+			Input::get('registration_no'), 
+			Input::get('federal_doc_no'), 
+			Input::get('boat_color'), 
+			Input::get('lenght'), 
+			Input::get('description'), 
+			Input::get('hull_id'), 
+			Input::get('make_id'), 
+			Input::get('engine_type_id'), 
+			Input::get('fuel_type'), 
+			Input::get('client_id'));
 		
 
 		if ($addNewEntry['status'] == 0)

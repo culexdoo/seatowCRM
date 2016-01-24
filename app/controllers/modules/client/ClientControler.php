@@ -36,9 +36,8 @@ class ClientController extends CoreController {
 
 		// Get module landing data
 		$entries = ClientEntry::getAllClients();
+	
 
-
-  
 		if ($entries['status'] == 0)
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.msg_error_getting_entry'));
@@ -48,8 +47,7 @@ class ClientController extends CoreController {
 
 
 		$this->layout->css_files = array( 
-			'plugins/datatables/dataTables.bootstrap.css',
-			'css/core/custom.css'
+			'plugins/datatables/dataTables.bootstrap.css'
 		);
 
 		$this->layout->js_header_files = array( 
@@ -60,7 +58,7 @@ class ClientController extends CoreController {
 			
 		);
 
-		$this->layout->content = View::make('modules.client.entryList', array('title' => 'List Clients', 'user' => $user['user'], 'entries' => $entries['entries'] ));
+		$this->layout->content = View::make('modules.client.entryList', array('title' => 'List Clients', 'user' => $user['user'], 'entries' => $entries['entries']));
 		 
 	}
 
@@ -71,7 +69,6 @@ class ClientController extends CoreController {
 
 		 
 		$user = User::getUserInfos(Auth::user()->id);
-
 
 
 		if ($user['status'] == 0)
@@ -90,7 +87,7 @@ class ClientController extends CoreController {
 		}
 		foreach ($countriesIDs['countries'] as $country)
 		{
-			$countryList[$country->id] = $country->country_name;
+			$countryList[$country->country_name] = $country->country_name;
 		}
 		//-------------------------------------------
 
@@ -108,6 +105,37 @@ class ClientController extends CoreController {
 			$franchiseeList[$franchisees->franchisee_id] = $franchisees->franchisee_id;
 		}
 		//-------------------------------------------
+		 // Getting all hulls data 
+		$hullList = array();
+
+		
+		$hullsIDs = HullEntry::getAllHulls(null);
+
+
+		if ($hullsIDs['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('franchisee.msg_error_getting_franchisees'));
+		}
+		foreach ($hullsIDs['hull_entries'] as $hulls)
+		{
+			$hullList[$hulls->entry_id] = $hulls->hull_name;
+		}
+		//-------finish hulls data
+		// Getting all makes data
+		$makeList = array();
+
+		$makesIDs = MakeEntry::getAllMakes(null);
+
+		if ($makesIDs['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('franchisee.msg_error_getting_franchisees'));
+		}
+		foreach ($makesIDs['make_entries'] as $makes)
+		{
+			$makeList[$makes->entry_id] = $makes->make_name;
+		}
+		
+		//-------finish hulls data
 
 		$this->layout->title = 'Add Client';
 
@@ -121,7 +149,7 @@ class ClientController extends CoreController {
 		);
 
 		$this->layout->content = View::make('modules.client.entry', array('mode' => 'add',
-		'postRoute' => 'ClientPostAddEntry', 'title' => 'Add Client', 'user' => $user['user'], 'entries' => $franchiseeList, 'countries' => $countryList));
+		'postRoute' => 'ClientPostAddEntry', 'title' => 'Add Client', 'user' => $user['user'], 'entries' => $franchiseeList, 'countries' => $countryList, 'hull_entries' => $hullList, 'make_entries' => $makeList));
  	
 	}
 
@@ -143,12 +171,16 @@ class ClientController extends CoreController {
 		{
 			return Redirect::back()->with('error_message', Lang::get('messages.msg_error_validating_entry'))->withErrors($entryValidator)->withInput();
 		}
- 
+ 	
 
 		$addNewEntry = $this->repo->addEntry(
+			Auth::user()->id,
+			Auth::user()->first_name,
+			Auth::user()->last_name,
+			Input::file('image'),
 			Input::get('membership_from'),
 			Input::get('membership_to'),
-			Input::get('country_id'), 
+			Input::get('country_name'), 
 			Input::get('first_name'), 
 			Input::get('last_name'), 
 			Input::get('company'), 
@@ -188,7 +220,19 @@ class ClientController extends CoreController {
 			Input::get('mailing_mobile_number'), 
 			Input::get('mailing_email'), 
 			Input::get('short_team_member'),
-			Input::get('event')
+			//INPUT BOATS INFORMATION
+			Input::get('boat_brand'), 
+			Input::get('boat_name'), 
+			Input::get('year'), 
+			Input::get('registration_no'), 
+			Input::get('federal_doc_no'), 
+			Input::get('boat_color'), 
+			Input::get('lenght'), 
+			Input::get('description'), 
+			Input::get('hull_id'), 
+			Input::get('make_id'), 
+			Input::get('engine_type_id'), 
+			Input::get('fuel_type')
 			
 			);
 		
@@ -207,7 +251,8 @@ class ClientController extends CoreController {
 
 	// Display edit entry page
 	public function getEditEntry($entry_id)
-	{
+	{	
+
 		$user = User::getUserInfos(Auth::user()->id);
 		if ($user['status'] == 0)
 		{
@@ -216,24 +261,35 @@ class ClientController extends CoreController {
 
 		  
 		$entry = ClientEntry::getSingleClientEntry($entry_id);
-	//	goDie( $entry['entry']->mailing_country);
+		//goDie($entry['entry']);
 		if ($entry['status'] == 0)
+
 		{ 
 			return Redirect::back()->with('error_message', Lang::get('messages.msg_error_getting_entry'));
 		}
+
+
+		// Get event list
+		$eventList = ClientTracking::getAllTracks($entry['entry']->membership_id);
+
+
+
+		
+
 		// Getting all countries
 		$countryList = array();
 
 		$countriesIDs = Countries::getAllCountries();
-
+		
 		if ($countriesIDs['status'] == 0)
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.msg_error_getting_franchisees'));
 		}
 		foreach ($countriesIDs['countries'] as $country)
 		{
-			$countryList[$country->id] = $country->country_name;
+			$countryList[$country->country_name] = $country->country_name;
 		}
+		
 		//-------------------------------------------
 
 		// Getting all franchisses
@@ -250,9 +306,39 @@ class ClientController extends CoreController {
 			$franchiseeList[$franchisees->franchisee_id] = $franchisees->franchisee_id;
 		}
 		//-------------------------------------------
+		 // Getting all hulls data 
+		$hullList = array();
+
+		
+		$hullsIDs = HullEntry::getAllHulls(null);
 
 
-		$this->layout->title = 'Uredi unos';
+		if ($hullsIDs['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entry'));
+		}
+		foreach ($hullsIDs['hull_entries'] as $hulls)
+		{
+			$hullList[$hulls->entry_id] = $hulls->hull_name;
+		}
+		//-------finish hulls data
+		// Getting all makes data
+		$makeList = array();
+
+		$makesIDs = MakeEntry::getAllMakes(null);
+
+
+		if ($makesIDs['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entry'));
+		}
+		foreach ($makesIDs['make_entries'] as $makes)
+		{
+			$makeList[$makes->entry_id] = $makes->make_name;
+		}
+
+
+		$this->layout->title = 'Edit client';
 		$this->layout->css_files = array(
 			'css/core/select2.min.css'
 		);
@@ -263,7 +349,7 @@ class ClientController extends CoreController {
 
 
 		$this->layout->content = View::make('modules.client.entry', array('mode' => 'edit',
-		'postRoute' => 'ClientPostEditEntry', 'title' => 'Uredi oglas', 'entry' => $entry['entry'], 'user' => $user['user'], 'entries' => $franchiseeList, 'countries' => $countryList, 'preselected_country_id' => $entry['entry']->country_id, 'preselected_mailing_country' => $entry['entry']->mailing_country));
+		'postRoute' => 'ClientPostEditEntry', 'title' => 'Edit client', 'entry' => $entry['entry'], 'user' => $user['user'], 'entries' => $franchiseeList, 'hull_entries' => $hullList, 'make_entries' => $makeList, 'preselected_make' => $entry['entry']->make_id, 'preselected_hull' => $entry['entry']->hull_id, 'preselected_country' => $entry['entry']->country_name,'countries' => $countryList, 'trackingdata' => $eventList));
 
 	}
 
@@ -291,6 +377,11 @@ class ClientController extends CoreController {
  
  			
 		$editNewEntry = $this->repo->postEditEntry(
+			Auth::user()->id,
+			Auth::user()->first_name,
+			Auth::user()->last_name,
+			Input::get('boat_id'),
+			Input::file('image'),
 			Input::get('entry_id'), 
 			Input::get('first_name'), 
 			Input::get('last_name'), 
@@ -329,11 +420,24 @@ class ClientController extends CoreController {
 			Input::get('mailing_zip'), 
 			Input::get('mailing_mobile_number'), 
 			Input::get('mailing_email'), 
-			Input::get('country_id'), 
+			Input::get('country_name'), 
 			Input::get('event'),
 			Input::get('short_team_member'),
 			Input::get('membership_from'),
-			Input::get('membership_to')
+			Input::get('membership_to'),
+			//INPUT BOATS INFORMATION
+			Input::get('boat_brand'), 
+			Input::get('boat_name'), 
+			Input::get('year'), 
+			Input::get('registration_no'), 
+			Input::get('federal_doc_no'), 
+			Input::get('boat_color'), 
+			Input::get('lenght'), 
+			Input::get('description'), 
+			Input::get('hull_id'), 
+			Input::get('make_id'), 
+			Input::get('engine_type_id'), 
+			Input::get('fuel_type')
 			);
 
 		if ($editNewEntry['status'] == 0)
@@ -357,6 +461,8 @@ class ClientController extends CoreController {
 		}
 
 		$entry = ClientEntry::getSingleClientEntry($id);
+
+		
 		if ($entry['status'] == 0)
 		{
 			return Redirect::back()->with('error_message', Lang::get('messages.msg_error_getting_entry'));
@@ -367,8 +473,9 @@ class ClientController extends CoreController {
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.msg_error_getting_entry'));
 		}
 
-  
-		$deleteEntry = $this->repo->deleteEntry($id);
+		$deleteEntry = $this->repo->deleteEntry($id, $entry['entry']->membership_id, Auth::user()->id, Auth::user()->first_name, Auth::user()->last_name, $entry['entry']->boat_id);
+
+
 
 		if ($deleteEntry['status'] == 1)
 		{
@@ -379,6 +486,7 @@ class ClientController extends CoreController {
 			return Redirect::route('clientLanding')->with('error_message', Lang::get('messages.msg_error_deleting_entry'));
 		}
 	}
+	
 	/////////////////////////////////////////////////////////////////////
 	//-----------------------------------------------------------------//
 	//-------------------ADD-------EVENT--------ENTRY------------------//
@@ -581,7 +689,7 @@ class ClientController extends CoreController {
 
 
 		$this->layout->content = View::make('modules.client.entry', array('mode' => 'edit',
-		'postRoute' => 'ClientPostEditEntry', 'title' => 'Uredi oglas', 'entry' => $entry['entry'], 'user' => $user['user'], 'entries' => $franchiseeList, 'countries' => $countryList, 'preselected_country_id' => $entry['entry']->country_id, 'preselected_mailing_country' => $entry['entry']->mailing_country));
+		'postRoute' => 'ClientPostEditEntry', 'title' => 'Uredi oglas', 'entry' => $entry['entry'], 'user' => $user['user'], 'entries' => $franchiseeList, 'countries' => $countryList, 'preselected_country_id' => $entry['entry']->country_name, 'preselected_mailing_country' => $entry['entry']->mailing_country));
 
 	}
 

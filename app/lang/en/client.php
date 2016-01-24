@@ -61,7 +61,17 @@ return array(
 	'list_of_all_clients'			=>	'List of all clients',
 	'add_client'					=>	'Add clients',
 	'starts_from'					=>	'Membership starts',
-	'ends_on'						=>	'Membership ends'
+	'ends_on'						=>	'Membership ends',
+	'add_boat'						=>	'Add boat',
+	'add_image'						=>	'Add image',
+	'event_created'					=>	'Created',
+	'event_edited'					=>	'Edited',
+	'export_to_csv'					=>	'Export to CSV',
+	'export_to_pdf'					=>	'Export to PDF',
+	'view'							=>	'View',
+	'created'						=>	'Created',
+	'edited'						=>	'Edited',
+	'deleted'						=>	'Deleted'
 
 
 

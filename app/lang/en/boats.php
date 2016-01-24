@@ -41,7 +41,8 @@ return array(
 	'make_information'			=>	'Make Information',
 	'make_name'					=>	'Make Name',
 	'make_list'					=>	'Make List',
-	'add_boat'					=>	'Add boat'
+	'add_boat'					=>	'Add boat',
+	'hull'						=>	'Hull'
 
 
 );

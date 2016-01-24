@@ -33,16 +33,23 @@ class ClientEntry extends Eloquent
 	public static function getSingleClientEntry($entry_id = null, $items = 10)
 	{
 		try
-		{
-			$entry = DB::table('users')
-				->join('countries', 'countries.id', '=', 'users.country_id')
+		{  
+			$entry = DB::table('boats_entries')
+				//->join('countries', 'countries.id', '=', 'users.country_id')
+				->join('boat_hull', 'boat_hull.id', '=', 'boats_entries.hull_id')
+				->join('boat_make', 'boat_make.id', '=', 'boats_entries.make_id')
+				->join('users', 'users.membership_id', '=', 'boats_entries.membership_id')
+
 				->select(
+					'users.country_name AS country_name',
+					'users.image AS image',
 					'users.id AS entry_id',
 					'users.first_name AS first_name',
 					'users.last_name AS last_name',
 					'users.company AS company',
 					'users.address AS address',
 					'users.state AS state',
+					'users.country_id AS country_id',
 					'users.city AS city',
 					'users.zip AS zip',
 					'users.mobile_number AS mobile_number',
@@ -64,6 +71,10 @@ class ClientEntry extends Eloquent
 					'users.franchisee_id AS franchisee_id',
 					'users.member_since AS member_since',
 					'users.event as event',
+					'users.member_type AS member_type',
+					'users.short_team_member AS short_team_member',
+					'users.membership_from AS membership_from',
+					'users.membership_to AS membership_to',
 					//mailing entries 11
 					'users.mailing_title AS mailing_title',
 					'users.mailing_first_name AS mailing_first_name',
@@ -76,12 +87,24 @@ class ClientEntry extends Eloquent
 					'users.mailing_zip AS mailing_zip',
 					'users.mailing_mobile_number AS mailing_mobile_number',
 					'users.mailing_email AS mailing_email',
-					'countries.id AS country_id',
-					'countries.country_name AS country_name',
-					'users.member_type AS member_type',
-					'users.short_team_member AS short_team_member',
-					'users.membership_from AS membership_from',
-					'users.membership_to AS membership_to'
+					//'countries.id AS country_id',
+					//'countries.country_name AS country_name',
+					'boats_entries.id AS boat_id',
+					'boats_entries.boat_brand AS boat_brand',
+					'boats_entries.boat_name AS boat_name',
+					'boats_entries.year AS year',
+					'boats_entries.registration_no AS registration_no',
+					'boats_entries.federal_doc_no AS federal_doc_no',
+					'boats_entries.boat_color AS boat_color',
+					'boats_entries.lenght AS lenght',
+					'boats_entries.description AS description',
+					'boats_entries.engine_type_id AS engine_type_id',
+					'boats_entries.fuel_type AS fuel_type',
+					'boat_hull.hull_name AS hull_name',
+					'boat_make.make_name AS make_name',
+					'boat_hull.id AS hull_id',
+					'boat_make.id AS make_id'
+
 				);
 			
 			if ($entry_id != null)
@@ -102,9 +125,10 @@ class ClientEntry extends Eloquent
 		catch (Exception $exp)
 		{
 			return array('status' => 0, 'reason' => $exp->getMessage());
-		}
+		} 
 	}
 
+	
 
 	// Get last classifieds entries for a user, defaults to 10
 	public static function getAllClients()
@@ -113,15 +137,21 @@ class ClientEntry extends Eloquent
 
 		try
 		{ 
-			$entries = DB::table('users')
-				->join('countries', 'countries.id', '=', 'users.country_id')
+			$entries = DB::table('boats_entries')
+				
+				->join('boat_hull', 'boat_hull.id', '=', 'boats_entries.hull_id')
+				->join('boat_make', 'boat_make.id', '=', 'boats_entries.make_id')
+				->join('users', 'users.membership_id', '=', 'boats_entries.membership_id')
+
 				->select(
+					'users.image AS image',
 					'users.id AS entry_id',
 					'users.first_name AS first_name',
 					'users.last_name AS last_name',
 					'users.company AS company',
 					'users.address AS address',
 					'users.state AS state',
+					'users.country_id AS country_id',
 					'users.city AS city',
 					'users.zip AS zip',
 					'users.mobile_number AS mobile_number',
@@ -142,7 +172,11 @@ class ClientEntry extends Eloquent
 					'users.status AS status',
 					'users.franchisee_id AS franchisee_id',
 					'users.member_since AS member_since',
-					'users.event AS event',
+					'users.event as event',
+					'users.member_type AS member_type',
+					'users.short_team_member AS short_team_member',
+					'users.membership_from AS membership_from',
+					'users.membership_to AS membership_to',
 					//mailing entries 11
 					'users.mailing_title AS mailing_title',
 					'users.mailing_first_name AS mailing_first_name',
@@ -155,14 +189,25 @@ class ClientEntry extends Eloquent
 					'users.mailing_zip AS mailing_zip',
 					'users.mailing_mobile_number AS mailing_mobile_number',
 					'users.mailing_email AS mailing_email',
-					'countries.id AS country_id',
-					'countries.country_name AS country_name',
-					'users.member_type AS member_type',
-					'users.short_team_member AS short_team_member',
-					'users.membership_from AS membership_from',
-					'users.membership_to AS membership_to'
+					'users.country_name AS country_name',
+					'boats_entries.id AS boat_id',
+					'boats_entries.boat_brand AS boat_brand',
+					'boats_entries.boat_name AS boat_name',
+					'boats_entries.year AS year',
+					'boats_entries.registration_no AS registration_no',
+					'boats_entries.federal_doc_no AS federal_doc_no',
+					'boats_entries.boat_color AS boat_color',
+					'boats_entries.lenght AS lenght',
+					'boats_entries.description AS description',
+					'boats_entries.engine_type_id AS engine_type_id',
+					'boats_entries.fuel_type AS fuel_type',
+					'boat_hull.hull_name AS hull_name',
+					'boat_make.make_name AS make_name',
+					'boat_hull.id AS hull_id',
+					'boat_make.id AS make_id'
 				)
 				->where('users.user_group', '=', 'client')
+				->where('users.is_active', '=', '1')
 				->orderBy('users.created_at', 'DESC')
 				->get();
 
@@ -177,29 +222,26 @@ class ClientEntry extends Eloquent
 
 
 	// Get last classifieds entries 8
-	public static function getLastClassifiedsOffers($number)
+	public static function getLastClients($number)
 	{
 	  
 		try
 		{  
-			$entries = DB::table('classifiedoffer_entries')
-				->join('classifieds_categories', 'classifieds_categories.category_id', '=', 'classifiedoffer_entries.category_id')
+			$lastClients = DB::table('users')
 				->select(
-					'classifiedoffer_entries.id AS entry_id',
-					'classifiedoffer_entries.title AS title',
-					'classifiedoffer_entries.content AS content',
-					'classifiedoffer_entries.short_description AS short_description',
-					'classifiedoffer_entries.color AS color',
-					'classifiedoffer_entries.material AS material',
-					'classifiedoffer_entries.image AS image',
-					'classifiedoffer_entries.category_id AS category_id',
-					'classifieds_categories.category_name AS category_name'
+					'users.id AS entry_id',
+					'users.first_name AS first_name',
+					'users.last_name AS last_name',
+					'users.created_at AS created_at',
+					'users.membership_id AS membership_id'
+
 				)
- 				->orderBy('classifiedoffer_entries.created_at', 'DESC')
+				->where('users.is_active', '=', '1')
+				->where('users.user_group', '=', 'client')
 				->take($number)
 				->get();
 
-			return array('status' => 1, 'entries' => $entries);
+			return array('status' => 1, 'lastclients' => $lastClients);
 	 	}
 		catch (Exception $exp)
 		{
@@ -208,61 +250,27 @@ class ClientEntry extends Eloquent
 	}
 
 
-	// Get last classifieds entries 8
-	public static function getLastClassifiedsDemands($number)
+	
+	public static function getCountClients()
 	{
-	  
-		try
-		{  
-			$entries = DB::table('classifieddemand_entries')
-				->join('classifieds_categories', 'classifieds_categories.category_id', '=', 'classifieddemand_entries.category_id')
-				->select(
-					'classifieddemand_entries.id AS entry_id',
-					'classifieddemand_entries.title AS title',
-					'classifieddemand_entries.content AS content',
-					'classifieddemand_entries.short_description AS short_description',
-					'classifieddemand_entries.color AS color',
-					'classifieddemand_entries.material AS material',
-					'classifieddemand_entries.image AS image',
-					'classifieddemand_entries.category_id AS category_id',
-					'classifieds_categories.category_name AS category_name'
-				)
- 				->orderBy('classifieddemand_entries.created_at', 'DESC')
-				->take($number)
-				->get();
-
-			return array('status' => 1, 'entries' => $entries);
-	 	}
-		catch (Exception $exp)
-		{
-			return array('status' => 0, 'reason' => $exp->getMessage());
-		}  
-	}
-
-
-	// Count entries per user
-	public static function getCountClassifiedOfferEntriesByUser($id = null)
-	{
-		if ($id == null)
-		{
-			return array('status' => 0, 'reason' => 'No ID.');
-		}
-
+		
 		try
 		{
-			$entries = DB::table('classifiedoffer_entries')
+			$countedUsers = DB::table('users')
  				->select(
-					'classifiedoffer_entries.id AS id'
+					'users.id AS id'
  				)
-				->where('classifiedoffer_entries.user_id', '=', $id)
+ 				->where('user_group', '=', 'client')
+				->where('users.is_active', '=', '1')
 				->get();
 
-			return array('status' => 1, 'number_entries' => count($entries));
+			return array('status' => 1, 'counted_user_number' => count($countedUsers));
 		}
 		catch (Exception $exp)
 		{
 			return array('status' => 0, 'reason' => $exp->getMessage());
 		}
 	}
+
  
 }

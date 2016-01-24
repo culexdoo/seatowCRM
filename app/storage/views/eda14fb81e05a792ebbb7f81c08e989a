@@ -10,13 +10,13 @@
             <div class="col-md-4">
               <div class="box box-black">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Basic Information</h3>
+                  <h3 class="box-title"><?php echo Lang::get('core.basic_information'); ?></h3>
 		                    </div>
 		                    <div class="box-body">
 										<?php echo Form::open(array('route' => 'postProfile', 'role' => 'form',  'autocomplete' => 'off')); ?>
 
 										<div class="form-group">
-											<label for="email">E-mail adresa:*</label>
+											<label for="email"><?php echo Lang::get('core.email'); ?></label>
 												<?php echo Form::email('email', $user->email, array('id' => 'email', 'class' => 'form-control')); ?> 
 												<?php if(isset($errors) && ($errors->first('email') != '' || $errors->first('email') != null)): ?>
 												<p><small class="error"><?php echo $errors->first('email'); ?></small></p>
@@ -24,7 +24,7 @@
 										</div>
 						   
 										<div class="form-group">
-											<label for="first_name">Ime:*</label>
+											<label for="first_name"><?php echo Lang::get('core.first_name'); ?></label>
 												<?php echo Form::text('first_name', $user->first_name, array('id' => 'first_name', 'class' => 'form-control')); ?>
 
 												<?php if(isset($errors) && ($errors->first('first_name') != '' || $errors->first('first_name') != null)): ?>
@@ -34,7 +34,7 @@
 										 
 
 										<div class="form-group"> 
-											<label for="last_name">Prezime:*</label>
+											<label for="last_name"><?php echo Lang::get('core.last_name'); ?></label>
 												<?php echo Form::text('last_name', $user->last_name, array('id' => 'last_name', 'class' => 'form-control')); ?>
 
 												<?php if(isset($errors) && ($errors->first('last_name') != '' || $errors->first('last_name') != null)): ?>
@@ -44,7 +44,7 @@
 						   
 
 										<div class="form-group">
-											<label for="old_password">Stara lozinka:</label>
+											<label for="old_password"><?php echo Lang::get('core.old_password'); ?></label>
 												<?php echo Form::password('old_password', array('id' => 'old_password', 'class' => 'form-control')); ?>
 
 												<?php
@@ -61,7 +61,7 @@
 									    </div>
 
 										<div class="form-group"> 
-											<label for="new_password">Nova lozinka:</label>
+											<label for="new_password"><?php echo Lang::get('core.new_password'); ?></label>
 												<?php echo Form::password('new_password', array('id' => 'new_password', 'class' => 'form-control')); ?>
 
 												<?php
@@ -78,7 +78,7 @@
 										</div>
 
 										<div class="form-group">
-											<label for="repeat_new_password" style="padding-top: 0;">Nova lozinka ponovo:</label>
+											<label for="repeat_new_password" style="padding-top: 0;"><?php echo Lang::get('core.repeat_new_password'); ?></label>
 												<?php echo Form::password('repeat_new_password', array('id' => 'repeat_new_password', 'class' => 'form-control')); ?>
 
 											<?php

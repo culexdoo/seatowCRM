@@ -190,5 +190,24 @@ class FranchiseeEntry extends Eloquent
 			return array('status' => 0, 'reason' => $exp->getMessage());
 		}
 	}
+
+	public static function getCountFranchisee()
+	{
+		
+		try
+		{
+			$countedFranchisee = DB::table('franchisee_entries')
+ 				->select(
+					'franchisee_entries.id AS id'
+ 				)
+				->get();
+
+			return array('status' => 1, 'counted_franchisee_number' => count($countedFranchisee));
+		}
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		}
+	}
  
 }

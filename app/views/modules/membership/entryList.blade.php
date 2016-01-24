@@ -128,4 +128,9 @@
             </div>
           </div>
           </section><!-- /.content -->
+          <script>
+           $(function () {
+                      $("#list-memberships").DataTable();
+                      });
+                      </script>
  

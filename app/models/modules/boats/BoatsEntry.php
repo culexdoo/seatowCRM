@@ -139,7 +139,7 @@ class BoatsEntry extends Eloquent
 					'users.updated_at AS updated_at'
 
 				)
-
+				->where('boats_entries.is_active', '=', '1')
 				->get();
 			
 			return array('status' => 1, 'entries' => $entries);
@@ -241,5 +241,26 @@ class BoatsEntry extends Eloquent
 			return array('status' => 0, 'reason' => $exp->getMessage());
 		}
 	}
+
+	public static function getCountBoats()
+	{
+		
+		try
+		{
+			$countedBoats = DB::table('boats_entries')
+ 				->select(
+					'boats_entries.id AS id'
+ 				)
+				->where('boats_entries.is_active', '=', '1')
+				->get();
+
+			return array('status' => 1, 'counted_boats_number' => count($countedBoats));
+		}
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		}
+	}
+
  
 }

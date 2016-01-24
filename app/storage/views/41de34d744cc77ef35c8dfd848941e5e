@@ -1,4 +1,6 @@
-
+    <?php
+ //   goDie($clientsdata['country_name']);
+    ?>
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
@@ -18,9 +20,12 @@
                  <div class="col-md-6"> <h3 class="box-title"> <?php echo Lang::get('client.list_of_all_clients'); ?></h3>
                 </div>
                 <div class="col-md-6">
+
                 <a class="btn btn-success btn-flat pull-right" href="<?php echo URL::route('ClientGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('client.add_client'); ?></a>
-                
-               
+                <!-- BUTTON EXPORT TO PDF -->
+                 <a class="btn btn-info btn-flat pull-right" href="<?php echo URL::route('ClientGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('client.export_to_pdf'); ?></a>
+
+                   <a class="btn btn-info btn-flat pull-right" href="<?php echo URL::route('ClientGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('client.export_to_csv'); ?></a>
                </div>
                </div>
 
@@ -44,14 +49,22 @@
                               <?php echo Lang::get('client.first_name'); ?>
 
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                <?php echo Lang::get('client.last_name'); ?>
 
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                <?php echo Lang::get('client.status'); ?>
 
                             </div>
+                            <div class="col-md-1">
+                               <?php echo Lang::get('boats.boat_name'); ?>
+
+                            </div>
+                            <div class="col-md-1">
+                               <?php echo Lang::get('boats.registration_no'); ?>
+
+                            </div> 
                             <div class="col-md-1">
                                <?php echo Lang::get('client.franchisee_id'); ?>
 
@@ -76,7 +89,7 @@
                              <?php echo Lang::get('client.membership_id'); ?>
 
                             </div>
-                            <div class="col-md-1">
+                             <div class="col-md-1">
                              <?php echo Lang::get('client.title'); ?>
 
                             </div>
@@ -84,14 +97,22 @@
                               <?php echo Lang::get('client.first_name'); ?>
 
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                <?php echo Lang::get('client.last_name'); ?>
 
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                <?php echo Lang::get('client.status'); ?>
 
                             </div>
+                            <div class="col-md-1">
+                               <?php echo Lang::get('boats.boat_name'); ?>
+
+                            </div>
+                            <div class="col-md-1">
+                               <?php echo Lang::get('boats.registration_no'); ?>
+
+                            </div> 
                             <div class="col-md-1">
                                <?php echo Lang::get('client.franchisee_id'); ?>
 
@@ -166,11 +187,11 @@
                                   <?php echo $entry->first_name; ?>
 
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                   <?php echo $entry->last_name; ?>
 
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                  <?php if($entry->status == '1'): ?>
                                     <p> 
                                     Active
@@ -188,6 +209,14 @@
                                     Deleted
                                     </p>
                                     <?php endif; ?>
+                                </div>
+                                 <div class="col-md-1">
+                                  <?php echo $entry->boat_name; ?>
+
+                                </div>
+                                 <div class="col-md-1">
+                                  <?php echo $entry->registration_no; ?>
+
                                 </div>
                                 <div class="col-md-1">
                               <?php echo $entry->franchisee_id; ?>
@@ -223,7 +252,7 @@
                               <div class="row">
                               <div class="col-md-12">
                                 <div class="col-md-10">
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                     <p><label><?php echo Lang::get('client.client_information'); ?></label></p>
                                       <label><?php echo Lang::get('client.company'); ?>:</label>
@@ -237,7 +266,7 @@
                                     </div>
                                   </div>
 
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                      <p><label><?php echo Lang::get('client.client_information'); ?></label></p>
                                       <label><?php echo Lang::get('client.city'); ?>:</label>
@@ -250,7 +279,7 @@
                                       <p><?php echo $entry->email; ?></p>
                                     </div>
                                   </div>
-                                   <div class="col-md-3">
+                                   <div class="col-md-2">
                                     <div class="form-group">
                                      <p><label><?php echo Lang::get('client.membership_information'); ?></label></p>
                                       <label><?php echo Lang::get('client.member_since'); ?>:</label>
@@ -310,7 +339,7 @@
                                       <p><?php echo $entry->homeport; ?></p>
                                     </div>
                                   </div>
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                      <p><label><?php echo Lang::get('client.detail_information'); ?></label></p>
                                       <label><?php echo Lang::get('client.home_no'); ?>:</label>
@@ -323,10 +352,56 @@
                                       <p><?php echo $entry->fax_no; ?></p>
                                    </div>
                                   </div>
+                                       <div class="col-md-2">
+                                    <div class="form-group">
+                                     <p><label><?php echo Lang::get('boats.boat_information'); ?></label></p>
+                                      <label><?php echo Lang::get('boats.make'); ?>:</label>
+                                      <p><?php echo $entry->make_name; ?></p>
+                                      <label><?php echo Lang::get('boats.hull'); ?>:</label>
+                                      <p><?php echo $entry->hull_name; ?></p>
+                                      <label><?php echo Lang::get('boats.year'); ?>:</label>
+                                      <p><?php echo $entry->year; ?></p>
+                                      <label><?php echo Lang::get('boats.engine_type'); ?>:</label>
+                                         <?php if($entry->engine_type_id == '1'): ?>
+                                          <p> 
+                                          In Board
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '2'): ?>
+                                          <p>
+                                          In/Out Board
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '3'): ?>
+                                          <p>
+                                          Out Board
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '4'): ?>
+                                          <p>
+                                          Sail
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '5'): ?>
+                                          <p>
+                                          Jet
+                                          </p>
+                                          <?php endif; ?>
+                                   </div>
+                                  </div>
+                                       <div class="col-md-2">
+                                    <div class="form-group">
+                                     <p><label><?php echo Lang::get('boats.boat_information'); ?></label></p>
+                                      <label><?php echo Lang::get('boats.color'); ?>:</label>
+                                      <p><?php echo $entry->boat_color; ?></p>
+                                      <label><?php echo Lang::get('boats.lenght'); ?>:</label>
+                                      <p><?php echo $entry->lenght; ?></p>
+                                      <label><?php echo Lang::get('boats.fuel_type'); ?>:</label>
+                                      <p><?php echo $entry->fuel_type; ?></p>
+                                      <label><?php echo Lang::get('boats.federal_doc_no'); ?>:</label>
+                                      <p><?php echo $entry->federal_doc_no; ?></p>
+                                   </div>
+                                  </div>
                                      </div>
                                      <div class="col-md-2">
                                         <div class="img-responsive">
-                                          <img src="img/core/maca.jpg" alt="User Image"/>
+                                          <img src="uploads/modules/client/thumbs/<?php echo $entry->image; ?>" alt="User Image"/>
                                         </div>
                                   </div>
                                 </div>

@@ -1,4 +1,6 @@
-
+    <?php
+ //   goDie($clientsdata['country_name']);
+    ?>
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
@@ -17,9 +19,12 @@
                  <div class="col-md-6"> <h3 class="box-title"> {{ Lang::get('client.list_of_all_clients') }}</h3>
                 </div>
                 <div class="col-md-6">
+
                 <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.add_client') }}</a>
-                
-               
+                <!-- BUTTON EXPORT TO PDF -->
+                 <a class="btn btn-info btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.export_to_pdf') }}</a>
+
+                   <a class="btn btn-info btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.export_to_csv') }}</a>
                </div>
                </div>
 
@@ -40,12 +45,18 @@
                             <div class="col-md-1">
                               {{ Lang::get('client.first_name') }}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                {{ Lang::get('client.last_name') }}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                {{ Lang::get('client.status') }}
                             </div>
+                            <div class="col-md-1">
+                               {{ Lang::get('boats.boat_name') }}
+                            </div>
+                            <div class="col-md-1">
+                               {{ Lang::get('boats.registration_no') }}
+                            </div> 
                             <div class="col-md-1">
                                {{ Lang::get('client.franchisee_id') }}
                             </div>
@@ -66,18 +77,24 @@
                             <div class="col-md-1">
                              {{ Lang::get('client.membership_id') }}
                             </div>
-                            <div class="col-md-1">
+                             <div class="col-md-1">
                              {{ Lang::get('client.title') }}
                             </div>
                             <div class="col-md-1">
                               {{ Lang::get('client.first_name') }}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                {{ Lang::get('client.last_name') }}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                {{ Lang::get('client.status') }}
                             </div>
+                            <div class="col-md-1">
+                               {{ Lang::get('boats.boat_name') }}
+                            </div>
+                            <div class="col-md-1">
+                               {{ Lang::get('boats.registration_no') }}
+                            </div> 
                             <div class="col-md-1">
                                {{ Lang::get('client.franchisee_id') }}
                             </div>
@@ -147,10 +164,10 @@
                                 <div class="col-md-1">
                                   {{ $entry->first_name }}
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                   {{ $entry->last_name }}
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                  @if ($entry->status == '1')
                                     <p> 
                                     Active
@@ -168,6 +185,12 @@
                                     Deleted
                                     </p>
                                     @endif
+                                </div>
+                                 <div class="col-md-1">
+                                  {{ $entry->boat_name }}
+                                </div>
+                                 <div class="col-md-1">
+                                  {{ $entry->registration_no }}
                                 </div>
                                 <div class="col-md-1">
                               {{ $entry->franchisee_id }}
@@ -201,7 +224,7 @@
                               <div class="row">
                               <div class="col-md-12">
                                 <div class="col-md-10">
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                     <p><label>{{ Lang::get('client.client_information') }}</label></p>
                                       <label>{{ Lang::get('client.company') }}:</label>
@@ -215,7 +238,7 @@
                                     </div>
                                   </div>
 
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                      <p><label>{{ Lang::get('client.client_information') }}</label></p>
                                       <label>{{ Lang::get('client.city') }}:</label>
@@ -228,7 +251,7 @@
                                       <p>{{ $entry->email }}</p>
                                     </div>
                                   </div>
-                                   <div class="col-md-3">
+                                   <div class="col-md-2">
                                     <div class="form-group">
                                      <p><label>{{ Lang::get('client.membership_information') }}</label></p>
                                       <label>{{ Lang::get('client.member_since') }}:</label>
@@ -288,7 +311,7 @@
                                       <p>{{ $entry->homeport }}</p>
                                     </div>
                                   </div>
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                      <p><label>{{ Lang::get('client.detail_information') }}</label></p>
                                       <label>{{ Lang::get('client.home_no') }}:</label>
@@ -301,10 +324,56 @@
                                       <p>{{ $entry->fax_no }}</p>
                                    </div>
                                   </div>
+                                       <div class="col-md-2">
+                                    <div class="form-group">
+                                     <p><label>{{ Lang::get('boats.boat_information') }}</label></p>
+                                      <label>{{ Lang::get('boats.make') }}:</label>
+                                      <p>{{ $entry->make_name }}</p>
+                                      <label>{{ Lang::get('boats.hull') }}:</label>
+                                      <p>{{ $entry->hull_name }}</p>
+                                      <label>{{ Lang::get('boats.year') }}:</label>
+                                      <p>{{ $entry->year }}</p>
+                                      <label>{{ Lang::get('boats.engine_type') }}:</label>
+                                         @if ($entry->engine_type_id == '1')
+                                          <p> 
+                                          In Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '2')
+                                          <p>
+                                          In/Out Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '3')
+                                          <p>
+                                          Out Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '4')
+                                          <p>
+                                          Sail
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '5')
+                                          <p>
+                                          Jet
+                                          </p>
+                                          @endif
+                                   </div>
+                                  </div>
+                                       <div class="col-md-2">
+                                    <div class="form-group">
+                                     <p><label>{{ Lang::get('boats.boat_information') }}</label></p>
+                                      <label>{{ Lang::get('boats.color') }}:</label>
+                                      <p>{{ $entry->boat_color }}</p>
+                                      <label>{{ Lang::get('boats.lenght') }}:</label>
+                                      <p>{{ $entry->lenght }}</p>
+                                      <label>{{ Lang::get('boats.fuel_type') }}:</label>
+                                      <p>{{ $entry->fuel_type }}</p>
+                                      <label>{{ Lang::get('boats.federal_doc_no') }}:</label>
+                                      <p>{{ $entry->federal_doc_no }}</p>
+                                   </div>
+                                  </div>
                                      </div>
                                      <div class="col-md-2">
                                         <div class="img-responsive">
-                                          <img src="img/core/maca.jpg" alt="User Image"/>
+                                          <img src="uploads/modules/client/thumbs/{{ $entry->image }}" alt="User Image"/>
                                         </div>
                                   </div>
                                 </div>
