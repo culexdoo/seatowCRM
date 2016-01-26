@@ -231,7 +231,7 @@
 
                                  <div class="col-md-2 pull-right">
                                  
-                                  <a href="<?php echo URL::route('ClientGetAddEvent', array('entry_id' => $entry->entry_id)); ?>">
+                                  <a href="<?php echo URL::route('EventGetAddEvent', array('entry_id' => $entry->entry_id)); ?>">
                                   <span class="label label-primary">
                                   <?php echo Lang::get('client.add_event'); ?></span></a>
 

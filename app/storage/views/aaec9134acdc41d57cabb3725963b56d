@@ -187,7 +187,7 @@
               <ul class="treeview-menu">
                 <li><a href="<?php echo URL::route('ClientGetAddEntry'); ?>">Add Client</a></li>
                 <li><a href="<?php echo URL::route('clientLanding'); ?>">List Clients</a></li>
-                <li><a href="<?php echo URL::route('ClientGetAddEvent'); ?>">Add Event</a></li>
+               
               </ul>
             </li>
              <li class="treeview">

@@ -68,6 +68,38 @@ class EmployeeEntry extends Eloquent
 		}
 	}
 
+	public static function getSingleEmployeeEntryByID($user_id = null, $items = 10)
+	{
+		try
+		{
+			$employee = DB::table('users')
+				->select(
+					'users.id AS id',
+					'users.first_name AS first_name',
+					'users.last_name AS last_name'
+					);
+			
+			if ($user_id != null)
+			{
+				$employee = $employee->where('users.id', '=', $user_id)
+					->first();
+
+				return array('status' => 1, 'employee' => $employee);
+			}
+
+			// Default return
+			$entries = $employee;
+
+		  
+			
+			return array('status' => 1, 'entries' => $entries);
+		}
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		}
+	}
+
 
 	// Get last classifieds entries for a user, defaults to 10
 	public static function getAllEmployees()
@@ -79,6 +111,7 @@ class EmployeeEntry extends Eloquent
 			$entries = DB::table('users')
 			
 				->select(
+					'users.id AS id',
 					'users.employee_id AS employee_id',
 					'users.first_name AS first_name',
 					'users.last_name AS last_name',

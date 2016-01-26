@@ -17,9 +17,12 @@
                {{ Form::open(array('route' => $postRoute, 'role' => 'form', 'autocomplete' => 'off', 'files' => false)) }}
 
             {{ Form::hidden('user_id', $user->id, array('id' => 'user_id')) }}
-            @if ($mode == 'edit')
-            {{ Form::hidden('entry_id', $entry->entry_id, array('entry_id' => 'entry_id')) }}
-            @endif
+
+            {{ Form::hidden('employee_first_name', $user->first_name, array('id' => 'employee_first_name')) }}
+
+            {{ Form::hidden('employee_last_name', $user->last_name, array('id' => 'employee_last_name')) }}
+           
+           {{ Form::hidden('membership_id', $entries['entry']->membership_id, array('id' => 'membership_id')) }}
          
 
 
@@ -56,48 +59,15 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label>{{ Lang::get('client.action') }}:</label>
-                       @if ($mode == 'add')
-                            {{ Form::select('event', array(
-                              '1'=>'Towed',
-                              '2'=>'Gas',
-                              '3'=>'Engine',
-                              '4'=>'Other',
-                              ),'1', ['class' => 'form-control']) }}
-                        @elseif ($mode == 'edit')
-                          @if ($entry->event == '1')
-                              {{ Form::select('event', array(
-                             '1'=>'Towed',
-                              '2'=>'Gas',
-                              '3'=>'Engine',
-                              '4'=>'Other',
-                              ),'1', ['class' => 'form-control']) }}
-                          @elseif ($entry->event == '2')
-                              {{ Form::select('event', array(
-                            '1'=>'Towed',
-                              '2'=>'Gas',
-                              '3'=>'Engine',
-                              '4'=>'Other',
-                              ),'2',['class' => 'form-control']) }}
-                          @elseif ($entry->event == '3')
-                              {{ Form::select('event', array(
-                             '1'=>'Towed',
-                              '2'=>'Gas',
-                              '3'=>'Engine',
-                              '4'=>'Other',
-                              ),'3',['class' => 'form-control']) }}
-                          @elseif ($entry->event == '4')
-                              {{ Form::select('event', array(
-                             '1'=>'Towed',
-                              '2'=>'Gas',
-                              '3'=>'Engine',
-                              '4'=>'Other',
-                              ),'4',['class' => 'form-control']) }}
-                          @endif
-                        @endif
+
+                            {{ Form::select('action', array(
+                              'membership_service'=>'Membership service',
+                              'non_membership_service'=>'NonMembership service',
+                              ),'membership_service', ['class' => 'form-control']) }}
                     </div>
                     <div class="form-group">
                       <label>{{ Lang::get('client.additional_notes') }}:</label>
-                     {{ Form::textarea('additional_notes', isset($entry->additional_notes) ? $entry->additional_notes : null, array('class' => 'form-control additional_notes','id' => 'additional_notes')) }}
+                     {{ Form::textarea('additional_note', isset($entry->additional_note) ? $entry->additional_note : null, array('class' => 'form-control additional_note','id' => 'additional_note')) }}
                     </div>
                   </div>
             

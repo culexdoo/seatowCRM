@@ -8,20 +8,14 @@ Route::group(array('prefix' => 'messages'), function()
 {
 	// Landing
 	Route::get('/', array('as' => 'messagesLanding', 'uses' => 'MessagesController@getLanding'));
- 
+ 	Route::post('add-entry', array('as' => 'MessagePostAddEntry', 'uses' => 'MessagesController@postAddEntry'));
 	// Messages entries, listing, adding, editing, removing
 	Route::group(array('prefix' => 'entries'), function()
 	{
  
-		Route::get('add-entry', array('as' => 'MessagesGetAddEntry', 'uses' => 'MessagesController@getAddEntry'));
-
-		Route::post('new-entry', array('as' => 'MessagesPostAddEntry', 'uses' => 'MessagesController@postAddEntry'));
-
-		Route::get('edit-entry/{id}', array('as' => 'MessagesGetEditEntry', 'uses' => 'MessagesController@getEditEntry'));
-
-		Route::post('change-entry', array('as' => 'MessagesPostEditEntry', 'uses' => 'MessagesController@postEditEntry'));
-
-		Route::get('delete-entry/{id}', array('as' => 'MessagesGetDeleteEntry', 'uses' => 'MessagesController@getDeleteEntry'));
+		Route::get('inbox', array('as' => 'InboxMessages', 'uses' => 'MessagesController@getInbox'));
+		Route::get('sent', array('as' => 'SentMessages', 'uses' => 'MessagesController@getSent'));
+		Route::get('single/{id}', array('as' => 'SingleMessage', 'uses' => 'MessagesController@getSingleMessage'));
 
 	});
 

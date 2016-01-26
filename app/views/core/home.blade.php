@@ -67,7 +67,7 @@
               <!-- ./col -->
             </div>
             <div class="row">
-              <section class="content col-lg-4">
+              <section class="content col-lg-6">
                 <div class="box box-black">
                   <div class="box-header with-border">
                     <h3 class="box-title">Last 10 clients</h3>
@@ -90,9 +90,9 @@
                         <td>{{ $client->last_name }}</td>
                         <td>{{ $client->created_at }}</td>
                         <td>
-                        <a href="{{ URL::route('clientLanding', array('entry_id' => $client->entry_id)) }}">
-                        <span class="label label-primary">
-                        {{ Lang::get('client.view') }}</span></a>
+                          <a href="{{ URL::route('EventGetAddEvent', array('entry_id' => $client->entry_id)) }}">
+                          <span class="label label-primary">
+                          {{ Lang::get('client.add_event') }}</span></a>
 
                         &nbsp; 
                         <a href="{{ URL::route('ClientGetEditEntry', array('entry_id' => $client->entry_id)) }}"><span class="label label-warning">{{ Lang::get('client.edit_client') }}</span></a>
@@ -107,23 +107,7 @@
                 </div>
               </div>
             </section>
-            <section class="content col-lg-4">
-                <div class="box box-black">
-                <div class="box-header with-border">
-                  <h3  class="box-title">Recent Actions</h3>
-                    <div class="form-group">
-                      <label>{{ Lang::get('client.action') }}:</label>
-                      
-                    </div>
-                    <div class="form-group">
-                      <label>{{ Lang::get('client.additional_notes') }}:</label>
-                     {{ Form::textarea('additional_notes', isset($entry->additional_notes) ? $entry->additional_notes : null, array('class' => 'form-control additional_notes','id' => 'additional_notes')) }}
-                    </div>
-                    </div>
-                    </div>
-                  
-                  </section>
-            <section class="content col-lg-4">
+            <section class="content col-lg-6">
               <div class="box box-black">
                 <div class="box-header with-border">
                   <h3  class="box-title">Recent Actions</h3>
@@ -145,11 +129,11 @@
                                 <i class="fa-blue fa fa-check-square-o fa-3x"></i>
 
                                  @elseif ($trackdata->action == 'membership_service')
-                                 <i class="fa-cogs-color fa fa-cogs fa-3x"></i>
+                                 <i class="fa-pencil-mem-color fa fa-pencil-square-o fa-3x"></i>
                               
                                 </span>
                                 @elseif ($trackdata->action == 'non_membership_service')
-                                  <i class="fa-cogs-color fa-cog fa-3x"></i>
+                                  <i class="fa-pencil-nonmem-color fa fa-pencil-square-o fa-3x"></i>
                               
                                 </span>
                                 @elseif ($trackdata->action == 'deleted')
@@ -169,11 +153,11 @@
                                {{ Lang::get('client.edited') }}
                                 </span>
                                  @elseif ($trackdata->action == 'membership_service')
-                                  <span class="label label-primary pull-right"> 
+                                  <span class="label mem-color pull-right"> 
                                {{ Lang::get('client.trackdata_membership_service') }}
                                 </span>
                                 @elseif ($trackdata->action == 'non_membership_service')
-                                  <span class="label label-info pull-right"> 
+                                  <span class="label nonmem-color pull-right"> 
                                {{ Lang::get('client.trackdata_non_membership_service') }}
                                 </span>
                                 @elseif ($trackdata->action == 'deleted')

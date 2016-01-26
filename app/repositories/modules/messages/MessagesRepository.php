@@ -16,59 +16,29 @@ class MessagesRepository
 
  
 	// Inserting new entry into database
-	public function addEntry()
+	public function addEntry($user_id, $reciever, $subject, $message, $reciever_first_name, $reciever_last_name, $sender_first_name, $sender_last_name)
 	{
-		try
-		{
+	/*	try
+		{  */
 			$entry = new MessagesEntry;
-
-
+			$entry->sender = $user_id;
+			$entry->reciever = $reciever;
+			$entry->subject = $subject;
+			$entry->message = $message;
+			$entry->reciever_first_name = $reciever_first_name;
+			$entry->reciever_last_name = $reciever_last_name;
+			$entry->sender_first_name = $sender_first_name;
+			$entry->sender_last_name = $sender_last_name;
 			$entry->save();
 
 			return array('status' => 1);
-		}
-		catch (Exception $exp)
-		{
-			return array('status' => 0, 'reason' => $exp->getMessage());
-		}
-	}
-
-
-	// Editing new entry into database
-	public function postEditEntry()
-	{
-		/* try
-		{  */ 
-
-
-
-
-			$entry->save();
-
-			return array('status' => 1);
-		/* } 
-		catch (Exception $exp)
-		{
-			return array('status' => 0, 'reason' => $exp->getMessage());
-		}  */
-	}
-
-	// Delete the entry item
-	public function deleteEntry($id)
-	{
-		/*try
-		{ */
-			$entry = MessagesEntry::find($id);
-			$entry->delete();
-
-		
-			return array('status' => 1);
-		/*} 
+	/*	}
 		catch (Exception $exp)
 		{
 			return array('status' => 0, 'reason' => $exp->getMessage());
 		} */
 	}
+
 
 
 }

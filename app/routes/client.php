@@ -23,11 +23,11 @@ Route::group(array('prefix' => 'client'), function()
 
 		Route::get('delete-entry/{id}', array('as' => 'ClientGetDeleteEntry', 'uses' => 'ClientController@getDeleteEntry'));
 
-		Route::get('add-event/{id}', array('as' => 'ClientGetAddEvent', 'uses' => 'ClientController@getAddEvent'));
+		Route::get('add-event/{id}', array('as' => 'EventGetAddEvent', 'uses' => 'EventController@getAddEvent'));
 
-		Route::post('new-event', array('as' => 'ClientPostAddEvent', 'uses' => 'ClientController@postAddEvent'));
+		Route::post('new-event', array('as' => 'EventPostAddEvent', 'uses' => 'EventController@postAddEvent'));
 
-		Route::get('edit-event/{id}', array('as' => 'ClientGetEditEvent', 'uses' => 'ClientController@getEditEvent'));
+		Route::get('edit-event/{id}', array('as' => 'EventGetEditEvent', 'uses' => 'EventController@getEditEvent'));
 
 
 	});

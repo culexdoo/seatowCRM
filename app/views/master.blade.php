@@ -176,7 +176,7 @@
               <ul class="treeview-menu">
                 <li><a href="{{ URL::route('ClientGetAddEntry') }}">Add Client</a></li>
                 <li><a href="{{ URL::route('clientLanding') }}">List Clients</a></li>
-                <li><a href="{{ URL::route('ClientGetAddEvent') }}">Add Event</a></li>
+               
               </ul>
             </li>
              <li class="treeview">

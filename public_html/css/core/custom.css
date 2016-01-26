@@ -146,8 +146,20 @@ span.bolded {
     color:red;
     }
 .fa-blue {
-    color:blue;
+    color:orange;
     }
-.fa-cogs-color{
-    color:purple;
+.fa-pencil-nonmem-color{
+    color:#0066ff;
+    }
+.fa-pencil-mem-color{
+    color:#4db7ff;
+    }
+.nonmem-color{
+    background-color:#0066ff;
+    }
+.mem-color{
+    background-color:#4db7ff;
+    }
+.test {
+    width:100%;
 }

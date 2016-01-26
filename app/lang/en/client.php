@@ -71,8 +71,9 @@ return array(
 	'view'							=>	'View',
 	'created'						=>	'Created',
 	'edited'						=>	'Edited',
-	'deleted'						=>	'Deleted'
-
+	'deleted'						=>	'Deleted',
+	'trackdata_non_membership_service' 	=>	'NonMembership Service',
+	'trackdata_membership_service'	=>	'Membership service'
 
 
 );

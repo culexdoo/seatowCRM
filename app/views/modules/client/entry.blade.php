@@ -33,7 +33,7 @@
           </a>
 
            @if ($mode == 'edit')
-           <a href="{{ URL::route('ClientGetAddEvent', array('entry_id' => $entry->entry_id)) }}" class="btn btn-primary pull-right">
+           <a href="{{ URL::route('EventGetAddEvent', array('entry_id' => $entry->entry_id)) }}" class="btn btn-primary pull-right">
            <span class="icon icon-block"></span>{{ Lang::get('client.add_event') }}</a>
            @endif
 
@@ -705,10 +705,11 @@
                           <label>{{ Lang::get('client.address') }}:</label>
                           {{ Form::text('mailing_address', isset($entry->mailing_address) ? $entry->mailing_address : null, ['class' => 'form-control']) }}
                         </div>
+                         <label>{{ Lang::get('client.country') }}:</label>
                         <div class="form-group">
-                          <label>{{ Lang::get('client.country') }}:</label>
+                         
                            @if ($mode == 'add')
-                       {{ Form::select('mailing_country', $countries, isset($entry->mailing_country) ? $entry->mailing_country : null, array('class' => 'form-control', 'id' => 'mailing_country', 'required')) }}
+                       {{ Form::select('mailing_country', $countries, isset($entry->mailing_country) ? $entry->mailing_country : null, array('class' => 'form-control', 'id' => 'mailing_country', 'required'))}}
                        @elseif ($mode == 'edit')
                        {{ Form::select('mailing_country', $countries, isset($entry->mailing_country) ? $entry->mailing_country : $preselected_mailing_country, array('class' => 'form-control', 'id' => 'mailing_country', 'required')) }}
                        @endif
@@ -820,14 +821,16 @@
                                             <span class="label label-primary pull-right"> 
                                          {{ Lang::get('client.event_membership_service') }}
                                           </span>
+                                         <p> {{ Lang::get('client.additional_note') }} </p>
+                                          {{$event->additional_note}}
+
                                           @elseif ($event->action == 'non_membership_service')
                                             <span class="label label-info pull-right"> 
-                                         {{ Lang::get('client.event_non_membership_service') }}
+                                         {{ Lang::get('client.trackdata_non_membership_service') }}
                                           </span>
+                                         <p> {{ Lang::get('client.additional_note') }}</p>
+                                          {{$event->additional_note}}
                                           @endif
-
-
-
 
 
                      
@@ -1062,22 +1065,10 @@
                 {{ Form::close() }}
             </div>
           </div>
-          
-         
-
-
-
-
-
-       
-         
-        </section>
-
-                            <script type="text/javascript">
-                             $('select').select2();
-                            </script>
-                            <script type="text/javascript">
-                            $('.inputmask').inputmask({
-                            mask: '999-99-999-9999-9'
-                            })
-                            </script>
+  
+      </section>
+        <script type="text/javascript">
+         $('select').select2();
+         if ($(element).not(':visible')) {
+        $('.select2-search__field').width("100%"); 
+        </script>

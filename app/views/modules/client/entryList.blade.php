@@ -203,7 +203,7 @@
 
                                  <div class="col-md-2 pull-right">
                                  
-                                  <a href="{{ URL::route('ClientGetAddEvent', array('entry_id' => $entry->entry_id)) }}">
+                                  <a href="{{ URL::route('EventGetAddEvent', array('entry_id' => $entry->entry_id)) }}">
                                   <span class="label label-primary">
                                   {{ Lang::get('client.add_event') }}</span></a>
 

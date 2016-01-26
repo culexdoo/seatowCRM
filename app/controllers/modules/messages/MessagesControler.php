@@ -34,14 +34,17 @@ class MessagesController extends CoreController {
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 
-		// Get module landing data
-		$entries = MessagesEntry::getAllMessages();
+		$allEmployeeList = array();
 
-
-  
-		if ($entries['status'] == 0)
+		$employeeList= EmployeeEntry::getAllEmployees(null);
+		
+		if ($employeeList['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('invoice.msg_error_getting_entry'));
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entries'));
+		}
+		foreach ($employeeList['entries'] as $employee)
+		{
+			$allEmployeeList[$employee->id] = $employee->first_name . " " . $employee->last_name . " - " .  "ID: " . $employee->employee_id;
 		}
 
 		$this->layout->title = 'List Messages';
@@ -53,50 +56,22 @@ class MessagesController extends CoreController {
 		$this->layout->js_header_files = array( 
 		);
 
-		$this->layout->content = View::make('modules.messages.entry', array('title' => 'List Messages', 'user' => $user['user'], 'entries' => $entries['entries'] ));
+		$this->layout->content = View::make('modules.messages.entry', array('mode' => 'add',
+		'postRoute' => 'MessagePostAddEntry', 'title' => 'Compose', 'user' => $user['user'], 'entries' => $allEmployeeList));
 		 
 	}
 
-	// Get add entry
-	public function getAddEntry()
-	{
-
-		 
-		$user = User::getUserInfos(Auth::user()->id);
 
 
-
-		if ($user['status'] == 0)
-
-		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
-		}
-  
-
-		$this->layout->title = 'Add Invoice';
-
-
-		$this->layout->css_files = array( 
-		);
-
-		$this->layout->js_header_files = array( 
-		);
-
-		$this->layout->content = View::make('modules.invoice.entry', array('mode' => 'add',
-		'postRoute' => 'InvoicePostAddEntry', 'title' => 'Add Invoice', 'user' => $user['user']));
- 	
-	}
-
-
-
-	// Post add classifiedoffer
+	// Post 
 	public function postAddEntry()
 	{	
 		//Ovjde kupim sve podatke sa stranice iz fildova
 		Input::merge(array_map('trim', Input::all()));
 
+
  		//projverva dali sam popunio sve fildove
-		$entryValidator = Validator::make(Input::all(), InvoiceEntry::$new_entry_rules);
+		$entryValidator = Validator::make(Input::all(), MessagesEntry::$new_entry_rules);
 		
 
 		if ($entryValidator->fails())
@@ -104,8 +79,19 @@ class MessagesController extends CoreController {
 			return Redirect::back()->with('error_message', Lang::get('classified_offer.msg_error_validating_entry'))->withErrors($entryValidator)->withInput();
 		}
  
-
-		$addNewEntry = $this->repo->addEntry(Input::get('id'), Input::get('franchisee_id'), Input::get('city'), Input::get('zip'), Input::get('franchisee_short'), Input::get('franchisee_long'));
+		$recieverEmployee = EmployeeEntry::getSingleEmployeeEntryByID(Input::get('reciever'));
+	
+		$senderEmployee = EmployeeEntry::getSingleEmployeeEntryByID(Input::get('user_id'));
+		$addNewEntry = $this->repo->addEntry(
+			Input::get('user_id'), 
+			Input::get('reciever'), 
+			Input::get('subject'), 
+			Input::get('message'),
+			$recieverEmployee['employee']->first_name,
+			$recieverEmployee['employee']->last_name,
+			$senderEmployee['employee']->first_name,
+			$senderEmployee['employee']->last_name
+			);
 		
 
 		if ($addNewEntry['status'] == 0)
@@ -114,107 +100,45 @@ class MessagesController extends CoreController {
 		}
 		else
 		{
-			return Redirect::route('franchiseeLanding')->with('success_message', Lang::get('franchisee.msg_success_entry_added', array('title' => Input::get('title'))));
+			return Redirect::route('messagesLanding')->with('success_message', Lang::get('franchisee.msg_success_entry_added', array('title' => Input::get('title'))));
 		}
 	}
 
-
-
-	// Display edit entry page
-	public function getEditEntry($entry_id)
+	public function getInbox()
 	{
+		 
 		$user = User::getUserInfos(Auth::user()->id);
+
+
+
 		if ($user['status'] == 0)
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 
-		  
-		$entry = FranchiseeEntry::getSingleFranchiseeEntry($entry_id);
-
-		if ($entry['status'] == 0)
-		{ 
-			return Redirect::back()->with('error_message', Lang::get('franchisee.msg_error_getting_entry'));
-		}
-
-		$this->layout->title = 'Edit Franchisee';
-		$this->layout->css_files = array( 
- 		);
-
-		$this->layout->js_header_files = array( 
-		);
-	 
-
-		$this->layout->content = View::make('modules.franchisee.entry', array('mode' => 'edit',
-		'postRoute' => 'FranchiseePostEditEntry', 'title' => 'Edit Franchisee', 'entry' => $entry['entry'], 'user' => $user['user']));
-
-	}
 
 
-
-
-	// Post edit entry page
-	public function postEditEntry()
-	{
-
-		
-		Input::merge(array_map('trim', Input::all()));
-
-
-		$entryValidator = Validator::make(Input::all(), FranchiseeEntry::$edit_entry_rules);
-
+		$messageList = MessagesEntry::getAllInboxMessages(Auth::user()->id);
 	
 
-		if ($entryValidator->fails())
-		{
-			return Redirect::back()->with('error_message', Lang::get('franchisee.msg_error_validating_entry'))->withErrors($entryValidator)->withInput();
-		}
- 
- 			
-		$editNewEntry = $this->repo->postEditEntry(Input::get('entry_id'), Input::get('franchisee_id'), Input::get('city'), Input::get('zip'), Input::get('franchisee_short'), Input::get('franchisee_long'));
-
-		if ($editNewEntry['status'] == 0)
-		{
-			return Redirect::back()->with('error_message', Lang::get('franchisee.msg_error_editing_entry'))->withErrors($entryValidator)->withInput();
-		}
-
-		else
-		{
-			return Redirect::route('franchiseeLanding')->with('success_message', Lang::get('franchisee.msg_success_editing_entry', array('name' => Input::get('name'))));
-		}
-	}
+		$this->layout->title = 'List Messages';
 
 
-	// Post delete entry
-	public function getDeleteEntry($id = null)
-	{
-		if ($id == null)
-		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('franchisee.msg_error_getting_entry'));
-		}
+		$this->layout->css_files = array(
+			'plugins/datatables/dataTables.bootstrap.css'
 
-		$entry = FranchiseeEntry::getSingleFranchiseeEntry($id);
-		if ($entry['status'] == 0)
-		{
-			return Redirect::back()->with('error_message', Lang::get('franchisee.msg_error_getting_entry'));
-		}
+		);
 
-		if (!is_object($entry['entry']))
-		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('franchisee.msg_error_getting_entry'));
-		}
+		$this->layout->js_header_files = array( 
+			'plugins/datatables/jquery.dataTables.min.js',
+			'plugins/datatables/dataTables.bootstrap.min.js'
 
-  
-		$deleteEntry = $this->repo->deleteEntry($id);
 
-		if ($deleteEntry['status'] == 1)
-		{
-			return Redirect::route('franchiseeLanding')->with('success_message', Lang::get('franchisee.msg_success_entry_deleted'));
-		}
-		else
-		{
-			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('franchisee.msg_error_deleting_entry'));
-		}
+		);
+
+		$this->layout->content = View::make('modules.messages.entryList', array('mode' => 'add',
+		 'title' => 'Compose', 'user' => $user['user'], 'entries' => $messageList));
+		 
 	}
 
 
