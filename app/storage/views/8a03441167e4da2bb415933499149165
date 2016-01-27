@@ -164,7 +164,7 @@
           </div>
           </section>
            <script>
-           $(function () {
+                   $(function () {
                       $("#list-employees").DataTable();
                       });
                       </script><!-- /.content -->

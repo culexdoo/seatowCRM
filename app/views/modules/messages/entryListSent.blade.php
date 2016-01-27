@@ -54,7 +54,7 @@
                   <thead>
                   <tr>
                   <th>{{ Lang::get('messages_msg.status') }}:</th>
-                  <th>{{ Lang::get('messages_msg.from') }}:</th>
+                  <th>{{ Lang::get('messages_msg.to') }}:</th>
                   <th>{{ Lang::get('messages_msg.subject') }}:</th>
                   <th>{{ Lang::get('messages_msg.messages') }}:</th>
                   <th>Sent:</th>
@@ -66,7 +66,7 @@
 
                   <tr>
                   <td><b>{{ Lang::get('messages_msg.sent') }}</td>
-                    <td>{{ $message->sender_first_name }} {{ $message->sender_last_name }}</td>
+                    <td>{{ $message->reciever_first_name }} {{ $message->reciever_last_name }}</td>
                     <td>{{ $message->subject }}</td>
                     <td>{{ $message->message }}</td>
                     <td>{{ $message->created_at }}</td>

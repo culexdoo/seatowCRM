@@ -48,7 +48,7 @@ class ClientController extends CoreController {
 
 		$this->layout->css_files = array( 
 			'plugins/datatables/dataTables.bootstrap.css',
-			'css/core/select2.min.js'
+			'css/core/select2.min.css'
 		);
 
 		$this->layout->js_header_files = array( 

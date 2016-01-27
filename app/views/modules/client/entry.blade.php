@@ -1067,6 +1067,7 @@
           </div>
   
       </section>
+      
         <script type="text/javascript">
          $('select').select2();
          if ($(element).not(':visible')) {

@@ -55,10 +55,12 @@ class MessagesController extends CoreController {
 
 
 		$this->layout->css_files = array( 
-		);
+			'css/core/select2.min.css'
+		);	
 
 		$this->layout->js_header_files = array( 
-		);
+			'js/core/select2.full.min.js'
+		);	
 
 		$this->layout->content = View::make('modules.messages.entry', array('mode' => 'add',
 		'postRoute' => 'MessagePostAddEntry', 'title' => 'Compose', 'user' => $user['user'], 'entries' => $allEmployeeList, 'countedunreadmessages' => $countedunreadmessages, 'counteddeletedmessages' => $counteddeletedmessages, 'countedsentmessages' => $countedsentmessages));

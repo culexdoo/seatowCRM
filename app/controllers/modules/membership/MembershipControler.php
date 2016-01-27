@@ -48,13 +48,17 @@ class MembershipController extends CoreController {
 
 
 				$this->layout->css_files = array( 
-			'plugins/datatables/dataTables.bootstrap.css'
-		);
+			'plugins/datatables/dataTables.bootstrap.css',
+			'css/core/select2.min.css'
+		);	
 
 		$this->layout->js_header_files = array( 
 			'plugins/datatables/jquery.dataTables.min.js',
-			'plugins/datatables/dataTables.bootstrap.min.js'
-		);
+			'plugins/datatables/dataTables.bootstrap.min.js',
+			'js/core/select2.full.min.js'
+			
+
+		);	
 
 		$this->layout->content = View::make('modules.membership.entryList', array('title' => 'List Membership', 'user' => $user['user'], 'entries' => $entries['entries'] ));
 		 

@@ -30,7 +30,8 @@ return array(
 	'subject'						=>	'Subject',
 	'messages'						=>	'Messages',
 	'quick_action'					=>	'Quick Action',
-	'sent'							=>	'Sent'
+	'sent'							=>	'Sent',
+	'to'							=>	'To'
 	
 
 

@@ -55,7 +55,7 @@
                   <thead>
                   <tr>
                   <th><?php echo Lang::get('messages_msg.status'); ?>:</th>
-                  <th><?php echo Lang::get('messages_msg.from'); ?>:</th>
+                  <th><?php echo Lang::get('messages_msg.to'); ?>:</th>
                   <th><?php echo Lang::get('messages_msg.subject'); ?>:</th>
                   <th><?php echo Lang::get('messages_msg.messages'); ?>:</th>
                   <th>Sent:</th>
@@ -67,7 +67,7 @@
 
                   <tr>
                   <td><b><?php echo Lang::get('messages_msg.sent'); ?></td>
-                    <td><?php echo $message->sender_first_name; ?> <?php echo $message->sender_last_name; ?></td>
+                    <td><?php echo $message->reciever_first_name; ?> <?php echo $message->reciever_last_name; ?></td>
                     <td><?php echo $message->subject; ?></td>
                     <td><?php echo $message->message; ?></td>
                     <td><?php echo $message->created_at; ?></td>
