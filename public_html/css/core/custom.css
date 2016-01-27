@@ -163,3 +163,15 @@ span.bolded {
 .test {
     width:100%;
 }
+.unread{
+   background:#BDBDBD;
+}
+.padding{
+    padding-bottom: 10px;
+}
+.text-white {
+    color:white;
+}
+.padding-table {
+    padding-left: 22px;
+}

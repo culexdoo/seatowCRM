@@ -39,6 +39,38 @@ class MessagesRepository
 		} */
 	}
 
+	// Inserting new entry into database
+	public function setEntryRead($id)
+	{
+	/*	try
+		{  */
+			$entry = MessagesEntry::find($id); 
+			$entry->is_read = '1';
 
+			$entry->save();
+
+			return array('status' => 1);
+	/*	}
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		} */
+	}
+		public function setSent($id)
+	{
+	/*	try
+		{  */
+			$entry = MessagesEntry::find($id); 
+			$entry->is_sent = '1';
+
+			$entry->save();
+
+			return array('status' => 1);
+	/*	}
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		} */
+	}
 
 }

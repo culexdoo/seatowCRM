@@ -10,7 +10,20 @@
 return array(
 
 	// Login messages
-	'sign_in_success'				=>	'You are signed in!'
+	'sign_in_success'				=>	'You are signed in!',
+	'send'							=>	'Send',
+	'send_to'						=>	'Send to',
+	'subject'						=>	'Subject',
+	'message'						=>	'Message',
+	'read_mail'						=>	'Read mail',
+	'compose'						=>	'Compose',
+	'inbox'							=>	'Inbox',
+	'sent'							=>	'Sent',
+	'trash'							=>	'Trash',
+	'reply'							=>	'Reply',
+	'msg_success_entry_added'		=>	'Messages succesfully sent!',
+	'view'							=>	'Open',
+	'delete'						=>	'Delete'
 	
 
 

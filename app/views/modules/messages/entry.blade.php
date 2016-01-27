@@ -23,11 +23,11 @@
 
 
                 <li><a href="{{ URL::route('InboxMessages') }}"><i class="fa fa-inbox"></i> Inbox
-                  <span class="label label-primary pull-right">24</span></a></li>
-                <li><a href="messages-sent.html"><i class="fa fa-envelope-o"></i> Sent<span class="label label-primary pull-right">2</span></a></a>
+                  <span class="label label-primary pull-right">{{ $countedunreadmessages['countedunreadmessages'] }}</span></a></li>
+                <li><a href="{{ URL::route('SentMessages') }}"><i class="fa fa-envelope-o"></i> Sent<span class="label label-primary pull-right">{{ $countedsentmessages['countedsentmessages'] }}</span></a></a>
                 </li>
-                <li><a href="messages-drafts.html"><i class="fa fa-file-text-o"></i> Drafts<span class="label label-primary pull-right">0</span></a></a></li>
-                <li><a href="messages-trash.html"><i class="fa fa-trash-o"></i> Trash<span class="label label-primary pull-right">2</span></a></a></li>
+                
+                <li><a href="{{ URL::route('TrashMessages') }}"><i class="fa fa-trash-o"></i> Trash<span class="label label-primary pull-right">{{ $counteddeletedmessages['counteddeletedmessages'] }}</span></a></a></li>
               </ul>
                 </div>
                 <!-- /.box-body -->
@@ -48,15 +48,15 @@
                 {{ Form::hidden('user_id', $user->id, array('id' => 'user_id')) }}
                 <div class="box-body">
                  <div class="form-group">
-                 {{ Lang::get('messages.send_to') }}
+                 {{ Lang::get('messages_msg.send_to') }}
                  {{ Form::select('reciever', $entries, isset($entry->reciever) ? $entry->reciever : null, array('class' => 'form-control', 'id' => 'reciever', 'required')) }}
                  </div>
                   
                   <div class="form-group">
-                  {{ Lang::get('messages.subject') }}
+                  {{ Lang::get('messages_msg.subject') }}
                      {{ Form::text('subject', isset($entry->subject) ? $entry->subject : null, ['class' => 'form-control']) }}
                   </div>
-                  {{ Lang::get('messages.message') }}
+                  {{ Lang::get('messages_msg.message') }}
                   {{ Form::textarea('message', isset($entry->message) ? $entry->message : null, array('class' => 'form-control message','id' => 'message')) }}
                 </div>
                 
@@ -64,7 +64,9 @@
               <!-- /.box-body -->
               <div class="box-black">
                 <div class="pull-right">
-                 {{ Form::button('<span class="icon icon-done"></span> ' . Lang::get('client.send'), array('type' => 'submit', 'class' => 'btn btn-success')) }}
+
+                 {{ Form::button(Lang::get('messages_msg.send'), array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+              
                 </div>
               </div>
               <!-- /.box-footer -->

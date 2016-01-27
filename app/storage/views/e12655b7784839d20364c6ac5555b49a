@@ -24,11 +24,11 @@
 
 
                 <li><a href="<?php echo URL::route('InboxMessages'); ?>"><i class="fa fa-inbox"></i> Inbox
-                  <span class="label label-primary pull-right">24</span></a></li>
-                <li><a href="messages-sent.html"><i class="fa fa-envelope-o"></i> Sent<span class="label label-primary pull-right">2</span></a></a>
+                  <span class="label label-primary pull-right"><?php echo $countedunreadmessages['countedunreadmessages']; ?></span></a></li>
+                <li><a href="<?php echo URL::route('SentMessages'); ?>"><i class="fa fa-envelope-o"></i> Sent<span class="label label-primary pull-right"><?php echo $countedsentmessages['countedsentmessages']; ?></span></a></a>
                 </li>
-                <li><a href="messages-drafts.html"><i class="fa fa-file-text-o"></i> Drafts<span class="label label-primary pull-right">0</span></a></a></li>
-                <li><a href="messages-trash.html"><i class="fa fa-trash-o"></i> Trash<span class="label label-primary pull-right">2</span></a></a></li>
+                
+                <li><a href="<?php echo URL::route('TrashMessages'); ?>"><i class="fa fa-trash-o"></i> Trash<span class="label label-primary pull-right"><?php echo $counteddeletedmessages['counteddeletedmessages']; ?></span></a></a></li>
               </ul>
                 </div>
                 <!-- /.box-body -->
@@ -51,19 +51,19 @@
 
                 <div class="box-body">
                  <div class="form-group">
-                 <?php echo Lang::get('messages.send_to'); ?>
+                 <?php echo Lang::get('messages_msg.send_to'); ?>
 
                  <?php echo Form::select('reciever', $entries, isset($entry->reciever) ? $entry->reciever : null, array('class' => 'form-control', 'id' => 'reciever', 'required')); ?>
 
                  </div>
                   
                   <div class="form-group">
-                  <?php echo Lang::get('messages.subject'); ?>
+                  <?php echo Lang::get('messages_msg.subject'); ?>
 
                      <?php echo Form::text('subject', isset($entry->subject) ? $entry->subject : null, ['class' => 'form-control']); ?>
 
                   </div>
-                  <?php echo Lang::get('messages.message'); ?>
+                  <?php echo Lang::get('messages_msg.message'); ?>
 
                   <?php echo Form::textarea('message', isset($entry->message) ? $entry->message : null, array('class' => 'form-control message','id' => 'message')); ?>
 
@@ -73,8 +73,10 @@
               <!-- /.box-body -->
               <div class="box-black">
                 <div class="pull-right">
-                 <?php echo Form::button('<span class="icon icon-done"></span> ' . Lang::get('client.send'), array('type' => 'submit', 'class' => 'btn btn-success')); ?>
 
+                 <?php echo Form::button(Lang::get('messages_msg.send'), array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
+
+              
                 </div>
               </div>
               <!-- /.box-footer -->

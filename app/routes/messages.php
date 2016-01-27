@@ -14,8 +14,16 @@ Route::group(array('prefix' => 'messages'), function()
 	{
  
 		Route::get('inbox', array('as' => 'InboxMessages', 'uses' => 'MessagesController@getInbox'));
+
+		Route::get('trash', array('as' => 'TrashMessages', 'uses' => 'MessagesController@getTrash'));
+
 		Route::get('sent', array('as' => 'SentMessages', 'uses' => 'MessagesController@getSent'));
-		Route::get('single/{id}', array('as' => 'SingleMessage', 'uses' => 'MessagesController@getSingleMessage'));
+
+		Route::get('single/{id}', array('as' => 'SingleView', 'uses' => 'MessagesController@getSingleView'));
+
+		Route::get('reply-add/{id}', array('as' => 'SingleViewReplyAdd', 'uses' => 'MessagesController@getSingleViewReplyAdd'));
+
+		Route::post('reply-post', array('as' => 'SingleViewReplyPost', 'uses' => 'MessagesController@postSingleViewReply'));
 
 	});
 

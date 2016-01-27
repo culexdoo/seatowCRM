@@ -43,6 +43,14 @@ $servicesCredentials = array(
         'key'       => '',
         'secret'    => '',
     ),
+    'delicious' => array(
+        'key'       => '',
+        'secret'    => '',
+    ),
+    'deezer' => array(
+        'key'       => '',
+        'secret'    => '',
+    ),
     'deviantart' => array(
         'key'       => '',
         'secret'    => '',
@@ -123,6 +131,10 @@ $servicesCredentials = array(
         'key'       => '',
         'secret'    => '',
     ),
+    'pinterest' => array(
+        'key'       => '',
+        'secret'    => '',
+    ),
     'pocket' => array(
         'key'       => '',
     ),
@@ -141,6 +153,10 @@ $servicesCredentials = array(
     'runkeeper' => array(
         'key'       => '',
         'secret'    => '',
+    ),
+    'salesforce' => array(
+        'key'       => '',
+        'secret'    => ''
     ),
     'scoopit' => array(
         'key'       => '',
