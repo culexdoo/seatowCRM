@@ -25,6 +25,8 @@ Route::group(array('prefix' => 'messages'), function()
 
 		Route::post('reply-post', array('as' => 'SingleViewReplyPost', 'uses' => 'MessagesController@postSingleViewReply'));
 
+		Route::get('delete-message/{id}', array('as' => 'DeleteSingleMessage', 'uses' => 'MessagesController@getDeleteEntry'));
+
 	});
 
 

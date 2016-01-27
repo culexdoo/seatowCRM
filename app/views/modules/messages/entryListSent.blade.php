@@ -53,19 +53,19 @@
                 
                   <thead>
                   <tr>
-                  <th>Status:</th>
-                  <th>From:</th>
-                  <th>Subject:</th>
-                  <th>Message:</th>
+                  <th>{{ Lang::get('messages_msg.status') }}:</th>
+                  <th>{{ Lang::get('messages_msg.from') }}:</th>
+                  <th>{{ Lang::get('messages_msg.subject') }}:</th>
+                  <th>{{ Lang::get('messages_msg.messages') }}:</th>
                   <th>Sent:</th>
-                  <th class="pull-right">Quick Actions:</th>
+                  <th class="pull-right">{{ Lang::get('messages_msg.quick_action') }}:</th>
                   </tr>
                   </thead>
                   <tbody>
                    @foreach($entries['entries'] as $message)
 
                   <tr>
-                  <td><b>Deleted</td>
+                  <td><b>{{ Lang::get('messages_msg.sent') }}</td>
                     <td>{{ $message->sender_first_name }} {{ $message->sender_last_name }}</td>
                     <td>{{ $message->subject }}</td>
                     <td>{{ $message->message }}</td>

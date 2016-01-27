@@ -21,6 +21,7 @@ class MessagesRepository
 	/*	try
 		{  */
 			$entry = new MessagesEntry;
+			$entry->is_sent = '1';
 			$entry->sender = $user_id;
 			$entry->reciever = $reciever;
 			$entry->subject = $subject;
@@ -56,12 +57,12 @@ class MessagesRepository
 			return array('status' => 0, 'reason' => $exp->getMessage());
 		} */
 	}
-		public function setSent($id)
+		public function deleteMessage($id)
 	{
 	/*	try
 		{  */
 			$entry = MessagesEntry::find($id); 
-			$entry->is_sent = '1';
+			$entry->is_active = '0';
 
 			$entry->save();
 

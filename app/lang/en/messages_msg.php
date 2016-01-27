@@ -23,7 +23,14 @@ return array(
 	'reply'							=>	'Reply',
 	'msg_success_entry_added'		=>	'Messages succesfully sent!',
 	'view'							=>	'Open',
-	'delete'						=>	'Delete'
+	'delete'						=>	'Delete',
+	'msg_success_entry_deleted'		=>	'Message succesfully deleted!',
+	'status'						=>	'Status',
+	'from'							=>	'From',
+	'subject'						=>	'Subject',
+	'messages'						=>	'Messages',
+	'quick_action'					=>	'Quick Action',
+	'sent'							=>	'Sent'
 	
 
 

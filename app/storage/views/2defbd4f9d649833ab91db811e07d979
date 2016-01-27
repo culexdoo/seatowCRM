@@ -54,19 +54,19 @@
                 
                   <thead>
                   <tr>
-                  <th>Status:</th>
-                  <th>From:</th>
-                  <th>Subject:</th>
-                  <th>Message:</th>
+                  <th><?php echo Lang::get('messages_msg.status'); ?>:</th>
+                  <th><?php echo Lang::get('messages_msg.from'); ?>:</th>
+                  <th><?php echo Lang::get('messages_msg.subject'); ?>:</th>
+                  <th><?php echo Lang::get('messages_msg.messages'); ?>:</th>
                   <th>Sent:</th>
-                  <th class="pull-right">Quick Actions:</th>
+                  <th class="pull-right"><?php echo Lang::get('messages_msg.quick_action'); ?>:</th>
                   </tr>
                   </thead>
                   <tbody>
                    <?php foreach($entries['entries'] as $message): ?>
 
                   <tr>
-                  <td><b>Deleted</td>
+                  <td><b><?php echo Lang::get('messages_msg.sent'); ?></td>
                     <td><?php echo $message->sender_first_name; ?> <?php echo $message->sender_last_name; ?></td>
                     <td><?php echo $message->subject; ?></td>
                     <td><?php echo $message->message; ?></td>

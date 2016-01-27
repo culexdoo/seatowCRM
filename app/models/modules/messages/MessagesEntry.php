@@ -135,6 +135,49 @@ class MessagesEntry extends Eloquent
 			return array('status' => 0, 'reason' => $exp->getMessage());
 		} */
 	}
+	public static function getAllSentMessages($user_id)
+	{
+	/*	try
+		{  */
+			$entries = DB::table('messages')
+				->select(
+					'messages.id AS id',
+					'messages.sender AS sender',
+					'messages.reciever AS reciever',
+					'messages.subject AS subject',
+					'messages.message AS message',
+					'messages.is_read AS is_read',
+					'messages.reciever_first_name AS reciever_first_name',
+					'messages.reciever_last_name AS reciever_last_name',
+					'messages.sender_first_name AS sender_first_name',
+					'messages.sender_last_name AS sender_last_name',
+					'messages.created_at AS created_at',
+					'messages.updated_at AS updated_at'
+
+				);
+			
+			if ($user_id != null)
+			{
+				$entries = $entries->where('messages.sender', '=', $user_id)
+				->where('messages.is_sent', '=', '1')
+				->orderBy('messages.created_at', 'DESC')
+					->get();
+
+				return array('status' => 1, 'entries' => $entries);
+			}
+
+			// Default return
+			$entries = $entries;
+
+		  
+			
+			return array('status' => 1, 'entries' => $entries);
+	/*	}
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		} */
+	}
 		public static function getAllTrashMessages($user_id)
 	{
 	/*	try
@@ -228,7 +271,7 @@ class MessagesEntry extends Eloquent
 					'messages.id AS id'
  				)
 				->where('messages.is_sent', '=', '1')
-				->where('messages.reciever', '=', $id)
+				->where('messages.sender', '=', $id)
 				->get();
 
 			return array('status' => 1, 'countedsentmessages' => count($countedsentmessages));

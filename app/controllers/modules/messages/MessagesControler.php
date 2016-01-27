@@ -202,7 +202,7 @@ class MessagesController extends CoreController {
 
 
 
-		$messageList = MessagesEntry::getAllTrashMessages(Auth::user()->id);
+		$messageList = MessagesEntry::getAllSentMessages(Auth::user()->id);
 		$countedunreadmessages = MessagesEntry::getCountUnreadMessages(Auth::user()->id);
 		$counteddeletedmessages = MessagesEntry::getCountDeletedMessages(Auth::user()->id);
 		$countedsentmessages = MessagesEntry::getCountSentMessages(Auth::user()->id);
@@ -350,6 +350,38 @@ public function postSingleViewReply()
 			return Redirect::route('messagesLanding')->with('success_message', Lang::get('messages_msg.msg_success_entry_added', array('title' => Input::get('title'))));
 		}
 	}
+	// Post delete entry
+	public function getDeleteEntry($id = null)
+	{
+		if ($id == null)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('membership.msg_error_getting_entry'));
+		}
+
+		$message = MessagesEntry::getSingleMessagesEntry($id);
+		if ($message['status'] == 0)
+		{
+			return Redirect::back()->with('error_message', Lang::get('membership.msg_error_getting_entry'));
+		}
+
+		if (!is_object($message['message']))
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('membership.msg_error_getting_entry'));
+		}
+
+  
+		$deleteMessage = $this->repo->deleteMessage($id);
+
+		if ($deleteMessage['status'] == 1)
+		{
+			return Redirect::route('InboxMessages')->with('success_message', Lang::get('messages_msg.msg_success_entry_deleted'));
+		}
+		else
+		{
+			return Redirect::route('InboxMessages')->with('error_message', Lang::get('messages_msg.msg_error_deleting_entry'));
+		}
+	}
+
 
 	
 }

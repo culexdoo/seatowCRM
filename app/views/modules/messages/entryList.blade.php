@@ -73,7 +73,7 @@
                     <td> 
 
                     <span class="label label-danger pull-right">
-                    <a class="text-white" href="{{ URL::route('SingleView', array('entries' => $message->id)) }}">
+                    <a class="text-white" href="{{ URL::route('DeleteSingleMessage', array('entries' => $message->id)) }}">
                     {{ Lang::get('messages_msg.delete') }}
                     </a></span>
 
