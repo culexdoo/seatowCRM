@@ -90,13 +90,21 @@ class CoreController extends BaseController
 
 		
 
-		$this->layout->css_files = array( 
-		
+	$this->layout->css_files = array( 
+			'plugins/datatables/dataTables.bootstrap.css'
+
 		);
 
 		$this->layout->js_header_files = array( 
+			'js/core/Chart.js'
+			
 
+
+			
 		);
+
+
+
 		$this->layout->content = View::make('core.home', array('title' => 'Administracija oglasa', 'user' => $user['user'], 'trackingdata' => $dashboardTracking, 'lastclients' => $lastClients, 'counted_user_number' => $countedUsers, 'counted_boats_number' => $countedBoats, 'counted_franchisee_number' => $countedFranchisee));
 	}
  

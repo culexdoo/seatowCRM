@@ -175,3 +175,6 @@ span.bolded {
 .padding-table {
     padding-left: 22px;
 }
+#graph { 
+     max-height: 100px; 
+   }
