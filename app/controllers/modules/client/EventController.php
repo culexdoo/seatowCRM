@@ -26,7 +26,7 @@ public function getAddEvent($user_id)
 		 
 		$user = User::getUserInfos(Auth::user()->id);
 
-
+		
 
 		if ($user['status'] == 0)
 

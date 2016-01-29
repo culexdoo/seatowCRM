@@ -56,8 +56,8 @@
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-read-info">
-                <h3>Message <?php echo $message['message']->subject; ?></h3>
-                <h5>From: <?php echo $message['message']->sender_first_name; ?> <?php echo $message['message']->sender_last_name; ?>
+                <h3><?php echo Lang::get('messages_msg.subject'); ?>: <?php echo $message['message']->subject; ?></h3>
+                <h5><?php echo Lang::get('messages_msg.from'); ?>: <?php echo $message['message']->sender_first_name; ?> <?php echo $message['message']->sender_last_name; ?>
 
                   <span class="mailbox-read-time pull-right"><?php echo $message['message']->created_at; ?></span></h5>
               </div>

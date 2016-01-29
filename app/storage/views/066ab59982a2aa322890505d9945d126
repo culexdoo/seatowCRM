@@ -1178,8 +1178,9 @@
           </div>
   
       </section>
+      
         <script type="text/javascript">
          $('select').select2();
-         
+         if ($(element).not(':visible')) {
         $('.select2-search__field').width("100%"); 
         </script>

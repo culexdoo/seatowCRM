@@ -593,3 +593,8 @@
     </div>
   </div>
   </section><!-- /.content -->
+   <script>
+          $(function () {
+          $("#list-invoices").DataTable();
+          });
+          </script>

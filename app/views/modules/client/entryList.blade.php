@@ -22,9 +22,9 @@
 
                 <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.add_client') }}</a>
                 <!-- BUTTON EXPORT TO PDF -->
-                 <a class="btn btn-info btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.export_to_pdf') }}</a>
+                 <a class="btn btn-info btn-flat pull-right" href="#"><i class="fa fa-plus"></i>{{ Lang::get('client.export_to_pdf') }}</a>
 
-                   <a class="btn btn-info btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.export_to_csv') }}</a>
+                   <a class="btn btn-info btn-flat pull-right" href="#"><i class="fa fa-plus"></i>{{ Lang::get('client.export_to_csv') }}</a>
                </div>
                </div>
 

@@ -47,11 +47,14 @@ class InvoiceController extends CoreController {
 		$this->layout->title = 'List Invoice';
 
 
-		$this->layout->css_files = array( 
+				$this->layout->css_files = array( 
+			'plugins/datatables/dataTables.bootstrap.css'
 		);
 
 		$this->layout->js_header_files = array( 
-		);
+			'plugins/datatables/jquery.dataTables.min.js',
+			'plugins/datatables/dataTables.bootstrap.min.js'
+			);
 
 		$this->layout->content = View::make('modules.invoice.entryList', array('title' => 'List Invoice', 'user' => $user['user'], 'entries' => $entries['entries'] ));
 		 

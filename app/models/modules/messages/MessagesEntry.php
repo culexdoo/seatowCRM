@@ -160,6 +160,7 @@ class MessagesEntry extends Eloquent
 			{
 				$entries = $entries->where('messages.sender', '=', $user_id)
 				->where('messages.is_sent', '=', '1')
+				->where('messages.is_active', '=', '1')
 				->orderBy('messages.created_at', 'DESC')
 					->get();
 
@@ -203,6 +204,10 @@ class MessagesEntry extends Eloquent
 			{
 				$entries = $entries->where('messages.reciever', '=', $user_id)
 				->where('messages.is_active', '=', '0')
+				->where('messages.reciever', '=', $user_id)
+				->orWhere('messages.sender', '=', $user_id)
+				->where('messages.is_active', '=', '0')
+
 				->orderBy('messages.created_at', 'DESC')
 					->get();
 
@@ -252,6 +257,8 @@ class MessagesEntry extends Eloquent
  				)
 				->where('messages.is_active', '=', '0')
 				->where('messages.reciever', '=', $id)
+				->orWhere('messages.sender', '=', $id)
+				->where('messages.is_active', '=', '0')
 				->get();
 
 			return array('status' => 1, 'counteddeletedmessages' => count($counteddeletedmessages));
@@ -271,6 +278,7 @@ class MessagesEntry extends Eloquent
 					'messages.id AS id'
  				)
 				->where('messages.is_sent', '=', '1')
+				->where('messages.is_active', '=', '1')
 				->where('messages.sender', '=', $id)
 				->get();
 

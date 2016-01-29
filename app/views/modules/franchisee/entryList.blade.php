@@ -126,3 +126,8 @@
             </div>
           </div>
           </section><!-- /.content -->
+          <script>
+          $(function () {
+          $("#list-franchisees").DataTable();
+          });
+          </script>

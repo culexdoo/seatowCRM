@@ -12,7 +12,7 @@
              
               <div class="box box-solid">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Folders</h3>
+                  <h3 class="box-title">{{ Lang::get('messages_msg.folders') }}</h3>
                   <div class="box-tools">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
@@ -22,7 +22,7 @@
                 <ul class="nav nav-pills nav-stacked">
 
 
-                <li><a href="{{ URL::route('InboxMessages') }}"><i class="fa fa-inbox"></i> Inbox
+                <li><a href="{{ URL::route('InboxMessages') }}"><i class="fa fa-inbox"></i>{{ Lang::get('messages_msg.inbox') }}
                   <span class="label label-primary pull-right">{{ $countedunreadmessages['countedunreadmessages'] }}</span></a></li>
                 <li><a href="{{ URL::route('SentMessages') }}"><i class="fa fa-envelope-o"></i> Sent<span class="label label-primary pull-right">{{ $countedsentmessages['countedsentmessages'] }}</span></a></a>
                 </li>
@@ -40,7 +40,7 @@
             <div class="col-md-9">
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Compose New Message</h3>
+                  <h3 class="box-title">{{ Lang::get('messages_msg.compose_new_message') }}</h3>
 
                 </div>
                   {{ Form::open(array('route' => $postRoute, 'role' => 'form', 'autocomplete' => 'off', 'files' => false)) }}

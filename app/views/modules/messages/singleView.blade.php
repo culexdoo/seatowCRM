@@ -52,8 +52,8 @@
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-read-info">
-                <h3>Message {{ $message['message']->subject }}</h3>
-                <h5>From: {{ $message['message']->sender_first_name }} {{ $message['message']->sender_last_name }}
+                <h3>{{ Lang::get('messages_msg.subject') }}: {{ $message['message']->subject }}</h3>
+                <h5>{{ Lang::get('messages_msg.from') }}: {{ $message['message']->sender_first_name }} {{ $message['message']->sender_last_name }}
                   <span class="mailbox-read-time pull-right">{{ $message['message']->created_at }}</span></h5>
               </div>
             

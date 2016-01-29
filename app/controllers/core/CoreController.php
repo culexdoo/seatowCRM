@@ -88,6 +88,8 @@ class CoreController extends BaseController
 
 		$countedFranchisee = FranchiseeEntry::getCountFranchisee();
 
+		
+
 		$this->layout->css_files = array( 
 		
 		);

@@ -27,7 +27,18 @@ return array(
 	'old_password'								=>	'Old password',
 	'new_password'								=>	'New password',
 	'repeat_new_password'						=>	'Repeat new password',
-	'basic_information'							=>	'Basic information'
+	'basic_information'							=>	'Basic information',
+	'dashboard'									=>	'Dashbaord',
+	'more_info'									=>	'More info',
+	'boats'										=>	'Boats',
+	'franchises'								=>	'Franchises',
+	'invoices'									=>	'Invoices',
+	'client'									=>	'Client',
+	'recent_action'								=>	'Recent action',
+	'last_10_clients'							=>	'Last 10 clients',
+	'client_id'									=>	'Client ID',
+	'added'										=>	'Added',
+	'quick_action'								=>	'Quick action'
 
 
 );

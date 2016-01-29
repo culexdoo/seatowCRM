@@ -4,7 +4,7 @@
             <h1>
             Dashboard
             </h1>
-            
+           
           </section>
           <!-- Main content -->
           <section class="content">
@@ -14,12 +14,12 @@
                 <div class="small-box bg-aqua">
                   <div class="inner">
                     <h3>{{ $counted_user_number['counted_user_number'] }}</h3>
-                    <p>Clients</p>
+                    <p>{{ Lang::get('core.dashboard') }}</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-user"></i>
                   </div>
-                  <a href="{{ URL::route('clientLanding') }}" class="small-box-footer">More info <i class="fa fa-eye"></i></a>
+                  <a href="{{ URL::route('clientLanding') }}" class="small-box-footer">{{ Lang::get('core.more_info') }}<i class="fa fa-eye"></i></a>
                 </div>
               </div>
               <!-- ./col -->
@@ -28,12 +28,12 @@
                 <div class="small-box bg-green">
                   <div class="inner">
                     <h3>{{ $counted_boats_number['counted_boats_number'] }}</h3>
-                    <p>Boats</p>
+                    <p>{{ Lang::get('core.boats') }}</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-ship"></i>
                   </div>
-                  <a href="{{ URL::route('boatsLanding') }}" class="small-box-footer">More info <i class="fa fa-eye"></i></a>
+                  <a href="{{ URL::route('boatsLanding') }}" class="small-box-footer">{{ Lang::get('core.more_info') }} <i class="fa fa-eye"></i></a>
                 </div>
               </div>
               <!-- ./col -->
@@ -42,12 +42,12 @@
                 <div class="small-box bg-yellow">
                   <div class="inner">
                     <h3>{{ $counted_franchisee_number['counted_franchisee_number'] }}</h3>
-                    <p>Franchises</p>
+                    <p>{{ Lang::get('core.franchises') }}</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-bar-chart"></i>
                   </div>
-                  <a href="{{ URL::route('franchiseeLanding') }}" class="small-box-footer">More info <i class="fa fa-eye"></i></a>
+                  <a href="{{ URL::route('franchiseeLanding') }}" class="small-box-footer">{{ Lang::get('core.more_info') }} <i class="fa fa-eye"></i></a>
                 </div>
               </div>
               <!-- ./col -->
@@ -56,12 +56,12 @@
                 <div class="small-box bg-red">
                   <div class="inner">
                     <h3>3</h3>
-                    <p>Invoices</p>
+                    <p>{{ Lang::get('core.invoices') }}</p>
                   </div>
                   <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                   </div>
-                  <a href="{{ URL::route('invoiceLanding') }}" class="small-box-footer">More info <i class="fa fa-eye"></i></a>
+                  <a href="{{ URL::route('invoiceLanding') }}" class="small-box-footer">{{ Lang::get('core.more_info') }}<i class="fa fa-eye"></i></a>
                 </div>
               </div>
               <!-- ./col -->
@@ -70,18 +70,18 @@
               <section class="content col-lg-6">
                 <div class="box box-black">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Last 10 clients</h3>
+                    <h3 class="box-title">{{ Lang::get('core.last_10_clients') }}</h3>
                   </div>
                   <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                       <tbody>
                      
                       <tr>
-                        <th>ClientID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Added</th>
-                        <th class="call-md-2">Quick Actions</th>
+                        <th>{{ Lang::get('core.client_id') }}</th>
+                        <th>{{ Lang::get('core.first_name') }}</th>
+                        <th>{{ Lang::get('core.last_name') }}</th>
+                        <th>{{ Lang::get('core.added') }}</th>
+                        <th class="call-md-2">{{ Lang::get('core.quick_action') }}</th>
                       </tr>
                        @foreach($lastclients['lastclients'] as $client)
                       <tr>
@@ -110,7 +110,7 @@
             <section class="content col-lg-6">
               <div class="box box-black">
                 <div class="box-header with-border">
-                  <h3  class="box-title">Recent Actions</h3>
+                  <h3  class="box-title">{{ Lang::get('core.recent_action') }}</h3>
                   
                 </div>
                 <!-- /.box-header -->
@@ -191,7 +191,7 @@
                                 @endif
 
 
-                            <b>Client: </b>
+                            <b>{{ Lang::get('core.client') }}</b>
 
                             <a href"#">{{ $trackdata->first_name }} {{ $trackdata->last_name }}</a> 
                             <b>Date:</b>

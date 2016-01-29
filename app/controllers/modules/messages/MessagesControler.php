@@ -329,7 +329,7 @@ public function postSingleViewReply()
 		}
  
 		$recieverEmployee = EmployeeEntry::getSingleEmployeeEntryByID(Input::get('reciever'));
-		$setSent = $this->repo->setSent($id);
+		
 		$senderEmployee = EmployeeEntry::getSingleEmployeeEntryByID(Input::get('user_id'));
 		$addNewEntry = $this->repo->addEntry(
 			Input::get('user_id'), 

@@ -29,9 +29,13 @@ return array(
 	'from'							=>	'From',
 	'subject'						=>	'Subject',
 	'messages'						=>	'Messages',
-	'quick_action'					=>	'Quick Action',
+	'quick_action'					=>	'Quick action',
 	'sent'							=>	'Sent',
-	'to'							=>	'To'
+	'to'							=>	'To',
+	'reply'							=>	'Reply',
+	'folders'						=>	'Folders',
+	'compose_new_message'			=>	'Compose new message',
+	'my_messages'					=>	'My messages'
 	
 
 

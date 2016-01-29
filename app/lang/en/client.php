@@ -73,7 +73,9 @@ return array(
 	'edited'						=>	'Edited',
 	'deleted'						=>	'Deleted',
 	'trackdata_non_membership_service' 	=>	'NonMembership Service',
-	'trackdata_membership_service'	=>	'Membership service'
+	'trackdata_membership_service'	=>	'Membership service',
+	'pick_image'					=>	'Pick image',
+	'current_image'					=>	'Current image'
 
 
 );

@@ -89,3 +89,5 @@ if (Session::has('lang'))
 {
 	App::setLocale(Session::get('lang'));
 }
+
+require app_path().'/helpers.php';

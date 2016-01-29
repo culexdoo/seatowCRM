@@ -4,7 +4,7 @@
             <h1>
             Dashboard
             </h1>
-            
+           
           </section>
           <!-- Main content -->
           <section class="content">
@@ -14,12 +14,12 @@
                 <div class="small-box bg-aqua">
                   <div class="inner">
                     <h3><?php echo $counted_user_number['counted_user_number']; ?></h3>
-                    <p>Clients</p>
+                    <p><?php echo Lang::get('core.dashboard'); ?></p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-user"></i>
                   </div>
-                  <a href="<?php echo URL::route('clientLanding'); ?>" class="small-box-footer">More info <i class="fa fa-eye"></i></a>
+                  <a href="<?php echo URL::route('clientLanding'); ?>" class="small-box-footer"><?php echo Lang::get('core.more_info'); ?><i class="fa fa-eye"></i></a>
                 </div>
               </div>
               <!-- ./col -->
@@ -28,12 +28,12 @@
                 <div class="small-box bg-green">
                   <div class="inner">
                     <h3><?php echo $counted_boats_number['counted_boats_number']; ?></h3>
-                    <p>Boats</p>
+                    <p><?php echo Lang::get('core.boats'); ?></p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-ship"></i>
                   </div>
-                  <a href="<?php echo URL::route('boatsLanding'); ?>" class="small-box-footer">More info <i class="fa fa-eye"></i></a>
+                  <a href="<?php echo URL::route('boatsLanding'); ?>" class="small-box-footer"><?php echo Lang::get('core.more_info'); ?> <i class="fa fa-eye"></i></a>
                 </div>
               </div>
               <!-- ./col -->
@@ -42,12 +42,12 @@
                 <div class="small-box bg-yellow">
                   <div class="inner">
                     <h3><?php echo $counted_franchisee_number['counted_franchisee_number']; ?></h3>
-                    <p>Franchises</p>
+                    <p><?php echo Lang::get('core.franchises'); ?></p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-bar-chart"></i>
                   </div>
-                  <a href="<?php echo URL::route('franchiseeLanding'); ?>" class="small-box-footer">More info <i class="fa fa-eye"></i></a>
+                  <a href="<?php echo URL::route('franchiseeLanding'); ?>" class="small-box-footer"><?php echo Lang::get('core.more_info'); ?> <i class="fa fa-eye"></i></a>
                 </div>
               </div>
               <!-- ./col -->
@@ -56,12 +56,12 @@
                 <div class="small-box bg-red">
                   <div class="inner">
                     <h3>3</h3>
-                    <p>Invoices</p>
+                    <p><?php echo Lang::get('core.invoices'); ?></p>
                   </div>
                   <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                   </div>
-                  <a href="<?php echo URL::route('invoiceLanding'); ?>" class="small-box-footer">More info <i class="fa fa-eye"></i></a>
+                  <a href="<?php echo URL::route('invoiceLanding'); ?>" class="small-box-footer"><?php echo Lang::get('core.more_info'); ?><i class="fa fa-eye"></i></a>
                 </div>
               </div>
               <!-- ./col -->
@@ -70,18 +70,18 @@
               <section class="content col-lg-6">
                 <div class="box box-black">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Last 10 clients</h3>
+                    <h3 class="box-title"><?php echo Lang::get('core.last_10_clients'); ?></h3>
                   </div>
                   <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                       <tbody>
                      
                       <tr>
-                        <th>ClientID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Added</th>
-                        <th class="call-md-2">Quick Actions</th>
+                        <th><?php echo Lang::get('core.client_id'); ?></th>
+                        <th><?php echo Lang::get('core.first_name'); ?></th>
+                        <th><?php echo Lang::get('core.last_name'); ?></th>
+                        <th><?php echo Lang::get('core.added'); ?></th>
+                        <th class="call-md-2"><?php echo Lang::get('core.quick_action'); ?></th>
                       </tr>
                        <?php foreach($lastclients['lastclients'] as $client): ?>
                       <tr>
@@ -110,7 +110,7 @@
             <section class="content col-lg-6">
               <div class="box box-black">
                 <div class="box-header with-border">
-                  <h3  class="box-title">Recent Actions</h3>
+                  <h3  class="box-title"><?php echo Lang::get('core.recent_action'); ?></h3>
                   
                 </div>
                 <!-- /.box-header -->
@@ -202,7 +202,7 @@
                                 <?php endif; ?>
 
 
-                            <b>Client: </b>
+                            <b><?php echo Lang::get('core.client'); ?></b>
 
                             <a href"#"><?php echo $trackdata->first_name; ?> <?php echo $trackdata->last_name; ?></a> 
                             <b>Date:</b>

@@ -36,7 +36,7 @@ class ClientController extends CoreController {
 
 		// Get module landing data
 		$entries = ClientEntry::getAllClients();
-	
+		
 
 		if ($entries['status'] == 0)
 		{
@@ -462,7 +462,7 @@ class ClientController extends CoreController {
 		}
 
 		$entry = ClientEntry::getSingleClientEntry($id);
-
+		
 		
 		if ($entry['status'] == 0)
 		{

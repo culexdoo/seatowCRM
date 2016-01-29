@@ -63,6 +63,8 @@ class MessagesRepository
 		{  */
 			$entry = MessagesEntry::find($id); 
 			$entry->is_active = '0';
+			$entry->is_read = '1';
+
 
 			$entry->save();
 
@@ -73,5 +75,6 @@ class MessagesRepository
 			return array('status' => 0, 'reason' => $exp->getMessage());
 		} */
 	}
+
 
 }

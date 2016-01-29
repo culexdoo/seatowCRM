@@ -1,6 +1,7 @@
  <section class="content-header">
           <h1>
-         My messages 
+         <?php echo Lang::get('messages_msg.my_messages'); ?>
+
           </h1>
           
         </section>
@@ -13,11 +14,11 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="<?php echo URL::route('messagesLanding'); ?>" class="btn btn-primary btn-block margin-bottom">Compose</a>
+          <a href="<?php echo URL::route('messagesLanding'); ?>" class="btn btn-primary btn-block margin-bottom"><?php echo Lang::get('messages_msg.compose'); ?></a>
 
           <div class="box box-solid">
             <div class="box-header with-border">
-              <h3 class="box-title">Folders</h3>
+              <h3 class="box-title"><?php echo Lang::get('messages_msg.folders'); ?></h3>
 
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -26,7 +27,8 @@
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="<?php echo URL::route('InboxMessages'); ?>"><i class="fa fa-inbox"></i> Inbox
+                <li class="active"><a href="<?php echo URL::route('InboxMessages'); ?>"><i class="fa fa-inbox"></i><?php echo Lang::get('messages_msg.inbox'); ?>
+
                   <span class="label label-primary pull-right"><?php echo $countedunreadmessages['countedunreadmessages']; ?></span></a></li>
                 <li><a href="<?php echo URL::route('SentMessages'); ?>"><i class="fa fa-envelope-o"></i> Sent<span class="label label-primary pull-right"><?php echo $countedsentmessages['countedsentmessages']; ?></span></a></a>
                 </li>
@@ -54,12 +56,13 @@
                 
                   <thead>
                   <tr>
-                  <th>Status:</th>
-                  <th>From:</th>
-                  <th>Subject:</th>
-                  <th>Message:</th>
-                  <th>Sent:</th>
-                  <th class="pull-right">Quick Actions:</th>
+                  <th><?php echo Lang::get('messages_msg.status'); ?>:</th>
+                  <th><?php echo Lang::get('messages_msg.from'); ?>:</th>
+
+                  <th><?php echo Lang::get('messages_msg.subject'); ?>:</th>
+                  <th><?php echo Lang::get('messages_msg.message'); ?>:</th>
+                  <th><?php echo Lang::get('messages_msg.sent'); ?>:</th>
+                  <th class="pull-right"><?php echo Lang::get('messages_msg.quick_action'); ?>:</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -68,6 +71,7 @@
                   <tr <?php if($message->is_read == '0'): ?>class="unread" <?php endif; ?>>
                   <td><?php if($message->is_read == '0'): ?><b>Unread</b> <?php else: ?> Read <?php endif; ?></td>
                     <td><?php echo $message->sender_first_name; ?> <?php echo $message->sender_last_name; ?></td>
+                     
                     <td><?php echo $message->subject; ?></td>
                     <td><?php echo $message->message; ?></td>
                     <td><?php echo $message->created_at; ?></td>

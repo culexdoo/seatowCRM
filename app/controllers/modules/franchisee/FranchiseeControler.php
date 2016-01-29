@@ -48,10 +48,14 @@ class FranchiseeController extends CoreController {
 
 
 		$this->layout->css_files = array( 
+			'plugins/datatables/dataTables.bootstrap.css'
 		);
 
 		$this->layout->js_header_files = array( 
+			'plugins/datatables/jquery.dataTables.min.js',
+			'plugins/datatables/dataTables.bootstrap.min.js'
 		);
+
 
 		$this->layout->content = View::make('modules.franchisee.entryList', array('title' => 'List Franchisee', 'user' => $user['user'], 'entries' => $entries['entries'] ));
 		 

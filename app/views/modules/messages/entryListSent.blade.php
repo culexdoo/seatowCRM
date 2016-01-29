@@ -1,6 +1,6 @@
  <section class="content-header">
           <h1>
-         My messages 
+         {{ Lang::get('messages_msg.my_messages') }}
           </h1>
           
         </section>
@@ -12,11 +12,11 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="{{ URL::route('messagesLanding') }}" class="btn btn-primary btn-block margin-bottom">Compose</a>
+          <a href="{{ URL::route('messagesLanding') }}" class="btn btn-primary btn-block margin-bottom">{{ Lang::get('messages_msg.compose') }}</a>
 
           <div class="box box-solid">
             <div class="box-header with-border">
-              <h3 class="box-title">Folders</h3>
+              <h3 class="box-title">{{ Lang::get('messages_msg.folders') }}</h3>
 
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -73,7 +73,7 @@
                     <td> 
 
                     <span class="label label-danger pull-right">
-                    <a class="text-white" href="{{ URL::route('SingleView', array('entries' => $message->id)) }}">
+                    <a class="text-white" href="{{ URL::route('DeleteSingleMessage', array('entries' => $message->id)) }}">
                     {{ Lang::get('messages_msg.delete') }}
                     </a></span>
 
