@@ -33,6 +33,40 @@ class MessagesController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 
 		$allEmployeeList = array();
 
@@ -72,6 +106,48 @@ class MessagesController extends CoreController {
 	// Post 
 	public function postAddEntry()
 	{	
+		$user = User::getUserInfos(Auth::user()->id);
+
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		//Ovjde kupim sve podatke sa stranice iz fildova
 		Input::merge(array_map('trim', Input::all()));
 		//$user = User::getUserInfos(Auth::user()->id);
@@ -125,6 +201,41 @@ class MessagesController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 
 
 
@@ -162,6 +273,41 @@ class MessagesController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 
 
 
@@ -201,6 +347,41 @@ class MessagesController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 
 
 
@@ -241,6 +422,41 @@ class MessagesController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 
 
 
@@ -283,6 +499,41 @@ class MessagesController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 
 		$allEmployeeList = array();
 
@@ -315,6 +566,48 @@ class MessagesController extends CoreController {
 
 public function postSingleViewReply()
 	{	
+		$user = User::getUserInfos(Auth::user()->id);
+
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		//Ovjde kupim sve podatke sa stranice iz fildova
 		Input::merge(array_map('trim', Input::all()));
 
@@ -359,6 +652,41 @@ public function postSingleViewReply()
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('membership.msg_error_getting_entry'));
 		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 
 		$message = MessagesEntry::getSingleMessagesEntry($id);
 		if ($message['status'] == 0)

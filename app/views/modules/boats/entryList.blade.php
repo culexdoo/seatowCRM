@@ -1,5 +1,4 @@
 
-        <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
          {{ Lang::get('boats.list_all_boats') }}
@@ -11,20 +10,104 @@
         <section class="content">
           <div class="row">
             <div class="col-md-12">
-              
-              
+            <div>
 
 
-                  <div class="box box-black">
+              <div class="box box-black padding-clients">
                 <div class="box-header">
-                 <div class="col-md-6"> <h3 class="box-title"> {{ Lang::get('boats.list_of_all_boats') }}</h3>
+                 <div class="col-md-9"> <h3 class="box-title"> {{ Lang::get('boats.list_of_all_boats') }}</h3>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
+
+
                <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('boats.add_boat') }}</a>
+                <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                @if (count($entries) > 0) 
+                  <table id="list-boats-hidden" class="table hidden">
+                    <thead>
+                        <th>
+                         
+                          
+                    <td>{{ Lang::get('boats.membership_id') }}</td>
+                    <td>{{ Lang::get('boats.boat_name') }}</td>
+                    <td>{{ Lang::get('boats.owner') }} </td>
+                    <td>{{ Lang::get('boats.registration_no') }} </td>
+                    <td>{{ Lang::get('boats.employee') }}</td>
+                    <td>{{ Lang::get('boats.quick_options') }}</td>
+                    <td>{{ Lang::get('boats.lenght') }}</td>
+                    <td>{{ Lang::get('boats.federal_doc_no') }}</td>
+                    <td>{{ Lang::get('boats.registration_no') }}</td>
+                    <td>{{ Lang::get('boats.make') }}</td>
+                    <td>{{ Lang::get('boats.hull') }}</td>
+                    <td>{{ Lang::get('boats.boat_color') }}</td>
+                    <td>{{ Lang::get('boats.year') }}</td>
+                    <td>{{ Lang::get('boats.fuel_type') }}</td>
+                    <td>{{ Lang::get('boats.engine_type') }}</td>
+                    <td>{{ Lang::get('boats.additional_description') }}</td>
+                          
+                  
+                        </th>
+                      
+                    </thead>
+
+                    <tbody>
+                       @foreach($entries as $entry)
+                      <tr>
+                                <td></td>
+                                <td>{{ $entry->membership_id }}</td>
+                                <td>{{ $entry->boat_name }}</td>
+                                <td>{{ $entry->first_name }}</td>
+                                <td>{{ $entry->last_name }}</td>
+                                <td>{{ $entry->registration_no }}</td>
+
+                                <td>Tu ce biti employee </td>
+
+                                <td>{{ $entry->lenght }}m</td>
+                                <td>{{ $entry->federal_doc_no }}</td>
+                                <td>{{ $entry->registration_no }}</td>
+                                <td>{{ $entry->make_name }}</td>
+                                <td>{{ $entry->hull_name }}</td>
+                                <td>{{ $entry->boat_color }}</td>
+                                <td>{{ $entry->year }}</td>
+                                <td>{{ $entry->fuel_type }}</td>
+                                <td>
+                                          @if ($entry->engine_type_id == '1')
+                                          <p> 
+                                          In Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '2')
+                                          <p>
+                                          In/Out Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '3')
+                                          <p>
+                                          Out Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '4')
+                                          <p>
+                                          Sail
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '5')
+                                          <p>
+                                           Jet
+                                          </p>
+                                          @endif
+                                </td>
+                                <td>{{ $entry->description }}</td>
+                        
+                      
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                     @endif
+
+               <!--//////////////////////////////////////-->
                </div>
                </div>
                 <!-- /.box-header -->
-                <div clasee="box-body">
+
+                <div class="box-body">
                  @if (count($entries) > 0) 
                   <table id="list-boats" class="table">
                     <thead>
@@ -187,7 +270,9 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                        
+                            </div>
+
                         </td>
                       </tr>
             @endforeach
@@ -198,15 +283,27 @@
                     </tbody>
                   </table>
                      @endif
-                </div>
-                
+                   
                 <!-- /.box-body -->
-              </div>
+            
             </div>
+          </div>
+          </div>
+          </div>
           </div>
           </section><!-- /.content -->
            <script>
                       $(function () {
                       $("#list-boats").DataTable();
                       });
+                      </script>
+                       <script>
+                      $(document).ready(function() {
+                         $('#list-boats-hidden').DataTable( {
+                           dom: 'Brt',
+                           buttons: [
+                           'copy', 'csv', 'excel'
+                                    ]
+                               } );
+                                } );
                       </script>

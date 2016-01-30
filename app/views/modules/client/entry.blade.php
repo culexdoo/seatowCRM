@@ -295,7 +295,9 @@
                         </div>
                         <div class="col-md-6">
                           <label>{{ Lang::get('client.member_since') }}:</label>
-                          {{ Form::text('member_since', isset($entry->member_since) ? $entry->member_since : null, ['class' => 'form-control']) }}
+
+                          {{ Form::text('member_since', isset($entry->member_since) ? $entry->member_since : null, ['class' => 'form-control', 'data-inputmask' => "'alias': 'dd/mm/yyyy'", 'data-mask'=>""]) }}
+                          
                         </div>
                       </div>
                     </div>
@@ -1072,4 +1074,8 @@
          $('select').select2();
          if ($(element).not(':visible')) {
         $('.select2-search__field').width("100%"); 
+
+                  
+                      //Datemask dd/mm/yyyy
+                      $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});  
         </script>

@@ -9,17 +9,61 @@
         <section class="content">
           <div class="row">
             <div class="col-md-12">
-              
+              <div>
+
                  <div class="box box-black">
                 <div class="box-header">
-                 <div class="col-md-6"> <h3 class="box-title">{{ Lang::get('employee.list_of_all_employees') }}</h3>
+                 <div class="col-md-9"> <h3 class="box-title">{{ Lang::get('employee.list_of_all_employees') }}</h3>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
+
+
+
                <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('EmployeeGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('employee.add_employee') }}</a>
+                  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+                @if (count($entries) > 0) 
+                  <table id="list-employees-hiden" class="table hidden">
+                <thead>
+                  <th> 
+                    <td>{{ Lang::get('employee.employee_id') }}</td>
+                    <td>{{ Lang::get('employee.first_name') }}</td>
+                    <td>{{ Lang::get('employee.last_name') }}</td>
+                    <td>{{ Lang::get('employee.mobile_number') }}</td>
+                    <td>{{ Lang::get('employee.city') }}</td>
+                    <td>{{ Lang::get('employee.franchisee_id') }}</td>
+                    <td>{{ Lang::get('employee.employee_description') }}</td>
+                  </th>  
+                </thead>
+
+                    <tbody>
+                     @foreach($entries as $entry)
+  
+                            <tr>
+                                <td></td>
+                                <td>{{ $entry->employee_id }}</td>
+                                <td>{{ $entry->first_name }}</td>
+                                <td>{{ $entry->last_name }}</td>
+                                <td>{{ $entry->mobile_number }}</td>
+                                <td>{{ $entry->city }}</td>
+                                <td>{{ $entry->franchisee_id }}</td>
+                                <td>{{ $entry->employee_description }}</td>
+                            </tr>
+  
+                       @endforeach
+                
+                      
+                      
+                    </tbody>
+                    </table>
+                     @endif
+                            <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                </div>
                </div>
+
                 <!-- /.box-header -->
-                <div clasee="box-body">
+
+                <div class="box-body">
                  @if (count($entries) > 0) 
                   <table id="list-employees" class="table">
                     <thead>
@@ -112,24 +156,26 @@
                                 <div class="col-md-10">
                                   <div class="col-md-4">
                                     <div class="form-group">
-                                      <h4><span class="bolded">City: </span>Osijek</h4>
+                                      <h4><span class="bolded">{{ Lang::get('employee.city') }}: </span>{{ $entry->city }}</h4>
+                                     
                                     </div>
                                   </div>
                                   <div class="col-md-4">
                                     <div class="form-group">
-                                      <h4><span class="bolded">Mobile Number: </span>095/558-98-98</h4>
+                                      <h4><span class="bolded">{{ Lang::get('employee.employee_description') }}: </span>{{ $entry->employee_description }}</h4>
                                     </div>
                                   </div>
+
                                   <div class="col-md-4">
                                       <div class="form-group">
-                        <label>Franchisee</label>
-                        <textarea class="form-control" rows="4" placeholder="Damlatia South (105) - [ +49 (0) 700-00-SEATOW]"></textarea>
-                      </div>
+                                        <h4><span class="bolded">{{ Lang::get('employee.franchisee_id') }}:</span>
+                                    {{ $entry->franchisee_id }}</h4>
+                                   </div>
                                   </div>
                                 </div>
                                 <div class="div-md-2">
                                   <div class="form-group pull-right border-img">
-                                    <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                                  <img src="uploads/modules/client/thumbs/{{ $entry->image }}" alt="User Image"/>
                                   </div>
                                 </div>
                               </div>
@@ -149,6 +195,7 @@
                 
                 <!-- /.box-body -->
               </div>
+              </div>
             </div>
           </div>
           </section>
@@ -157,3 +204,13 @@
                       $("#list-employees").DataTable();
                       });
                       </script><!-- /.content -->
+                      <script>
+                      $(document).ready(function() {
+                         $('#list-employees-hiden').DataTable( {
+                           dom: 'Brt',
+                           buttons: [
+                           'copy', 'csv', 'excel'
+                                    ]
+                               } );
+                                } );
+                      </script>

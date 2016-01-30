@@ -44,7 +44,8 @@ class EmployeeEntry extends Eloquent
 					'users.mobile_number AS mobile_number',
 					'users.employee_description AS employee_description',
 					'users.email AS email',
-					'users.password AS password'
+					'users.password AS password',
+					'users.city AS city'
 				);
 			
 			if ($employee_id != null)
@@ -118,7 +119,12 @@ class EmployeeEntry extends Eloquent
 					'users.mobile_number AS mobile_number',
 					'users.employee_description AS employee_description',
 					'users.email AS email',
-					'users.password AS password'
+					'users.password AS password',
+					'users.city AS city',
+					'users.mobile_number AS mobile_number',
+					'users.franchisee_id AS franchisee_id',
+					'users.image AS image',
+					'users.employee_description AS employee_description'
 				)
 				->where('users.user_group', '=', 'employee')
 				->orderBy('users.created_at', 'DESC')

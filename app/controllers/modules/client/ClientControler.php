@@ -34,6 +34,41 @@ class ClientController extends CoreController {
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 		// Get module landing data
 		$entries = ClientEntry::getAllClients();
 		
@@ -48,13 +83,21 @@ class ClientController extends CoreController {
 
 		$this->layout->css_files = array( 
 			'plugins/datatables/dataTables.bootstrap.css',
+			'css/core/buttons.dataTables.min.css',
 			'css/core/select2.min.css'
 		);
 
 		$this->layout->js_header_files = array( 
 			'plugins/datatables/jquery.dataTables.min.js',
 			'plugins/datatables/dataTables.bootstrap.min.js',
-			'js/core/select2.full.min.js'
+			'js/core/select2.full.min.js',
+			'js/core/dataTables.buttons.min.js',
+			'js/core/buttons.flash.min.js',
+			'js/core/jszip.min.js',
+			'js/core/pdfmake.min.js',
+			'js/core/vfs_fonts.js',
+			'js/core/buttons.html5.min.js',
+			'js/core/buttons.print.min.js'
 
 			
 		);
@@ -77,6 +120,40 @@ class ClientController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		// Getting all countries
 		$countryList = array();
 
@@ -146,7 +223,9 @@ class ClientController extends CoreController {
 		);
 
 		$this->layout->js_header_files = array( 
-			'js/core/select2.full.min.js'
+			'js/core/select2.full.min.js',
+			'js/core/vanilla-masker.min.js'
+
 		);
 
 		$this->layout->content = View::make('modules.client.entry', array('mode' => 'add',
@@ -159,6 +238,49 @@ class ClientController extends CoreController {
 	// Post add classifiedoffer
 	public function postAddEntry()
 	{	
+		$user = User::getUserInfos(Auth::user()->id);
+
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+		
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		//Ovjde kupim sve podatke sa stranice iz fildova
 		Input::merge(array_map('trim', Input::all()));
 		
@@ -360,7 +482,49 @@ class ClientController extends CoreController {
 	// Post edit entry page
 	public function postEditEntry()
 	{
+		$user = User::getUserInfos(Auth::user()->id);
 
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+		
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		
 		Input::merge(array_map('trim', Input::all()));
 

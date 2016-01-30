@@ -147,7 +147,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 						'users.id AS id',
 						'users.email AS email',
 						'users.first_name AS first_name',
-						'users.last_name AS last_name'
+						'users.last_name AS last_name',
+						'users.user_group AS user_group'
 						)
 					->where('users.id', '=', $id)
 					->first();

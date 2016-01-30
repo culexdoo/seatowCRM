@@ -12,23 +12,389 @@
         <section class="content">
           <div class="row">
             <div class="col-md-12">
-              
+            <div>
+ 
               
               <div class="box box-black">
-                <div class="box-header">
-                 <div class="col-md-6"> <h3 class="box-title"> {{ Lang::get('client.list_of_all_clients') }}</h3>
+                <div class="box-header padding-clients">
+                 <div class="col-md-9"> <h3 class="box-title"> {{ Lang::get('client.list_of_all_clients') }}</h3>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
 
                 <a class="btn btn-success btn-flat pull-right" href="{{ URL::route('ClientGetAddEntry') }}"><i class="fa fa-plus"></i>{{ Lang::get('client.add_client') }}</a>
                 <!-- BUTTON EXPORT TO PDF -->
-                 <a class="btn btn-info btn-flat pull-right" href="#"><i class="fa fa-plus"></i>{{ Lang::get('client.export_to_pdf') }}</a>
+            <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            
+               @if (count($entries) > 0) 
+                  <table id="list-clients-hidden" class="table hidden">
+                    <thead>
+                      <th>
 
-                   <a class="btn btn-info btn-flat pull-right" href="#"><i class="fa fa-plus"></i>{{ Lang::get('client.export_to_csv') }}</a>
+                          <td>  {{ Lang::get('client.membership_id') }}</td>
+                          
+                          <td>  {{ Lang::get('client.title') }}</td>
+
+                          <td>  {{ Lang::get('client.first_name') }}</td>
+
+                          <td>  {{ Lang::get('client.last_name') }}</td>
+
+                          <td>  {{ Lang::get('client.status') }}</td>
+
+                          <td>  {{ Lang::get('boats.boat_name') }}</td>
+
+                          <td>  {{ Lang::get('boats.registration_no') }}</td>
+
+                          <td>  {{ Lang::get('client.franchisee_id') }}</td>
+
+                          <td>  {{ Lang::get('client.membership_expiriation_date') }}</td>
+
+                          <td> {{ Lang::get('client.company') }}</td>
+
+                          <td>  {{ Lang::get('client.address') }}</td>
+
+                          <td> {{ Lang::get('client.country') }}</td>
+
+                          <td> {{ Lang::get('client.state') }}</td>
+
+                          <td>  {{ Lang::get('client.city') }}</td>
+
+                          <td> {{ Lang::get('client.zip_code') }}</td>
+
+                          <td>  {{ Lang::get('client.mobile_number') }}</td>
+
+                          <td>  {{ Lang::get('client.email') }}</td>
+
+                          <td>  {{ Lang::get('client.member_since') }}</td>
+
+                          <td>  {{ Lang::get('client.membership_period') }}</td>
+
+                          <td>  {{ Lang::get('client.member_type') }}</td>
+
+                          <td>  {{ Lang::get('client.homeport') }}</td>
+
+                          <td>  {{ Lang::get('client.home_no') }}</td>
+
+                          <td>  {{ Lang::get('client.bus_no') }}</td>
+
+                          <td>  {{ Lang::get('client.summer_no') }}</td>
+
+                          <td>  {{ Lang::get('client.fax_no') }}</td>
+
+                          <td>  {{ Lang::get('boats.make') }}</td>
+
+                          <td>   {{ Lang::get('boats.hull') }}</td>
+
+                          <td>    {{ Lang::get('boats.year') }}</td>
+
+                          <td>   {{ Lang::get('boats.engine_type') }}</td>
+ 
+                          <td>   {{ Lang::get('boats.color') }}</td>
+
+                          <td>   {{ Lang::get('boats.lenght') }}</td>
+
+                          <td>   {{ Lang::get('boats.fuel_type') }}</td>
+
+                          <td>    {{ Lang::get('boats.federal_doc_no') }}</td>
+
+                        </th>
+                     
+                    </thead>
+                    <tfoot>
+                           <th>
+
+                          <td>  {{ Lang::get('client.membership_id') }}</td>
+                          
+                          <td>  {{ Lang::get('client.title') }}</td>
+
+                          <td>  {{ Lang::get('client.first_name') }}</td>
+
+                          <td>  {{ Lang::get('client.last_name') }}</td>
+
+                          <td>  {{ Lang::get('client.status') }}</td>
+
+                          <td>  {{ Lang::get('boats.boat_name') }}</td>
+
+                          <td>  {{ Lang::get('boats.registration_no') }}</td>
+
+                          <td>  {{ Lang::get('client.franchisee_id') }}</td>
+
+                          <td>  {{ Lang::get('client.membership_expiriation_date') }}</td>
+
+                          <td> {{ Lang::get('client.company') }}</td>
+
+                          <td>  {{ Lang::get('client.address') }}</td>
+
+                          <td> {{ Lang::get('client.country') }}</td>
+
+                          <td> {{ Lang::get('client.state') }}</td>
+
+                          <td>  {{ Lang::get('client.city') }}</td>
+
+                          <td> {{ Lang::get('client.zip_code') }}</td>
+
+                          <td>  {{ Lang::get('client.mobile_number') }}</td>
+
+                          <td>  {{ Lang::get('client.email') }}</td>
+
+                          <td>  {{ Lang::get('client.member_since') }}</td>
+
+                          <td>  {{ Lang::get('client.membership_period') }}</td>
+
+                          <td>  {{ Lang::get('client.member_type') }}</td>
+
+                          <td>  {{ Lang::get('client.homeport') }}</td>
+
+                          <td>  {{ Lang::get('client.home_no') }}</td>
+
+                          <td>  {{ Lang::get('client.bus_no') }}</td>
+
+                          <td>  {{ Lang::get('client.summer_no') }}</td>
+
+                          <td>  {{ Lang::get('client.fax_no') }}</td>
+
+                          <td>  {{ Lang::get('boats.make') }}</td>
+
+                          <td>   {{ Lang::get('boats.hull') }}</td>
+
+                          <td>    {{ Lang::get('boats.year') }}</td>
+
+                          <td>   {{ Lang::get('boats.engine_type') }}</td>
+ 
+                          <td>   {{ Lang::get('boats.color') }}</td>
+
+                          <td>   {{ Lang::get('boats.lenght') }}</td>
+
+                          <td>   {{ Lang::get('boats.fuel_type') }}</td>
+
+                          <td>    {{ Lang::get('boats.federal_doc_no') }}</td>
+
+                        </th>
+                  
+                    </tfoot>
+                    <tbody>
+                         @foreach($entries as $entry)
+                      <tr>
+                       
+                                <td></td>
+                                <td>
+                                  {{ $entry->membership_id }}
+                                </td>
+                                <td>
+                                    @if ($entry->title == '1')
+                                    <p> 
+                                    Mr.
+                                    </p>
+                                    @elseif ($entry->title == '2')
+                                    <p>
+                                    Ms.
+                                    </p>
+                                    @elseif ($entry->title == '3')
+                                    <p>
+                                    Mrs.
+                                    </p>
+                                    @elseif ($entry->title == '4')
+                                    <p>
+                                    Miss.
+                                    </p>
+                                    @elseif ($entry->title == '5')
+                                    <p>
+                                    Dr.
+                                    </p>
+                                    @elseif ($entry->title == '6')
+                                    <p>
+                                    Capt.
+                                    </p>
+                                    @elseif ($entry->title == '7')
+                                    <p>
+                                    Co.
+                                    </p>
+                                    @elseif ($entry->title == '8')
+                                    <p>
+                                    Inc.
+                                    </p>
+                                    @elseif ($entry->title == '9')
+                                    <p>
+                                    Corp.
+                                    </p>
+                                    @endif
+                                </td>
+                                <td>
+                                  {{ $entry->first_name }}
+                                </td>
+                                <td>
+                                  {{ $entry->last_name }}
+                                </td>
+                                <td>
+                                 @if ($entry->status == '1')
+                                    <p> 
+                                    Active
+                                    </p>
+                                    @elseif ($entry->status == '2')
+                                    <p>
+                                    Inactive
+                                    </p>
+                                    @elseif ($entry->status == '3')
+                                    <p>
+                                    Expired
+                                    </p>
+                                    @elseif ($entry->status == '4')
+                                    <p>
+                                    Deleted
+                                    </p>
+                                    @endif
+                                </td>
+                                 <td>
+                                  {{ $entry->boat_name }}
+                                </td>
+                                 <td>
+                                  {{ $entry->registration_no }}
+                                </td>
+                                <td>
+                              {{ $entry->franchisee_id }}
+                                </td>
+                                <td>
+                                 {{ $entry->membership_to }}
+                                </td>
+
+                              
+                                    <td> <p>{{ $entry->company }}</p> </td>
+
+                                    <td> <p>{{ $entry->address }}</p> </td>
+                                     
+                                    <td> <p>{{ $entry->country_name }}</p> </td>
+                                     
+                                    <td>  <p>{{ $entry->state }}</p> </td>
+
+                                    <td><p>{{ $entry->city }}</p></td>
+                                     
+                                    <td><p>{{ $entry->zip }}</p> </td>
+                                      
+                                    <td><p>{{ $entry->mobile_number }}</p></td>
+                                      
+                                    <td> <p>{{ $entry->email }}</p></td>
+                                  
+                                    <td><p>{{ $entry->member_since }}</p></td>
+                                      
+                                    <td><p>{{ $entry->membership_from }} - {{ $entry->membership_to }}</p></td>
+                                      
+                                    <td>
+                                               @if ($entry->member_type == '1')
+                                          <p> 
+                                          Bpdemsee
+                                          </p>
+                                          @elseif ($entry->member_type == '2')
+                                          <p>
+                                          Bodensee Skifahren
+                                          </p>
+                                          @elseif ($entry->member_type == '3')
+                                          <p>
+                                          Charter Passenger
+                                          </p>
+                                          @elseif ($entry->member_type == '4')
+                                          <p>
+                                          Commercial
+                                          </p>
+                                          @elseif ($entry->member_type == '5')
+                                          <p>
+                                          Gold Card
+                                          </p>
+                                          @elseif ($entry->member_type == '6')
+                                          <p>
+                                          Seasonal < 1
+                                          </p>
+                                          @elseif ($entry->member_type == '7')
+                                          <p>
+                                          Seasonal > 1
+                                          </p>
+                                          @elseif ($entry->member_type == '8')
+                                          <p>
+                                          Skipper
+                                          </p>
+                                          @elseif ($entry->member_type == '9')
+                                          <p>
+                                          Trailer Boat
+                                          </p>
+                                          @elseif ($entry->member_type == '10')
+                                          <p>
+                                          Trailer Passanger
+                                          </p>
+                                          @elseif ($entry->member_type == '11')
+                                          <p>
+                                          VIP
+                                          </p>
+                                          @endif
+                                            </td>
+                                    
+                                     
+                                    <td> <p>{{ $entry->homeport }}</p> </td>
+                                  
+
+                                  
+                                      
+                                    <td> <p>{{ $entry->home_number }}</p> </td>
+                                    
+                                    <td>  <p>{{ $entry->bus_no }}</p> </td>
+                                      
+                                    <td>  <p>{{ $entry->summer_no }}</p> </td>
+                                    
+                                    <td>  <p>{{ $entry->fax_no }}</p> </td>
+                                 
+                                  
+                                
+                                    <td>  <p>{{ $entry->make_name }}</p> </td>
+                             
+                                    <td> <p>{{ $entry->hull_name }}</p></td>
+                                  
+                                    <td>  <p>{{ $entry->year }}</p> </td>
+                              
+                                    <td>   @if ($entry->engine_type_id == '1')
+                                          <p> 
+                                          In Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '2')
+                                          <p>
+                                          In/Out Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '3')
+                                          <p>
+                                          Out Board
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '4')
+                                          <p>
+                                          Sail
+                                          </p>
+                                          @elseif ($entry->engine_type_id == '5')
+                                          <p>
+                                          Jet
+                                          </p>
+                                          @endif </td>
+                                
+                                
+                                    <td>  <p>{{ $entry->boat_color }}</p></td>
+                                      
+                                    <td>  <p>{{ $entry->lenght }}</p></td>
+                                   
+                                    <td>  <p>{{ $entry->fuel_type }}</p></td>
+                                      
+                                    <td>  <p>{{ $entry->federal_doc_no }}</p></td>
+                                
+                                      
+                  
+                      </tr>
+     
+                    @endforeach
+                    </tbody>
+                  </table>
+                    @endif
+                    
+                    <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
                </div>
                </div>
+               
 
-                <div clasee="box-body">
+
+                <div class="box-body">
                 @if (count($entries) > 0) 
                   <table id="list-clients" class="table">
                     <thead>
@@ -392,9 +758,21 @@
               </div>
             </div>
           </div>
+          </div>
           </section><!-- /.content -->
                       <script>
                       $(function () {
                       $("#list-clients").DataTable();
                       });
+                      </script>
+                      
+                      <script>
+                      $(document).ready(function() {
+                         $('#list-clients-hidden').DataTable( {
+                           dom: 'Brt',
+                           buttons: [
+                           'copy', 'csv', 'excel'
+                                    ]
+                               } );
+                                } );
                       </script>

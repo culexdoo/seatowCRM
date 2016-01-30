@@ -12,20 +12,104 @@
         <section class="content">
           <div class="row">
             <div class="col-md-12">
-              
-              
+            <div>
 
 
-                  <div class="box box-black">
+              <div class="box box-black padding-clients">
                 <div class="box-header">
-                 <div class="col-md-6"> <h3 class="box-title"> <?php echo Lang::get('boats.list_of_all_boats'); ?></h3>
+                 <div class="col-md-9"> <h3 class="box-title"> <?php echo Lang::get('boats.list_of_all_boats'); ?></h3>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
+
+
                <a class="btn btn-success btn-flat pull-right" href="<?php echo URL::route('ClientGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('boats.add_boat'); ?></a>
+                <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <?php if(count($entries) > 0): ?> 
+                  <table id="list-boats-hidden" class="table hidden">
+                    <thead>
+                        <th>
+                         
+                          
+                    <td><?php echo Lang::get('boats.membership_id'); ?></td>
+                    <td><?php echo Lang::get('boats.boat_name'); ?></td>
+                    <td><?php echo Lang::get('boats.owner'); ?> </td>
+                    <td><?php echo Lang::get('boats.registration_no'); ?> </td>
+                    <td><?php echo Lang::get('boats.employee'); ?></td>
+                    <td><?php echo Lang::get('boats.quick_options'); ?></td>
+                    <td><?php echo Lang::get('boats.lenght'); ?></td>
+                    <td><?php echo Lang::get('boats.federal_doc_no'); ?></td>
+                    <td><?php echo Lang::get('boats.registration_no'); ?></td>
+                    <td><?php echo Lang::get('boats.make'); ?></td>
+                    <td><?php echo Lang::get('boats.hull'); ?></td>
+                    <td><?php echo Lang::get('boats.boat_color'); ?></td>
+                    <td><?php echo Lang::get('boats.year'); ?></td>
+                    <td><?php echo Lang::get('boats.fuel_type'); ?></td>
+                    <td><?php echo Lang::get('boats.engine_type'); ?></td>
+                    <td><?php echo Lang::get('boats.additional_description'); ?></td>
+                          
+                  
+                        </th>
+                      
+                    </thead>
+
+                    <tbody>
+                       <?php foreach($entries as $entry): ?>
+                      <tr>
+                                <td></td>
+                                <td><?php echo $entry->membership_id; ?></td>
+                                <td><?php echo $entry->boat_name; ?></td>
+                                <td><?php echo $entry->first_name; ?></td>
+                                <td><?php echo $entry->last_name; ?></td>
+                                <td><?php echo $entry->registration_no; ?></td>
+
+                                <td>Tu ce biti employee </td>
+
+                                <td><?php echo $entry->lenght; ?>m</td>
+                                <td><?php echo $entry->federal_doc_no; ?></td>
+                                <td><?php echo $entry->registration_no; ?></td>
+                                <td><?php echo $entry->make_name; ?></td>
+                                <td><?php echo $entry->hull_name; ?></td>
+                                <td><?php echo $entry->boat_color; ?></td>
+                                <td><?php echo $entry->year; ?></td>
+                                <td><?php echo $entry->fuel_type; ?></td>
+                                <td>
+                                          <?php if($entry->engine_type_id == '1'): ?>
+                                          <p> 
+                                          In Board
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '2'): ?>
+                                          <p>
+                                          In/Out Board
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '3'): ?>
+                                          <p>
+                                          Out Board
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '4'): ?>
+                                          <p>
+                                          Sail
+                                          </p>
+                                          <?php elseif($entry->engine_type_id == '5'): ?>
+                                          <p>
+                                           Jet
+                                          </p>
+                                          <?php endif; ?>
+                                </td>
+                                <td><?php echo $entry->description; ?></td>
+                        
+                      
+                      </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                     <?php endif; ?>
+
+               <!--//////////////////////////////////////-->
                </div>
                </div>
                 <!-- /.box-header -->
-                <div clasee="box-body">
+
+                <div class="box-body">
                  <?php if(count($entries) > 0): ?> 
                   <table id="list-boats" class="table">
                     <thead>
@@ -205,7 +289,9 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                        
+                            </div>
+
                         </td>
                       </tr>
             <?php endforeach; ?>
@@ -216,15 +302,27 @@
                     </tbody>
                   </table>
                      <?php endif; ?>
-                </div>
-                
+                   
                 <!-- /.box-body -->
-              </div>
+            
             </div>
+          </div>
+          </div>
+          </div>
           </div>
           </section><!-- /.content -->
            <script>
                       $(function () {
                       $("#list-boats").DataTable();
                       });
+                      </script>
+                       <script>
+                      $(document).ready(function() {
+                         $('#list-boats-hidden').DataTable( {
+                           dom: 'Brt',
+                           buttons: [
+                           'copy', 'csv', 'excel'
+                                    ]
+                               } );
+                                } );
                       </script>

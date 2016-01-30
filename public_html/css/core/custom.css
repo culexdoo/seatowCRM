@@ -178,3 +178,11 @@ span.bolded {
 #graph { 
      max-height: 100px; 
    }
+.dataTables_wrapper {
+    min-height: 50px;
+}
+
+.padding-clients {
+    padding: 15px 0px 0px 0px;
+}
+

@@ -34,6 +34,41 @@ class BoatsController extends CoreController {
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 		// Get module landing data
 		$entries = BoatsEntry::getAllBoats();
 
@@ -47,12 +82,20 @@ class BoatsController extends CoreController {
 
 
 				$this->layout->css_files = array( 
-			'plugins/datatables/dataTables.bootstrap.css'
+			'plugins/datatables/dataTables.bootstrap.css',
+			'css/core/buttons.dataTables.min.css',
 		);
 
 		$this->layout->js_header_files = array( 
 			'plugins/datatables/jquery.dataTables.min.js',
-			'plugins/datatables/dataTables.bootstrap.min.js'
+			'plugins/datatables/dataTables.bootstrap.min.js',
+			'js/core/dataTables.buttons.min.js',
+			'js/core/buttons.flash.min.js',
+			'js/core/jszip.min.js',
+			'js/core/pdfmake.min.js',
+			'js/core/vfs_fonts.js',
+			'js/core/buttons.html5.min.js',
+			'js/core/buttons.print.min.js'
 			);
 
 		$this->layout->content = View::make('modules.boats.entryList', array('title' => 'List Boats', 'user' => $user['user'], 'entries' => $entries['entries'] ));
@@ -74,6 +117,41 @@ class BoatsController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		//getting all client data
 		$allClientList = array();
 
@@ -141,6 +219,49 @@ class BoatsController extends CoreController {
 	// Post add classifiedoffer
 	public function postAddEntry()
 	{	
+		$user = User::getUserInfos(Auth::user()->id);
+
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		//Ovjde kupim sve podatke sa stranice iz fildova
 		Input::merge(array_map('trim', Input::all()));
 
@@ -192,6 +313,40 @@ class BoatsController extends CoreController {
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		  
 		$entry = BoatsEntry::getSingleBoatsEntry($entry_id);
 
@@ -267,7 +422,49 @@ class BoatsController extends CoreController {
 	public function postEditEntry()
 	{
 
-		
+		$user = User::getUserInfos(Auth::user()->id);
+
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		Input::merge(array_map('trim', Input::all()));
  		
 		$entryValidator = Validator::make(Input::all(), BoatsEntry::$edit_entry_rules);
@@ -301,6 +498,41 @@ class BoatsController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('boats.msg_error_getting_entry'));
 		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 
 		$entry = BoatsEntry::getSingleBoatsEntry($id);
 		if ($entry['status'] == 0)
@@ -346,6 +578,41 @@ class BoatsController extends CoreController {
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 		$hull_name = HullEntry::getAllHulls();
 	
 
@@ -377,6 +644,41 @@ class BoatsController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		$entry = HullEntry::getSingleHullEntry($entry_id);
 
 
@@ -411,6 +713,49 @@ class BoatsController extends CoreController {
 	// Post add classifiedoffer
 	public function postAddHull()
 	{	
+		$user = User::getUserInfos(Auth::user()->id);
+
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		//Ovjde kupim sve podatke sa stranice iz fildova
 		Input::merge(array_map('trim', Input::all()));
 
@@ -443,7 +788,49 @@ class BoatsController extends CoreController {
 	// Post edit entry page
 	public function postEditHull()
 	{
+		$user = User::getUserInfos(Auth::user()->id);
 
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		
 		Input::merge(array_map('trim', Input::all()));
  		
@@ -482,6 +869,41 @@ class BoatsController extends CoreController {
 		{
 			return Redirect::route('BoatsGetAddHull')->with('error_message', Lang::get('boats.msg_error_getting_entry'));
 		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 
 		$entry = HullEntry::getSingleHullEntry($id);
 
@@ -529,6 +951,41 @@ class BoatsController extends CoreController {
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
 		$make_name = MakeEntry::getAllMakes();
 	
 
@@ -558,6 +1015,41 @@ class BoatsController extends CoreController {
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		$entry = MakeEntry::getSingleMakeEntry($entry_id);
 
 
@@ -591,6 +1083,49 @@ class BoatsController extends CoreController {
 	// Post add classifiedoffer
 	public function postAddMake()
 	{	
+		$user = User::getUserInfos(Auth::user()->id);
+
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		//Ovjde kupim sve podatke sa stranice iz fildova
 		Input::merge(array_map('trim', Input::all()));
 
@@ -624,7 +1159,49 @@ class BoatsController extends CoreController {
 	public function postEditMake()
 	{
 
-		
+		$user = User::getUserInfos(Auth::user()->id);
+
+
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 		Input::merge(array_map('trim', Input::all()));
  		
 		$entryValidator = Validator::make(Input::all(), MakeEntry::$edit_entry_rules);
@@ -662,6 +1239,41 @@ class BoatsController extends CoreController {
 		{
 			return Redirect::route('BoatsGetAddMake')->with('error_message', Lang::get('boats.msg_error_getting_entry'));
 		}
+		
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = true;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
 
 		$entry = MakeEntry::getSingleMakeEntry($id);
 

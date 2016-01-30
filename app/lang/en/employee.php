@@ -30,5 +30,7 @@ return array(
 	'quick_options'				=>	'Quick Options',
 	'delete_employee'			=>	'Delete',
 	'edit_employee'				=>	'Edit',
-	'add_employee'				=>	'Add employee'
+	'add_employee'				=>	'Add employee',
+	'city'						=>	'City',
+	'franchisee_id'				=>	'Franchisee ID'
 );
