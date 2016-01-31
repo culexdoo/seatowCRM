@@ -21,7 +21,7 @@
            <li class="treeview {{ areActiveRoutes(['MembershipGetAddEntry', 'membershipLanding', 'MembershipGetEditEntry']) }}">
               <a href="#"><i class="fa fa-2x fa-database"></i> <span>Membership</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="{{ isActiveRoute('MembershipGetAddEntry') }}"><a href="{{ URL::route('MembershipGetAddEntry') }}">Add Membership</a></li>
+               
                 <li class="{{ isActiveRoute('membershipLanding') }}"><a href="{{ URL::route('membershipLanding') }}">List Membersihps</a></li>
               </ul>
             </li>
@@ -36,14 +36,14 @@
              <li class="treeview {{ areActiveRoutes(['EmployeeGetAddEntry', 'employeeLanding', 'EmployeeGetEditEntry']) }}">
               <a href="#"><i class="fa fa-2x fa-group"></i> <span>Employee</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="{{ isActiveRoute('EmployeeGetAddEntry') }}"><a href="{{ URL::route('EmployeeGetAddEntry') }}">Add Employee</a></li>
+             
                 <li class="{{ isActiveRoute('employeeLanding') }}"><a href="{{ URL::route('employeeLanding') }}">List Employees</a></li>
               </ul>
             </li>
              <li class="treeview {{ areActiveRoutes(['FranchiseeGetAddEntry', 'franchiseeLanding', 'FranchiseeGetEditEntry']) }}">
               <a href="#"><i class="fa fa-2x fa-map"></i> <span>Franchisee</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="{{ isActiveRoute('FranchiseeGetAddEntry') }}"><a href="{{ URL::route('FranchiseeGetAddEntry') }}">Add Franchisee</a></li>
+            
                 <li class="{{ isActiveRoute('franchiseeLanding') }}"><a href="{{ URL::route('franchiseeLanding') }}">List Franchisee</a></li>
               </ul>
             </li>

@@ -31,7 +31,7 @@ class EmployeeController extends CoreController {
 
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -59,12 +59,12 @@ class EmployeeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 
@@ -119,7 +119,7 @@ class EmployeeController extends CoreController {
 		if ($user['status'] == 0)
 
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -138,7 +138,7 @@ class EmployeeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -147,12 +147,12 @@ class EmployeeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
   		$franchiseeList = array();
@@ -194,7 +194,7 @@ class EmployeeController extends CoreController {
 
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -213,7 +213,7 @@ class EmployeeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -222,12 +222,12 @@ class EmployeeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		//Ovjde kupim sve podatke sa stranice iz fildova
@@ -266,7 +266,7 @@ class EmployeeController extends CoreController {
 		$user = User::getUserInfos(Auth::user()->id);
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -285,7 +285,7 @@ class EmployeeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -294,12 +294,12 @@ class EmployeeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
   
@@ -352,7 +352,7 @@ class EmployeeController extends CoreController {
 
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -371,7 +371,7 @@ class EmployeeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -380,12 +380,12 @@ class EmployeeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		
@@ -419,9 +419,12 @@ class EmployeeController extends CoreController {
 	// Post delete entry
 	public function getDeleteEntry($employee_id = null)
 	{
+
+		$user = User::getUserInfos(Auth::user()->id);
+
 		if ($employee_id == null)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('employee.msg_error_getting_entry'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('employee.msg_error_getting_entry'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -440,7 +443,7 @@ class EmployeeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -449,12 +452,12 @@ class EmployeeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 

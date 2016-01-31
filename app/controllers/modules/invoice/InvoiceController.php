@@ -376,6 +376,8 @@ class InvoiceController extends CoreController {
 	// Post delete entry
 	public function getDeleteEntry($id = null)
 	{
+
+		$user = User::getUserInfos(Auth::user()->id);
 		if ($id == null)
 		{
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('franchisee.msg_error_getting_entry'));

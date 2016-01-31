@@ -31,7 +31,7 @@ class FranchiseeController extends CoreController {
 
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 
 		// - AUTHORITY CHECK STARTS HERE - //
@@ -60,12 +60,12 @@ class FranchiseeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 
@@ -109,7 +109,7 @@ class FranchiseeController extends CoreController {
 		if ($user['status'] == 0)
 
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
   
 				// - AUTHORITY CHECK STARTS HERE - //
@@ -129,7 +129,7 @@ class FranchiseeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -138,12 +138,12 @@ class FranchiseeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		$this->layout->title = 'Add Franchisee';
@@ -172,7 +172,7 @@ class FranchiseeController extends CoreController {
 		if ($user['status'] == 0)
 
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
   
 				// - AUTHORITY CHECK STARTS HERE - //
@@ -192,7 +192,7 @@ class FranchiseeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -201,12 +201,12 @@ class FranchiseeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		//Ovjde kupim sve podatke sa stranice iz fildova
@@ -243,7 +243,7 @@ class FranchiseeController extends CoreController {
 		$user = User::getUserInfos(Auth::user()->id);
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -262,7 +262,7 @@ class FranchiseeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -271,12 +271,12 @@ class FranchiseeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		  
@@ -313,7 +313,7 @@ class FranchiseeController extends CoreController {
 		if ($user['status'] == 0)
 
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
   
 				// - AUTHORITY CHECK STARTS HERE - //
@@ -333,7 +333,7 @@ class FranchiseeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -342,12 +342,12 @@ class FranchiseeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		
@@ -381,9 +381,11 @@ class FranchiseeController extends CoreController {
 	// Post delete entry
 	public function getDeleteEntry($id = null)
 	{
+		
+		$user = User::getUserInfos(Auth::user()->id);
 		if ($id == null)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('franchisee.msg_error_getting_entry'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('franchisee.msg_error_getting_entry'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -402,7 +404,7 @@ class FranchiseeController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -411,12 +413,12 @@ class FranchiseeController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 

@@ -33,7 +33,9 @@ return array(
 	
 	
 	'error_getting_user_info'		=>	'You have error while getting user informations. Contact your administrator for more info!',
-	'error_getting_user_info'		=>	'Error getting user info! Contact your administrator for more info!'
+	'error_getting_user_info'		=>	'Error getting user info! Contact your administrator for more info!',
+
+	'unauthorized_access'			=>	'You dont have rights for this operation!'
 	
 
 

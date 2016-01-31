@@ -31,7 +31,7 @@ class MembershipController extends CoreController {
 
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -59,12 +59,12 @@ class MembershipController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		// Get module landing data
@@ -110,7 +110,7 @@ class MembershipController extends CoreController {
 		if ($user['status'] == 0)
 
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
   	// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -129,7 +129,7 @@ class MembershipController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -138,12 +138,12 @@ class MembershipController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 
@@ -172,7 +172,7 @@ class MembershipController extends CoreController {
 
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -191,7 +191,7 @@ class MembershipController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -200,12 +200,12 @@ class MembershipController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		//Ovjde kupim sve podatke sa stranice iz fildova
@@ -242,7 +242,7 @@ class MembershipController extends CoreController {
 		$user = User::getUserInfos(Auth::user()->id);
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 
 		// - AUTHORITY CHECK STARTS HERE - //
@@ -262,7 +262,7 @@ class MembershipController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -271,12 +271,12 @@ class MembershipController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //  
 		$entry = MembershipEntry::getSingleMembershipEntry($entry_id);
@@ -310,7 +310,7 @@ class MembershipController extends CoreController {
 
 		if ($user['status'] == 0)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.error_getting_user_info'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.error_getting_user_info'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -329,7 +329,7 @@ class MembershipController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -338,12 +338,12 @@ class MembershipController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		
@@ -376,9 +376,11 @@ class MembershipController extends CoreController {
 	// Post delete entry
 	public function getDeleteEntry($id = null)
 	{
+
+		$user = User::getUserInfos(Auth::user()->id);
 		if ($id == null)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('membership.msg_error_getting_entry'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('membership.msg_error_getting_entry'));
 		}
 		// - AUTHORITY CHECK STARTS HERE - //
 		$hasAuthority = false;
@@ -397,7 +399,7 @@ class MembershipController extends CoreController {
 
 			case 'employee':
 			// Admins should also have authority
-			$hasAuthority = true;
+			$hasAuthority = false;
 			break;
 
 			case 'client':
@@ -406,12 +408,12 @@ class MembershipController extends CoreController {
 			break;
 
 			default:
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 
 		if ($hasAuthority == false)
 		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+			return Redirect::route('membershipLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
 		$entry = MembershipEntry::getSingleMembershipEntry($id);

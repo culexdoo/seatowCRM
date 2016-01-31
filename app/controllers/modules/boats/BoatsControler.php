@@ -1236,6 +1236,7 @@ class BoatsController extends CoreController {
 		// Post delete entry
 	public function getDeleteMake($id = null)
 	{
+		$user = User::getUserInfos(Auth::user()->id);
 		if ($id == null)
 		{
 			return Redirect::route('BoatsGetAddMake')->with('error_message', Lang::get('boats.msg_error_getting_entry'));
