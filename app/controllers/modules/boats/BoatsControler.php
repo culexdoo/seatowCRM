@@ -152,19 +152,7 @@ class BoatsController extends CoreController {
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
-		//getting all client data
-		$allClientList = array();
-
-		$clientList = User::getAllClients(null);
 		
-		if ($clientList['status'] == 0)
-		{
-			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entries'));
-		}
-		foreach ($clientList['clients'] as $client)
-		{
-			$allClientList[$client->membership_id] = $client->first_name . " " . $client->last_name . " - " .  "ID: " . $client->membership_id;
-		}
 		
  		 // Getting all hulls data 
 		$hullList = array();
@@ -197,6 +185,19 @@ class BoatsController extends CoreController {
 		}
 		
 		//-------finish hulls data
+		//getting all client data
+		$allClientList = array();
+
+		$clientList = User::getAllClients(null);
+		
+		if ($clientList['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entries'));
+		}
+		foreach ($clientList['clients'] as $client)
+		{
+			$allClientList[$client->membership_id] = $client->first_name . " " . $client->last_name . " - " .  "ID: " . $client->membership_id;
+		}
 		
 		$this->layout->title = 'Add Boats';
 

@@ -1,5 +1,4 @@
 
-        <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
          <?php echo Lang::get('boats.list_all_boats'); ?>

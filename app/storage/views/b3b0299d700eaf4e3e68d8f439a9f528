@@ -1,0 +1,10 @@
+  <!-- Optionally, you can add icons to the links -->
+            <li class="<?php echo isActiveRoute('getDashboard'); ?>"><a href="<?php echo URL::route('getDashboard'); ?>"><i class="fa fa-2x fa-home"></i> <span>Dashboard</span></a></li>
+        
+            
+         
+            
+            <li class="<?php echo isActiveRoute('getProfile'); ?>"><a href="<?php echo URL::route('getProfile'); ?>"><i class="fa fa-2x fa-asterisk"></i> <span>My profile</span></a></li>
+             <li class="<?php echo isActiveRoute('getOptions'); ?>"><a href="<?php echo URL::route('getOptions'); ?>"><i class="fa fa-2x fa-cog"></i> <span>Options</span></a></li>
+              <li><a href="<?php echo URL::route('getSignOut'); ?>"><i class="fa fa-2x fa-sign-out"></i> <span>Logout</span></a></li>
+              <!--IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII

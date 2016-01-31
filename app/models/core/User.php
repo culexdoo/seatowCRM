@@ -367,4 +367,58 @@ class User extends Eloquent implements UserInterface, RemindableInterface
             return array('status' => 0);
         }
     }
+    public static function getAllUsers()
+	{
+		
+
+	/*	try
+		{  */
+			$allusers = DB::table('users')
+				
+
+				->select(
+					'users.id AS entry_id',
+					'users.user_group AS user_group',
+					'users.first_name AS first_name',
+					'users.last_name AS last_name'
+
+				)
+			
+				->orderBy('users.first_name', 'DESC')
+				->get();
+
+			return array('status' => 1, 'allusers' => $allusers);
+	/*	}
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		} */
+	}
+
+	public static function getAllAdmins()
+	{
+		
+
+		try
+		{ 
+			$alladmins = DB::table('users')
+
+
+				->select(
+					'users.id AS entry_id',
+					'users.first_name AS first_name',
+					'users.last_name AS last_name',
+					'users.user_group AS user_group'
+				)
+				->where('users.user_group', '=', 'admin')
+				->orderBy('users.created_at', 'DESC')
+				->get();
+
+			return array('status' => 1, 'alladmins' => $alladmins);
+		}
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		}
+	}
 }

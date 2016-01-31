@@ -147,3 +147,4 @@ include 'routes/boats.php';
 include 'routes/client.php';
 include 'routes/invoice.php';
 include 'routes/messages.php';
+include 'routes/superadmin.php';

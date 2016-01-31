@@ -1,0 +1,54 @@
+  <!-- Optionally, you can add icons to the links -->
+            <li class="<?php echo isActiveRoute('getDashboard'); ?>"><a href="<?php echo URL::route('getDashboard'); ?>"><i class="fa fa-2x fa-home"></i> <span>Dashboard</span></a></li>
+            <li class="treeview <?php echo areActiveRoutes(['ClientGetAddEntry', 'clientLanding', 'ClientGetEditEntry', 'EventGetAddEvent', 'EventGetEditEvent']); ?>">
+              <a href="#"><i class="fa fa-2x fa-user"></i> <span>Clients</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="<?php echo isActiveRoute('ClientGetAddEntry'); ?>"><a href="<?php echo URL::route('ClientGetAddEntry'); ?>">Add Client</a></li>
+                <li class="<?php echo isActiveRoute('clientLanding'); ?>"><a href="<?php echo URL::route('clientLanding'); ?>">List Clients</a></li>
+              </ul>
+            </li>
+             <li class="treeview <?php echo areActiveRoutes(['BoatsGetAddEntry', 'boatsLanding', 'BoatsGetAddHull', 'BoatsGetAddMake', 'BoatsGetEditEntry', 'BoatsGetEditHull', 'BoatsGetEditMake']); ?>">
+              <a href="#"><i class="fa fa-2x fa-ship"></i> <span>Boats</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="<?php echo isActiveRoute('BoatsGetAddEntry'); ?>"><a href="<?php echo URL::route('BoatsGetAddEntry'); ?>">Add Boat</a></li>
+               
+                <li class="<?php echo isActiveRoute('boatsLanding'); ?>"><a href="<?php echo URL::route('boatsLanding'); ?>">List Boats</a></li>
+
+                 <li class="<?php echo isActiveRoute('BoatsGetAddHull'); ?>"><a href="<?php echo URL::route('BoatsGetAddHull'); ?>">Add Hull</a></li>
+                <li class="<?php echo isActiveRoute('BoatsGetAddMake'); ?>"><a href="<?php echo URL::route('BoatsGetAddMake'); ?>">Add Make</a></li>
+              </ul>
+            </li>
+           <li class="treeview <?php echo areActiveRoutes(['MembershipGetAddEntry', 'membershipLanding', 'MembershipGetEditEntry']); ?>">
+              <a href="#"><i class="fa fa-2x fa-database"></i> <span>Membership</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="<?php echo isActiveRoute('MembershipGetAddEntry'); ?>"><a href="<?php echo URL::route('MembershipGetAddEntry'); ?>">Add Membership</a></li>
+                <li class="<?php echo isActiveRoute('membershipLanding'); ?>"><a href="<?php echo URL::route('membershipLanding'); ?>">List Membersihps</a></li>
+              </ul>
+            </li>
+             <li class="treeview <?php echo areActiveRoutes(['InvoiceGetAddEntry', 'invoiceLanding']); ?>">
+              <a href="#"><i class="fa fa-2x fa-credit-card"></i> <span>Billing</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="<?php echo isActiveRoute('InvoiceGetAddEntry'); ?>"><a href="<?php echo URL::route('InvoiceGetAddEntry'); ?>">Add Invoice</a></li>
+                <li class="<?php echo isActiveRoute('invoiceLanding'); ?>"><a href="<?php echo URL::route('invoiceLanding'); ?>">List Invoices</a></li>
+              </ul>
+            </li>
+           </li>
+             <li class="treeview <?php echo areActiveRoutes(['EmployeeGetAddEntry', 'employeeLanding', 'EmployeeGetEditEntry']); ?>">
+              <a href="#"><i class="fa fa-2x fa-group"></i> <span>Employee</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="<?php echo isActiveRoute('EmployeeGetAddEntry'); ?>"><a href="<?php echo URL::route('EmployeeGetAddEntry'); ?>">Add Employee</a></li>
+                <li class="<?php echo isActiveRoute('employeeLanding'); ?>"><a href="<?php echo URL::route('employeeLanding'); ?>">List Employees</a></li>
+              </ul>
+            </li>
+             <li class="treeview <?php echo areActiveRoutes(['FranchiseeGetAddEntry', 'franchiseeLanding', 'FranchiseeGetEditEntry']); ?>">
+              <a href="#"><i class="fa fa-2x fa-map"></i> <span>Franchisee</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="<?php echo isActiveRoute('FranchiseeGetAddEntry'); ?>"><a href="<?php echo URL::route('FranchiseeGetAddEntry'); ?>">Add Franchisee</a></li>
+                <li class="<?php echo isActiveRoute('franchiseeLanding'); ?>"><a href="<?php echo URL::route('franchiseeLanding'); ?>">List Franchisee</a></li>
+              </ul>
+            </li>
+            <li class="<?php echo areActiveRoutes(['messagesLanding', 'InboxMessages', 'TrashMessages', 'SentMessages', 'SingleView', 'SingleViewReplyAdd', 'SingleViewReplyPost']); ?>"><a href="<?php echo URL::route('messagesLanding'); ?>"><i class="fa fa-2x fa-comment"></i> <span>Messages</span></a></li>
+            <li class="<?php echo isActiveRoute('getProfile'); ?>"><a href="<?php echo URL::route('getProfile'); ?>"><i class="fa fa-2x fa-asterisk"></i> <span>My profile</span></a></li>
+             <li class="<?php echo isActiveRoute('getOptions'); ?>"><a href="<?php echo URL::route('getOptions'); ?>"><i class="fa fa-2x fa-cog"></i> <span>Options</span></a></li>
+              <li><a href="<?php echo URL::route('getSignOut'); ?>"><i class="fa fa-2x fa-sign-out"></i> <span>Logout</span></a></li>
+              <!--IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII

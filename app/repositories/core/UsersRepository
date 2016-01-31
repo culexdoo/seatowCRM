@@ -1,0 +1,48 @@
+<?php
+/*
+*	Boats Repository
+*
+*	Handles functions:
+*/
+
+
+
+class UsersRepository
+{
+ 
+    public function __construct(){
+
+    }
+
+ 
+	// Inserting new entry into database
+	public function addEntry($user_group)
+	{
+		try
+		{  	
+			
+ 			$entry = new Users;
+
+
+			$entry->user_group = $user_group;
+			
+			
+
+			$entry->save();
+
+		
+
+			return array('status' => 1);
+	} 
+		catch (Exception $exp)
+		{
+
+			
+
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		}  
+	}
+
+
+
+}

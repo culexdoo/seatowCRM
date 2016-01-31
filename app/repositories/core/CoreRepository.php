@@ -19,7 +19,22 @@ class CoreRepository
 
     }
 
+	// Inserting new entry into database
+	public function postUserGroup($client_id, $user_group)
+	{
+	/*	try
+		{  	 */
+ 			$entry = User::find($client_id);
+			$entry->user_group = $user_group;
+			$entry->save();
 
+			return array('status' => 1);
+	/*	} 
+		catch (Exception $exp)
+		{
+			return array('status' => 0, 'reason' => $exp->getMessage());
+		}  */
+	}
 
 
 

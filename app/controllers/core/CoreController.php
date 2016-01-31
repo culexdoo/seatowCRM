@@ -21,6 +21,7 @@ class CoreController extends BaseController
 	protected $layout;
 	protected $repo;
 
+
 	// Constructing default values
 	public function __construct() {
 
@@ -528,6 +529,7 @@ class CoreController extends BaseController
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
+
  
 		$this->layout->title = 'Edit options';
 
@@ -590,6 +592,152 @@ class CoreController extends BaseController
 
 		
 	}
+
+	public function getSuperAdmin() 
+	{
+		$user = User::getUserInfos(Auth::user()->id);
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::back()->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+		$allUsersList = array();
+
+		$usersList = User::getAllUsers(null);
+		
+		if ($usersList['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entries'));
+		}
+		foreach ($usersList['allusers'] as $singleuser)
+		{
+			$allUsersList[$singleuser->entry_id] = $singleuser->first_name . " " . $singleuser->last_name . " - " .  "ID: " . $singleuser->entry_id;
+		}
+
+ 		$alladmins = User::getAllAdmins();
+ 		//goDie($alladmins);
+ 		if ($alladmins['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.msg_error_getting_entry'));
+		}
+		$this->layout->title = 'Admin panel';
+
+		$this->layout->css_files = array(
+			'css/core/select2.min.css'
+		);
+
+		$this->layout->js_header_files = array( 
+			'js/core/select2.full.min.js'
+		);
+
+		$this->layout->content = View::make('core.superadmin', array('title' => 'Admin panel', 'user' => $user['user'],'allusers' => $allUsersList, 'alladmins' => $alladmins['alladmins']));
+	}
+
+
+
+	// Save profile changes
+	public function postSuperAdmin()
+	{	
+		$user = User::getUserInfos(Auth::user()->id);
+
+		if ($user['status'] == 0)
+		{
+			return Redirect::back()->with('error_message', Lang::get('messages.error_getting_user_info'));
+		}
+		// - AUTHORITY CHECK STARTS HERE - //
+		$hasAuthority = false;
+
+		switch ($user['user']->user_group)
+		{
+			case 'superadmin':
+			// Superadmin has default authority over everything
+			$hasAuthority = true;
+			break;
+
+			case 'admin':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			case 'employee':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			case 'client':
+			// Admins should also have authority
+			$hasAuthority = false;
+			break;
+
+			default:
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+
+		if ($hasAuthority == false)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
+		}
+		// - AUTHORITY CHECK ENDS HERE - //
+
+		Input::merge(array_map('trim', Input::all()));
+//goDie(Input::all());
+		
+
+		
+
+		$addNewEntry = $this->repo->postUserGroup(
+			Input::get('client_id'),
+			Input::get('user_group')
+			
+			);
+
+		if ($addNewEntry['status'] == 0)
+		{
+			return Redirect::back()->with('error_message', Lang::get('classified_offer.msg_error_adding_entry'))->withInput();
+		}
+		else
+		{
+			return Redirect::route('superadminLanding')->with('success_message', Lang::get('boats.msg_success_entry_added', array('title' => Input::get('title'))));
+		}
+
+		
+	}
+
 
 
 

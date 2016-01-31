@@ -38,7 +38,9 @@ return array(
 	'last_10_clients'							=>	'Last 10 clients',
 	'client_id'									=>	'Client ID',
 	'added'										=>	'Added',
-	'quick_action'								=>	'Quick action'
+	'quick_action'								=>	'Quick action',
+	'entry_id'									=>	'Entry ID',
+	'user_group'								=>	'User group'
 
 
 );

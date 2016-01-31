@@ -26,8 +26,9 @@
           
            <a class="pull-right">
           {{ Form::button('<span class="icon icon-done"></span> ' . Lang::get('core.save'), array('type' => 'submit', 'class' => 'btn btn-success')) }}
-          </div>
           </a>
+          </div>
+          
           
           
          
