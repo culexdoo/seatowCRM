@@ -14,7 +14,7 @@
                 <div class="small-box bg-aqua">
                   <div class="inner">
                     <h3><?php echo $counted_user_number['counted_user_number']; ?></h3>
-                    <p><?php echo Lang::get('core.dashboard'); ?></p>
+                    <p><?php echo Lang::get('core.clients'); ?></p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-user"></i>
@@ -55,7 +55,7 @@
                 <!-- small box -->
                 <div class="small-box bg-red">
                   <div class="inner">
-                    <h3>3</h3>
+                    <h3><?php echo $counted_invoice_number['counted_invoice_number']; ?></h3>
                     <p><?php echo Lang::get('core.invoices'); ?></p>
                   </div>
                   <div class="icon">

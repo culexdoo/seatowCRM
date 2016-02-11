@@ -88,22 +88,29 @@
                             <div class="box-body colored-div">
                               <div class="row">
                                 <div class="col-md-10">
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                       <label>{{ Lang::get('franchisee.city') }}:</label><p>{{ $entry->city }}</p>
                                     </div>
                                   </div>
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
-                                      <label>{{ Lang::get('franchisee.state') }}:</label><p></p>
+                                      <label>{{ Lang::get('franchisee.state') }}:</label><p>
+                                        {{ $entry->state }}
+                                      </p>
                                     </div>
                                   </div>
-                                   <div class="col-md-3">
+                                   <div class="col-md-2">
                                     <div class="form-group">
-                                      <label>{{ Lang::get('franchisee.employees') }}:</label><p></p>
+                                      <label>{{ Lang::get('franchisee.country') }}:</label><p>{{ $entry->country }}</p>
                                     </div>
                                   </div>
-                                  <div class="col-md-3">
+                                   <div class="col-md-2">
+                                    <div class="form-group">
+                                      <label>{{ Lang::get('franchisee.address') }}:</label><p>{{ $entry->address }}</p>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                       <label>{{ Lang::get('franchisee.franchisee_short') }}:</label>
                                       <p>{{ $entry->franchisee_short }}</p>

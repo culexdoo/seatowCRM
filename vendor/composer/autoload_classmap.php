@@ -745,6 +745,7 @@ return array(
     'Intervention\\Image\\Size' => $vendorDir . '/intervention/image/src/Intervention/Image/Size.php',
     'InvoiceController' => $baseDir . '/app/controllers/modules/invoice/InvoiceController.php',
     'InvoiceEntry' => $baseDir . '/app/models/modules/invoice/InvoiceEntry.php',
+    'InvoiceProducts' => $baseDir . '/app/models/modules/invoice/InvoiceProducts.php',
     'InvoiceRepository' => $baseDir . '/app/repositories/modules/invoice/InvoiceRepository.php',
     'Javascript_Embedder' => $vendorDir . '/dompdf/dompdf/include/javascript_embedder.cls.php',
     'Jeremeamia\\SuperClosure\\ClosureLocation' => $vendorDir . '/jeremeamia/SuperClosure/src/Jeremeamia/SuperClosure/ClosureLocation.php',

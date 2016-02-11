@@ -93,22 +93,30 @@
                             <div class="box-body colored-div">
                               <div class="row">
                                 <div class="col-md-10">
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                       <label><?php echo Lang::get('franchisee.city'); ?>:</label><p><?php echo $entry->city; ?></p>
                                     </div>
                                   </div>
-                                  <div class="col-md-3">
+                                  <div class="col-md-2">
                                     <div class="form-group">
-                                      <label><?php echo Lang::get('franchisee.state'); ?>:</label><p></p>
+                                      <label><?php echo Lang::get('franchisee.state'); ?>:</label><p>
+                                        <?php echo $entry->state; ?>
+
+                                      </p>
                                     </div>
                                   </div>
-                                   <div class="col-md-3">
+                                   <div class="col-md-2">
                                     <div class="form-group">
-                                      <label><?php echo Lang::get('franchisee.employees'); ?>:</label><p></p>
+                                      <label><?php echo Lang::get('franchisee.country'); ?>:</label><p><?php echo $entry->country; ?></p>
                                     </div>
                                   </div>
-                                  <div class="col-md-3">
+                                   <div class="col-md-2">
+                                    <div class="form-group">
+                                      <label><?php echo Lang::get('franchisee.address'); ?>:</label><p><?php echo $entry->address; ?></p>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
                                     <div class="form-group">
                                       <label><?php echo Lang::get('franchisee.franchisee_short'); ?>:</label>
                                       <p><?php echo $entry->franchisee_short; ?></p>

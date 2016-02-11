@@ -39,11 +39,14 @@ class FranchiseeEntry extends Eloquent
 			$entry = DB::table('franchisee_entries')
 				->select(
 					'franchisee_entries.id AS entry_id',
+					'franchisee_entries.address AS address',
 					'franchisee_entries.franchisee_id AS franchisee_id',
 					'franchisee_entries.city AS city',
+					'franchisee_entries.country AS country',
 					'franchisee_entries.zip AS zip',
 					'franchisee_entries.franchisee_short AS franchisee_short',
 					'franchisee_entries.franchisee_long AS franchisee_long',
+					'franchisee_entries.state AS state',
 					'franchisee_entries.created_at AS created_at',
 					'franchisee_entries.updated_at AS updated_at'
 				);
@@ -75,17 +78,20 @@ class FranchiseeEntry extends Eloquent
 	{
 		
 
-		try
-		{
+	try
+		{   
 			$entries = DB::table('franchisee_entries')
 			
 				->select(
 					'franchisee_entries.id AS entry_id',
+					'franchisee_entries.address AS address',
 					'franchisee_entries.franchisee_id AS franchisee_id',
 					'franchisee_entries.city AS city',
+					'franchisee_entries.country AS country',
 					'franchisee_entries.zip AS zip',
 					'franchisee_entries.franchisee_short AS franchisee_short',
 					'franchisee_entries.franchisee_long AS franchisee_long',
+					'franchisee_entries.state AS state',
 					'franchisee_entries.created_at AS created_at',
 					'franchisee_entries.updated_at AS updated_at'
 				)
@@ -97,7 +103,7 @@ class FranchiseeEntry extends Eloquent
 		catch (Exception $exp)
 		{
 			return array('status' => 0, 'reason' => $exp->getMessage());
-		}
+		}  
 	}
 
 

@@ -626,7 +626,7 @@
                               <div class="col-md-12">
                                 <div class="col-md-10">
                                   <div class="col-md-2">
-                                    <div class="form-group">
+                                    <div class="form-group"> 
                                     <p><label><?php echo Lang::get('client.client_information'); ?></label></p>
                                       <label><?php echo Lang::get('client.company'); ?>:</label>
                                       <p><?php echo $entry->company; ?></p>

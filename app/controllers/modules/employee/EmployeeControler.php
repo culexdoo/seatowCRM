@@ -149,7 +149,7 @@ class EmployeeController extends CoreController {
 			default:
 			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
-
+ 
 		if ($hasAuthority == false)
 		{
 			return Redirect::route('employeeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));

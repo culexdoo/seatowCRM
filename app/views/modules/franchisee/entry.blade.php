@@ -60,16 +60,17 @@
                       <label for="exampleInputtext">{{ Lang::get('franchisee.city') }}:</label>
                        {{ Form::text('city', isset($entry->city) ? $entry->city : null, ['class' => 'form-control']) }}
                     </div>
+                     <div class="form-group">
+                      <label for="exampleInputtext">{{ Lang::get('franchisee.address') }}:</label>
+                       {{ Form::text('address', isset($entry->address) ? $entry->address : null, ['class' => 'form-control']) }}
+                    </div>
                     <div class="form-group">
                       <div class="row">
                         <div class="col-md-6">
                           <label for="exampleInputtext">{{ Lang::get('franchisee.state') }}:</label>
                           <div class="form-group">
                             
-                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                              <option selected="selected">{{ Lang::get('franchisee.state') }}</option>
-                              
-                            </select>
+                         {{ Form::text('state', isset($entry->state) ? $entry->state : null, ['class' => 'form-control']) }}
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -77,7 +78,14 @@
                            {{ Form::text('zip', isset($entry->zip) ? $entry->zip : null, ['class' => 'form-control']) }}
                         </div>
                       </div>
-                      
+                       <div class="form-group">
+                       <label>{{ Lang::get('franchisee.country') }}:</label>
+                       @if ($mode == 'add')
+                       {{ Form::select('country', $countries, isset($entry->country) ? $entry->country : null, array('class' => 'form-control', 'country' => 'country', 'required')) }}
+                       @elseif ($mode == 'edit')
+                       {{ Form::select('country', $countries, isset($entry->country) ? $entry->country : $preselected_country, array('class' => 'form-control', 'country' => 'country', 'required')) }}
+                       @endif
+                        </div>
                       <div class="form-group">
                         <label>{{ Lang::get('franchisee.franchisee') }}:</label>
                           {{ Form::textarea('franchisee_short', isset($entry->franchisee_short) ? $entry->franchisee_short : null, array('class' => 'form-control franchisee_short','id' => 'franchisee_short')) }}

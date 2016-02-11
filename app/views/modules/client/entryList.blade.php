@@ -591,7 +591,7 @@
                               <div class="col-md-12">
                                 <div class="col-md-10">
                                   <div class="col-md-2">
-                                    <div class="form-group">
+                                    <div class="form-group"> 
                                     <p><label>{{ Lang::get('client.client_information') }}</label></p>
                                       <label>{{ Lang::get('client.company') }}:</label>
                                       <p>{{ $entry->company }}</p>

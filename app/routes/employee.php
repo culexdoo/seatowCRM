@@ -7,21 +7,21 @@
 Route::group(array('prefix' => 'employee'), function()
 {
 	// Landing
-	Route::get('/', array('as' => 'employeeLanding', 'uses' => 'EmployeeController@getLanding'));
+	Route::get('/', array('before' => 'auth', 'as' => 'employeeLanding', 'uses' => 'EmployeeController@getLanding'));
  
 	// Employee entries, listing, adding, editing, removing
 	Route::group(array('prefix' => 'entries'), function()
 	{
  
-		Route::get('add-entry', array('as' => 'EmployeeGetAddEntry', 'uses' => 'EmployeeController@getAddEntry'));
+		Route::get('add-entry', array('before' => 'auth', 'as' => 'EmployeeGetAddEntry', 'uses' => 'EmployeeController@getAddEntry'));
 
-		Route::post('new-entry', array('as' => 'EmployeePostAddEntry', 'uses' => 'EmployeeController@postAddEntry'));
+		Route::post('new-entry', array('before' => 'auth', 'as' => 'EmployeePostAddEntry', 'uses' => 'EmployeeController@postAddEntry'));
 
-		Route::get('edit-entry/{id}', array('as' => 'EmployeeGetEditEntry', 'uses' => 'EmployeeController@getEditEntry'));
+		Route::get('edit-entry/{id}', array('before' => 'auth', 'as' => 'EmployeeGetEditEntry', 'uses' => 'EmployeeController@getEditEntry'));
 
-		Route::post('change-entry', array('as' => 'EmployeePostEditEntry', 'uses' => 'EmployeeController@postEditEntry'));
+		Route::post('change-entry', array('before' => 'auth', 'as' => 'EmployeePostEditEntry', 'uses' => 'EmployeeController@postEditEntry'));
 
-		Route::get('delete-entry/{id}', array('as' => 'EmployeeGetDeleteEntry', 'uses' => 'EmployeeController@getDeleteEntry'));
+		Route::get('delete-entry/{id}', array('before' => 'auth', 'as' => 'EmployeeGetDeleteEntry', 'uses' => 'EmployeeController@getDeleteEntry'));
 
 	});
 });

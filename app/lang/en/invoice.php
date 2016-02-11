@@ -36,6 +36,20 @@ return array(
 	'print'				=>	'Print',
 	'description'		=>	'Description',
 	'date'				=>	'Date',
-	'add_invoice'		=>	'Add invoice'
+	'add_invoice'		=>	'Add invoice',
+	'invoice'			=>	'Invoice',
+	'product'			=>	'Product',
+	'employee'			=>	'Employee',
+	'client'			=>	'Client',
+	'payment_due'		=>	'Payment due',
+	'service_name'		=>	'Service name',
+	'service_description'=>	'Service description',
+	'send_email'		=>	'Send',
+	'edit_invoice'		=>	'Edit',
+	'delete_invoice'	=>	'Delete',
+	'pdf'				=>	'PDF',
+	'total_sum'			=>	'Total Sum',
+	'list_all_invoice'	=>	'List all invoices',
+	'list_of_all_invoice'	=>	'List of all invoices'
 
 );

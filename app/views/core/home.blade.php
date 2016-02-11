@@ -14,7 +14,7 @@
                 <div class="small-box bg-aqua">
                   <div class="inner">
                     <h3>{{ $counted_user_number['counted_user_number'] }}</h3>
-                    <p>{{ Lang::get('core.dashboard') }}</p>
+                    <p>{{ Lang::get('core.clients') }}</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-user"></i>
@@ -55,7 +55,7 @@
                 <!-- small box -->
                 <div class="small-box bg-red">
                   <div class="inner">
-                    <h3>3</h3>
+                    <h3>{{ $counted_invoice_number['counted_invoice_number'] }}</h3>
                     <p>{{ Lang::get('core.invoices') }}</p>
                   </div>
                   <div class="icon">

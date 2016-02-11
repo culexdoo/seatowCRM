@@ -122,6 +122,8 @@ class CoreController extends BaseController
 
 		$countedFranchisee = FranchiseeEntry::getCountFranchisee();
 
+		$countedInvoices = InvoiceEntry::getCountInvoices();
+
 		
 
 	$this->layout->css_files = array( 
@@ -139,7 +141,7 @@ class CoreController extends BaseController
 
 
 
-		$this->layout->content = View::make('core.home', array('title' => 'Administracija oglasa', 'user' => $user['user'], 'trackingdata' => $dashboardTracking, 'lastclients' => $lastClients, 'counted_user_number' => $countedUsers, 'counted_boats_number' => $countedBoats, 'counted_franchisee_number' => $countedFranchisee));
+		$this->layout->content = View::make('core.home', array('title' => 'Administracija oglasa', 'user' => $user['user'], 'trackingdata' => $dashboardTracking, 'lastclients' => $lastClients, 'counted_user_number' => $countedUsers, 'counted_boats_number' => $countedBoats, 'counted_franchisee_number' => $countedFranchisee, 'counted_invoice_number' => $countedInvoices));
 	}
  
   

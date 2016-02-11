@@ -185,4 +185,7 @@ span.bolded {
 .padding-clients {
     padding: 15px 0px 0px 0px;
 }
-
+.add-button-invoice{
+    display: block;
+    bottom: -58px;
+}

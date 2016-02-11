@@ -74,10 +74,24 @@ class EmployeeEntry extends Eloquent
 		try
 		{
 			$employee = DB::table('users')
+				->join('franchisee_entries', 'franchisee_entries.franchisee_id', '=', 'users.franchisee_id')
 				->select(
 					'users.id AS id',
-					'users.first_name AS first_name',
-					'users.last_name AS last_name'
+					'users.employee_id AS employee_id',
+					'users.first_name AS employee_first_name',
+					'users.last_name AS employee_last_name',
+					'users.address AS employee_address',
+					'users.mobile_number AS employee_mobile_number',
+					'users.employee_description AS employee_description',
+					'users.email AS employee_email',
+					'users.city AS city',
+					'franchisee_entries.city AS franchisee_city',
+					'franchisee_entries.country AS franchisee_country',
+					'franchisee_entries.zip AS franchisee_zip',
+					'franchisee_entries.country AS franchisee_country',
+					'franchisee_entries.franchisee_id AS franchisee_id',
+					'franchisee_entries.address AS franchisee_address',
+					'franchisee_entries.state AS franchisee_state'
 					);
 			
 			if ($user_id != null)

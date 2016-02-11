@@ -28,6 +28,8 @@ return array(
 	'save'						=>	'Save',
 	'add_franchisee'			=>	'Add Franchisee',
 	'franchisee_id'				=>	'Franchisee ID',
-	'quick_options'				=>	'Quick Options'
+	'quick_options'				=>	'Quick Options',
+	'address'					=>	'Address',
+	'country'					=>	'Country'
 
 );

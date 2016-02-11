@@ -40,7 +40,8 @@ return array(
 	'added'										=>	'Added',
 	'quick_action'								=>	'Quick action',
 	'entry_id'									=>	'Entry ID',
-	'user_group'								=>	'User group'
+	'user_group'								=>	'User group',
+	'clients'									=>	'Clients'
 
 
 );

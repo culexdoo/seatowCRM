@@ -506,6 +506,7 @@
                               '10'=>'Trailer Passanger',
                               '11'=>'VIP'
                               ),'9',['class' => 'form-control']) }}
+                               @elseif ($entry->member_type == '10')
                                {{ Form::select('member_type', array(
                              '1'=>'Bodensee',
                               '2'=>'Bodensee Skifahren',
@@ -519,6 +520,7 @@
                               '10'=>'Trailer Passanger',
                               '11'=>'VIP'
                               ),'10',['class' => 'form-control']) }}
+                               @elseif ($entry->member_type == '11')
                                {{ Form::select('member_type', array(
                              '1'=>'Bodensee',
                               '2'=>'Bodensee Skifahren',

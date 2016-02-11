@@ -146,6 +146,20 @@ class FranchiseeController extends CoreController {
 			return Redirect::route('franchiseeLanding')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
+		// Getting all countries
+		$countryList = array();
+
+		$countriesIDs = Countries::getAllCountries();
+
+		if ($countriesIDs['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.msg_error_getting_clients'));
+		}
+		foreach ($countriesIDs['countries'] as $country)
+		{
+			$countryList[$country->country_name] = $country->country_name;
+		}
+		//-------------------------------------------
 		$this->layout->title = 'Add Franchisee';
 
 
@@ -156,7 +170,7 @@ class FranchiseeController extends CoreController {
 		);
 
 		$this->layout->content = View::make('modules.franchisee.entry', array('mode' => 'add',
-		'postRoute' => 'FranchiseePostAddEntry', 'title' => 'Add Franchisee', 'user' => $user['user']));
+		'postRoute' => 'FranchiseePostAddEntry', 'title' => 'Add Franchisee', 'user' => $user['user'], 'countries' => $countryList));
  	
 	}
 
@@ -222,7 +236,16 @@ class FranchiseeController extends CoreController {
 		}
  
 
-		$addNewEntry = $this->repo->addEntry(Input::get('id'), Input::get('franchisee_id'), Input::get('city'), Input::get('zip'), Input::get('franchisee_short'), Input::get('franchisee_long'));
+		$addNewEntry = $this->repo->addEntry(
+			Input::get('address'),
+			Input::get('franchisee_id'),
+			Input::get('city'), 
+			Input::get('country'), 
+			Input::get('zip'), 
+			Input::get('franchisee_short'), 
+			Input::get('franchisee_long'), 
+			Input::get('state')
+			);
 		
 
 		if ($addNewEntry['status'] == 0)
@@ -286,6 +309,21 @@ class FranchiseeController extends CoreController {
 		{ 
 			return Redirect::back()->with('error_message', Lang::get('franchisee.msg_error_getting_entry'));
 		}
+				// Getting all countries
+		$countryList = array();
+
+		$countriesIDs = Countries::getAllCountries();
+		
+		if ($countriesIDs['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.msg_error_getting_franchisees'));
+		}
+		foreach ($countriesIDs['countries'] as $country)
+		{
+			$countryList[$country->country_name] = $country->country_name;
+		}
+		
+		//-------------------------------------------
 
 		$this->layout->title = 'Edit Franchisee';
 		$this->layout->css_files = array( 
@@ -296,7 +334,7 @@ class FranchiseeController extends CoreController {
 	 
 
 		$this->layout->content = View::make('modules.franchisee.entry', array('mode' => 'edit',
-		'postRoute' => 'FranchiseePostEditEntry', 'title' => 'Edit Franchisee', 'entry' => $entry['entry'], 'user' => $user['user']));
+		'postRoute' => 'FranchiseePostEditEntry', 'title' => 'Edit Franchisee', 'entry' => $entry['entry'], 'user' => $user['user'], 'countries' => $countryList));
 
 	}
 
@@ -364,7 +402,17 @@ class FranchiseeController extends CoreController {
 		}
  
  			
-		$editNewEntry = $this->repo->postEditEntry(Input::get('entry_id'), Input::get('franchisee_id'), Input::get('city'), Input::get('zip'), Input::get('franchisee_short'), Input::get('franchisee_long'));
+		$editNewEntry = $this->repo->postEditEntry(
+			Input::get('entry_id'),
+			Input::get('address'),
+			Input::get('franchisee_id'),
+			Input::get('city'), 
+			Input::get('country'), 
+			Input::get('zip'), 
+			Input::get('franchisee_short'), 
+			Input::get('franchisee_long'), 
+			Input::get('state')
+			);
 
 		if ($editNewEntry['status'] == 0)
 		{
