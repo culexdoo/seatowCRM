@@ -67,7 +67,20 @@ class InvoiceController extends CoreController {
 			return Redirect::route('getDashboard')->with('error_message', Lang::get('messages.unauthorized_access'));
 		}
 		// - AUTHORITY CHECK ENDS HERE - //
+		//getting all client data
+		$allClientList = array();
 
+		$clientList = User::getAllClients(null);
+		
+		if ($clientList['status'] == 0)
+		{
+			return Redirect::route('getDashboard')->with('error_message', Lang::get('core.msg_error_getting_entries'));
+		}
+		foreach ($clientList['clients'] as $client)
+		{
+			$allClientList[$client->membership_id] = $client->first_name . " " . $client->last_name . " - " .  "ID: " . $client->membership_id;
+		}
+		//////////////////////////////////////////////////////////
 
 
 		// Get module landing data
@@ -95,16 +108,27 @@ class InvoiceController extends CoreController {
 		$this->layout->title = 'List Invoice';
 
 
-				$this->layout->css_files = array( 
-			'plugins/datatables/dataTables.bootstrap.css'
+		$this->layout->css_files = array( 
+			'plugins/datatables/dataTables.bootstrap.css',
+			'css/core/buttons.dataTables.min.css',
+			'css/core/select2.min.css'
 		);
 
 		$this->layout->js_header_files = array( 
 			'plugins/datatables/jquery.dataTables.min.js',
-			'plugins/datatables/dataTables.bootstrap.min.js'
+			'plugins/datatables/dataTables.bootstrap.min.js',
+			'js/core/select2.full.min.js',
+			'js/core/dataTables.buttons.min.js',
+			'js/core/buttons.flash.min.js',
+			'js/core/jszip.min.js',
+			'js/core/pdfmake.min.js',
+			'js/core/vfs_fonts.js',
+			'js/core/buttons.html5.min.js',
+			'js/core/buttons.print.min.js'
+
 			);
 
-		$this->layout->content = View::make('modules.invoice.entryList', array('title' => 'List Invoice', 'user' => $user['user'], 'invoicesdata' => $invoicesData));
+		$this->layout->content = View::make('modules.invoice.entryList', array('title' => 'List Invoice', 'user' => $user['user'], 'clients' => $allClientList, 'invoicesdata' => $invoicesData));
 		 
 	}
 
@@ -622,6 +646,94 @@ class InvoiceController extends CoreController {
 		}
 	}
 
+		// Post edit report
+	public function postEmail() 
+	{
+   		$data = Input::all(); 
+  		$invoice_id = Input::get('invoice_id');
+			
+   		$client = Input::get('client_id');
 
+   		
+
+   		if(!isset($client)) { 
+   			return Redirect::back()->with('error_message', Lang::get('communalService.msg_error_managers_empty'));
+   		}
+   		if (isset($invoice_id))
+		{
+
+			$invoice = InvoiceEntry::getSingleInvoiceEntry($invoice_id);
+
+			$clientData = ClientEntry::getSingleClientEntryByMembershipID($client);
+
+			$client_email = $clientData['entry']->email;
+
+
+
+			if ($invoice['status'] == 0)
+			{
+				return Redirect::back()->with('error_message', Lang::get('messages.msg_error_getting_entry'));
+			}
+
+   
+ 		Mail::send('emails.core.sendinvoice', array('id'=>Input::get('invoice_id'), 'client_id' => Input::get('client_id'), 'message_content'=>Input::get('message_content'), 'sendPDFInMailCheck'=>Input::get('sendPDFInMailCheck')), function($message){ 
+
+   			$data = Input::all();  
+   		
+
+			$invoice_id = $data['invoice_id']; 
+
+			$client_id = $data['client_id'];
+
+			$clientData = ClientEntry::getSingleClientEntryByMembershipID($client_id);
+
+			$client_email = $clientData['entry']->email;
+
+	 		$invoice = InvoiceEntry::getSingleInvoiceEntry($invoice_id);
+
+	 		$employee_id = $invoice['entry']->employee_id;
+	 		
+		    $message->to($client_email);
+ 
+		   
+   			if (isset($data['sendPDFInMailCheck'])) {
+
+	 			$currdate = date('d-m-Y');
+
+				$pdfname = 'invoice-report-' . $invoice['entry']->entry_id . '-' . $currdate;
+
+	  			$pdfreportfullpath = public_path() . "/uploads/modules/invoices/pdfreports/" . $pdfname . '.pdf';
+
+	  			$productsperinvoice = InvoiceEntry::getProductsPerInvoice($invoice_id);
+
+				$employeeinfo = EmployeeEntry::getSingleEmployeeEntryByID($employee_id);
+
+				$invoicesData[] = array('invoice' => $invoice, 'employeeinfo' => $employeeinfo['employee'], 'productsperinvoice' => $productsperinvoice['productsperinvoice']);
+	 
+				//call createPdf method to create pdf
+				//fix this neka se poziva kao kreiranje pdf-a od račun
+				$pdf = PDF::loadView('modules.invoice.invoicespdf', array('invoicesdata' => $invoicesData, 'productsperinvoice' => $productsperinvoice))->save( $pdfreportfullpath );
+				//return $pdf->stream();
+	      
+	   		    $message->attach($pdfreportfullpath, array(
+			        'as' => 'invoice-report-' . $invoice['entry']->entry_id . '-' . $currdate . '.pdf', 
+			        'mime' => 'application/pdf')
+			    );
+
+
+   			} 
+ 
+	        $message->subject('Invoice');
+
+ 
+	    	});
+
+
+ 
+	    return Redirect::route('invoiceLanding')->with('success_message', Lang::get('core.msg_success_email_sent'));
   
+	}
+
+}
+
 }

@@ -50,6 +50,14 @@ return array(
 	'pdf'				=>	'PDF',
 	'total_sum'			=>	'Total Sum',
 	'list_all_invoice'	=>	'List all invoices',
-	'list_of_all_invoice'	=>	'List of all invoices'
+	'list_of_all_invoice'	=>	'List of all invoices',
+	'sea_tow_europe_operations'	=>	'Sea Tow Europe Operations',
+	'print_to_pdf'		=>	'Print to PDF',
+	'payment_methods'	=>	'Payment methods',
+	'cost_by_product'	=>	'Cost by product',
+	'send_to_email'		=>	' Send to email',
+	'modal_report_send_email_button' => 'Send mail',
+	'send_pdf_check'	=> 'Attach pdf',
+	'send_email'		=> 'Send email'
 
 );

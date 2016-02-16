@@ -15,7 +15,8 @@ return array(
 	|
 	*/
 
-	'driver' => 'mail',
+	//'driver' => 'mail',
+	'driver' => 'smtp',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.1und1.de',
+	//'host' => 'smtp.1und1.de',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +56,9 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'info@mycity-hub.com', 'name' => 'CityHub'),
+	//'from' => array('address' => 'info@mycity-hub.com', 'name' => 'CityHub'),
+	'from' => array('address' => 'culexosijek@gmail.com', 'name' => 'Seatowcrm'),
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +84,7 @@ return array(
 	|
 	*/
 
-	'username' => 'info@mycity-hub.com',
+	'username' => 'culexosijek@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +97,7 @@ return array(
 	|
 	*/
 
-	'password' => 'fzddxcn9XcT?$!7w',
+	'password' => 'culex2016!',
 
 	/*
 	|--------------------------------------------------------------------------

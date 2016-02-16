@@ -24,6 +24,8 @@ Route::group(array('prefix' => 'invoice'), function()
 
 		Route::get('delete-entry/{id}', array('before' => 'auth', 'as' => 'InvoiceGetDeleteEntry', 'uses' => 'InvoiceController@getDeleteEntry'));
 
+		Route::post('send-email', array('before' => 'auth', 'as' => 'InvoicesPostEmail', 'uses' => 'InvoiceController@postEmail'));
+
 	});
 
 

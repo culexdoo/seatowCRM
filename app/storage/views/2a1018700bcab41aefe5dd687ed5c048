@@ -21,7 +21,85 @@
                 <a class="btn btn-success btn-flat pull-right" href="<?php echo URL::route('ClientGetAddEntry'); ?>"><i class="fa fa-plus"></i><?php echo Lang::get('client.add_client'); ?></a>
                 <!-- BUTTON EXPORT TO PDF -->
             <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            
+                 <?php if(count($invoicesdata) > 0): ?> 
+                  <table id="list-invoice-hidden" class="table hidden">
+                    <thead>
+                      <th>
+
+                          <td>  <?php echo Lang::get('invoice.from'); ?>  </td>
+
+                          <td>  <?php echo Lang::get('invoice.to'); ?>  </td>
+
+                          <td>  <?php echo Lang::get('invoice.invoice'); ?>  </td>
+
+                          <td>  <?php echo Lang::get('invoice.membership_id'); ?>  </td>
+
+                          <td>  <?php echo Lang::get('invoice.order_id'); ?> </td>
+
+                          <td>  <?php echo Lang::get('invoice.payment_due'); ?>  </td>
+
+                          <td>  <?php echo Lang::get('invoice.account'); ?>  </td>
+                          
+                          <td>  <?php echo Lang::get('invoice.amount_due'); ?> </td>
+
+                          <td>  <?php echo Lang::get('boats.total_sum'); ?>  </td>
+
+                          <td>  <?php echo Lang::get('invoice.payment_methods'); ?> </td>
+
+                        </th>
+                    </thead>
+
+                    <tbody>
+                         <?php foreach($invoicesdata as $entry): ?>
+                      <tr>
+                            <td>
+                                <p><?php echo $entry['employeeinfo']->employee_first_name; ?>  <?php echo $entry['employeeinfo']->employee_last_name; ?></p><br>
+                                <p><?php echo $entry['employeeinfo']->franchisee_address; ?>, <?php echo $entry['employeeinfo']->franchisee_zip; ?> </p><br>
+                                <p><?php echo $entry['employeeinfo']->franchisee_country; ?>, <?php echo $entry['employeeinfo']->franchisee_city; ?></p><br>
+                                <p><?php echo Lang::get('invoice.phone'); ?>: <?php echo $entry['employeeinfo']->employee_mobile_number; ?></p><br>
+                                <p><?php echo Lang::get('invoice.email'); ?>: <?php echo $entry['employeeinfo']->employee_email; ?></p>
+                            </td>
+                             <td>
+                                <?php echo $entry['entry']->first_name; ?> <?php echo $entry['entry']->last_name; ?></r>
+                                <?php echo $entry['entry']->address; ?></r>
+                                <?php echo $entry['entry']->city; ?>, <?php echo $entry['entry']->zip; ?></r>
+                                <?php echo Lang::get('invoice.phone'); ?>: <?php echo $entry['entry']->mobile_number; ?></r>
+                                <?php echo Lang::get('invoice.email'); ?>: <?php echo $entry['entry']->email; ?>
+
+                            </td>
+
+                            <td>  <p>#007612</p>  </td>
+                               
+                            <td>  <p> <?php echo $entry['entry']->client_id; ?> </p>   </td>   
+
+                            <td>  <p>4F3S8J</p>  </td>
+
+                            <td>  <p> <?php echo $entry['entry']->payment_due; ?> </p>   </td>   
+
+                            <td> 
+                                                 <?php foreach($entry['productsperinvoice'] as $singleproduct): ?>
+                                                 <?php echo Lang::get('invoice.product_name'); ?>: <?php echo $singleproduct->product_name; ?> 
+                                                 <?php echo Lang::get('invoice.product_tax'); ?>: <?php echo $singleproduct->tax; ?>% 
+                                                 <?php echo Lang::get('invoice.product_price'); ?>: <?php echo $singleproduct->price; ?>€ 
+                                                 <?php echo Lang::get('invoice.product_qty'); ?>: <?php echo $singleproduct->qty; ?> 
+                                                 <?php echo Lang::get('invoice.product_price_qty'); ?>:  <?php echo $singleproduct->price_qty; ?>€ 
+                                                  <?php endforeach; ?>     
+                            </td>   
+                            <td>  <p> <?php echo $entry['entry']->payment_due; ?> </p>   </td> 
+
+                            <td>  <p> <?php echo $entry['entry']->total_sum; ?> </p>   </td> 
+
+                            <td>  <p> <?php echo $entry['entry']->total_sum; ?> </p>   </td> 
+                             <td>  <p> <?php echo $entry['entry']->total_sum; ?> </p>   </td> 
+                                
+
+
+                      </tr>
+     
+                    <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                    <?php endif; ?>
           
                     
                     <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -126,12 +204,12 @@
                                           <a href="<?php echo URL::route('InvoiceCreatePdf', array('entry_id' => $entry['entry']->entry_id)); ?>"><span class="label label-primary"><?php echo Lang::get('invoice.pdf'); ?></span></a>
                                           &nbsp; 
 
-                                            <a data-toggle="modal" data-target="#myModal" href=""><span class="label label-success"><?php echo Lang::get('invoice.send_email'); ?></span></a>
+                                            <a data-toggle="modal" data-target="#sendMailModal" href=""><span class="label label-success"><?php echo Lang::get('invoice.send_email'); ?></span></a>
                                           &nbsp; 
 
-                                            <a href="<?php echo URL::route('InvoiceGetEditEntry', array('entry_id' => $entry['entry']->entry_id)); ?>"><span class="label label-warning"><?php echo Lang::get('invoice.edit_invoice'); ?></span></a>
+                                        <!--    <a href="<?php echo URL::route('InvoiceGetEditEntry', array('entry_id' => $entry['entry']->entry_id)); ?>"><span class="label label-warning"><?php echo Lang::get('invoice.edit_invoice'); ?></span></a> 
 
-                                           &nbsp; 
+                                           &nbsp; -->
                                             <a href="<?php echo URL::route('InvoiceGetDeleteEntry', array('entry_id' => $entry['entry']->entry_id)); ?>"><span class="label label-danger"><?php echo Lang::get('invoice.delete_invoice'); ?></span></a>
                                           <div class="box-tools pull-right">
                                          
@@ -149,8 +227,11 @@
                                           <!-- title row -->
                                           <div class="row">
                                             <div class="col-xs-12">
-                                              <h2 class="page-header">
-                                              <img src="img/core/seatow-logo-invoice.png"></img> Sea Tow Europe Operations Ltd. <small class="pull-right">Date: 2/10/2014</small></h2>
+                                              <div class="page-header">
+                                               
+                                              <img src="img/core/seatow-logo-invoice.png"/> <?php echo Lang::get('invoice.sea_tow_europe_operations'); ?> <small class="pull-right"><?php echo Lang::get('invoice.date'); ?>: UPDATED DATE</small>
+
+                                              </div>
                                             </div>
                                             <!-- /.col -->
                                           </div>
@@ -163,8 +244,8 @@
                                                 <?php echo $entry['employeeinfo']->franchisee_address; ?>, <?php echo $entry['employeeinfo']->franchisee_zip; ?><br>
                                                 <?php echo $entry['employeeinfo']->franchisee_country; ?>, <?php echo $entry['employeeinfo']->franchisee_city; ?><br>
 
-                                                Phone: <?php echo $entry['employeeinfo']->employee_mobile_number; ?><br>
-                                                Email: <?php echo $entry['employeeinfo']->employee_email; ?>
+                                                <?php echo Lang::get('invoice.phone'); ?>: <?php echo $entry['employeeinfo']->employee_mobile_number; ?><br>
+                                                <?php echo Lang::get('invoice.email'); ?>: <?php echo $entry['employeeinfo']->employee_email; ?>
 
                                               </address>
                                             </div>
@@ -175,8 +256,8 @@
                                                 <strong><?php echo $entry['entry']->first_name; ?> <?php echo $entry['entry']->last_name; ?></strong><br>
                                                 <?php echo $entry['entry']->address; ?><br>
                                                 <?php echo $entry['entry']->city; ?>, <?php echo $entry['entry']->zip; ?><br>
-                                                Phone: <?php echo $entry['entry']->mobile_number; ?><br>
-                                                Email: <?php echo $entry['entry']->email; ?>
+                                                <?php echo Lang::get('invoice.phone'); ?>: <?php echo $entry['entry']->mobile_number; ?><br>
+                                                <?php echo Lang::get('invoice.email'); ?>: <?php echo $entry['entry']->email; ?>
 
                                               </address>
                                             </div>
@@ -184,7 +265,7 @@
                                             <div class="col-sm-4 invoice-col">
                                               <b><?php echo Lang::get('invoice.invoice'); ?> #007612</b><br>
                                               <br>
-                                              <b><?php echo Lang::get('invoice.membership_id'); ?>:</b> <?php echo $entry['entry']->membership_id; ?><br>
+                                              <b><?php echo Lang::get('invoice.membership_id'); ?>:</b> <?php echo $entry['entry']->client_id; ?><br>
                                               <b><?php echo Lang::get('invoice.order_id'); ?>:</b> 4F3S8J<br>
                                               <b><?php echo Lang::get('invoice.payment_due'); ?>:</b> <?php echo $entry['entry']->payment_due; ?><br>
                                               <b><?php echo Lang::get('invoice.account'); ?>:</b> 968-34567
@@ -200,9 +281,9 @@
                                                   <tr>
                                                     <th><?php echo Lang::get('invoice.product'); ?></th>
                                                     <th><?php echo Lang::get('invoice.tax'); ?></th>
-                                                    <th>Price</th>
-                                                    <th>QTY</th>
-                                                    <th class="col-md-2">Cost by product</th>
+                                                    <th><?php echo Lang::get('invoice.price'); ?></th>
+                                                    <th><?php echo Lang::get('invoice.qty'); ?></th>
+                                                    <th class="col-md-2"><?php echo Lang::get('invoice.cost_by_product'); ?></th>
                                                   </tr>
                                                 </thead>
                                                 <tbody>
@@ -224,7 +305,7 @@
                                           <div class="row">
                                             <!-- accepted payments column -->
                                             <div class="col-xs-6">
-                                              <p class="lead">Payment Methods:</p>
+                                              <p class="lead"><?php echo Lang::get('invoice.payment_methods'); ?>:</p>
                                               
                                               <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                                                Here goes description about payment method.
@@ -232,12 +313,12 @@
                                             </div>
                                             <!-- /.col -->
                                             <div class="col-xs-6">
-                                              <p class="lead">Amount Due 2/22/2014</p>
+                                              <p class="lead"><?php echo Lang::get('invoice.amount_due'); ?> <?php echo $entry['entry']->payment_due; ?></p>
                                               <div class="table-responsive">
                                                 <table class="table">
                                                   <tbody>
                                                   <tr>
-                                                    <th>Total:</th>
+                                                    <th><?php echo Lang::get('invoice.total'); ?>:</th>
                                                     <td class="col-md-2"><?php echo $entry['entry']->total_sum; ?>€</td>
                                                   </tr>
                                                 </tbody></table>
@@ -249,11 +330,12 @@
                                           <!-- this row will not appear when printing -->
                                           <div class="row no-print">
                                             <div class="col-xs-12">
-                                              <button class="btn btn-default"  data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope-o"></i> Send to email</button>
+                                              <button class="btn btn-default"  data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope-o"></i><?php echo Lang::get('invoice.send_to_email'); ?></button>
                                               <!-- Modal -->
                                             
                                               <button href="<?php echo URL::route('InvoiceCreatePdf', array('entry_id' => $entry['entry']->entry_id)); ?>" type="button" class="btn btn-success pull-right" style="margin-right: 5px;">
-                                              <i class="fa fa-download"></i> Print to PDF
+                                              <i class="fa fa-download"></i> <?php echo Lang::get('invoice.print_to_pdf'); ?>
+
                                               </button>
                                             </div>
                                           </div>
@@ -270,31 +352,72 @@
            <?php endif; ?>
         </div>
 
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                      <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Enter e-mail</h4>
-                                          </div>
-                                          <div class="modal-body">
-                                            <div class="form-group">
-                                              <label>Send to email:</label>
-                                              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ivan.rakic@myself.com">
-                                            </div>
-                                            <div class="form-group">
-                                              <label>Email message:</label>
-                                              <textarea class="form-control" rows="3" placeholder="Dear Mr.Ivan Rakic, I'm sending you an Invoice number in attachment."></textarea>
-                                            </div>
-                                            
-                                          </div>
-                                          <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Send</button>
-                                          </div>
-                                        </div>
-                                      </div>
+
+
+ <div class="modal fade" id="sendMailModal" tabindex="-1" role="dialog" aria-labelledby="sendMailModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close modalSendMailCloseButton" data-dismiss="modal" aria-label="<?php echo Lang::get('core.close'); ?>"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><?php echo Lang::get('invoice.send_email'); ?></h4>
+      </div>
+      <div class="modal-body">
+
+        <p>Choose recipient:</p>
+
+        <?php echo Form::open(array('route' => 'InvoicesPostEmail', 'role' => 'form', 'class' => 'form-horizontal', 'autocomplete' => 'off', 'files' => true )); ?>
+
+
+     
+        <?php echo Form::hidden('invoice_id', $entry['entry']->entry_id, array('id' => 'invoice_id')); ?>
+
+
+        <div class="form-group">
+ 
+          <div class="col-xs-12">
+            <div class="mt10" id="managersContainer">
+       <?php echo Form::select('client_id', $clients, isset($entry->client_id) ? $entry->client_id : null, array('class' => 'form-control', 'id' => 'client_id', 'required')); ?>
+
+            </div>
           </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-12">
+            <div class="note_cotainer">
+              <?php echo Form::textarea('message_content', null, array('class' => 'form-control mb20', 'id' => 'message_content')); ?>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-12 text-right">
+          <label for="sendPDFInMailCheck" class=""><?php echo Lang::get('invoice.send_pdf_check'); ?>
+
+            <?php echo Form::checkbox('sendPDFInMailCheck', '1'); ?></label>
+          </div>
+        </div>
+
+        <div class="form-group mt40">
+          <div class="col-xs-12 text-center">
+            <?php echo Form::button('<span class="icon icon-done"></span> ' . Lang::get('invoice.modal_report_send_email_button'), array('id' => 'sendEmail', 'name' => 'sendEmail', 'type' => 'submit', 'class' => 'btn btn-success sendEmailElement')); ?>
+
+          </div>
+        </div>
+
+      <?php echo Form::close(); ?>
+
+
+      </div>
+      <div class="modal-footer">
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
       </div>
     </div>
@@ -309,3 +432,15 @@
   keyboard: false
 })
           </script>
+           <script>
+                      $(document).ready(function() {
+                         $('#list-invoice-hidden').DataTable( {
+                           dom: 'Brt',
+                           buttons: [
+                           'copy', 'csv', 'excel'
+                                    ]
+                               } );
+                                } );
+
+          </script>
+
